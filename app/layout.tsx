@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { IranYekan } from "./(utility)/font";
 
 export const metadata: Metadata = {
-  title: "Amir Zouerami",
+  title: "وبلاگ شخصی امیر زوارمی",
   description: "Personal Blog for Amir Zouerami",
 };
 
