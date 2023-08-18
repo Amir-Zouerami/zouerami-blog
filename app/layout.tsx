@@ -1,10 +1,10 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { IranYekan } from "./(utility)/font";
+import './globals.css';
+import type { Metadata } from 'next';
+import { IranYekan } from './(utility)/font';
 
 export const metadata: Metadata = {
-  title: "وبلاگ شخصی امیر زوارمی",
-  description: "Personal Blog for Amir Zouerami",
+  title: 'وبلاگ شخصی امیر زوارمی',
+  description: 'Personal Blog for Amir Zouerami',
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" className={IranYekan.variable}>
-      <body>{children}</body>
+      <body className="dark:bg-[#31333c]">{children}</body>
     </html>
   );
 }
