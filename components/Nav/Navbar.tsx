@@ -1,28 +1,35 @@
+// 'use client';
+
 import Image from 'next/image';
 
 import moon from '@/icons/moon.svg';
 import menu from '@/icons/menu.svg';
 import search from '@/icons/search.svg';
 import translate from '@/icons/translate.svg';
-import navbarLogo from '@/icons/navbar-logo.webp';
+import github from '@/icons/github.svg';
 import Link from 'next/link';
 
+// import { useState } from 'react';
+
 function Navbar() {
+  // TODO: Set active link styling based on the current page url
+  // const [active, setActive] = useState('main-page');
+
   return (
     // <nav className="fixed right-1/2 top-0 h-16 w-full translate-x-1/2 bg-gray-200 md:w-2/3">
-    <nav className="sticky top-0 pt-3">
+    <nav className="sticky top-0 rounded-b-2xl py-2 backdrop-blur-md">
       <div className="">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between md:mr-5">
           <div className="p-4 md:hidden">
             <Link href={'#'} className="">
               <Image src={menu} alt="navigation-menu" width={35} />
             </Link>
           </div>
 
-          <ul className="hidden md:flex md:gap-20">
+          <ul className="hidden transition-all md:flex md:gap-20">
             <li>
               <Link
-                href={'#'}
+                href={'/'}
                 className="mr-0 rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white"
               >
                 صفحه اصلی
@@ -30,40 +37,51 @@ function Navbar() {
             </li>
 
             <li>
-              <Link href={'#'} className="">
-                بلاگ
-              </Link>
+              <Link href={'/blog'}>بلاگ</Link>
             </li>
 
             <li>
-              <Link href={'#'} className="">
-                اخبار تکنولوژی
-              </Link>
+              <Link href={'/tech-news'}>اخبار تکنولوژی</Link>
             </li>
 
             <li>
-              <Link href={'#'} className="">
-                پروژه ها
-              </Link>
+              <Link href={'/portfolio'}>پروژه ها</Link>
             </li>
 
             <li>
-              <Link href={'#'} className="">
-                درباره من
-              </Link>
+              <Link href={'/about-me'}>درباره من</Link>
             </li>
           </ul>
 
           <div className="flex gap-2 p-5 md:gap-4">
-            <Link href={'#'}>
+            {/* TODO: Search Functionality */}
+            <Link
+              href={'#'}
+              className="transition-transform hover:scale-150 hover:animate-pulse"
+            >
               <Image src={search} alt="search" width={25} />
             </Link>
 
-            <Link href={'#'}>
+            <Link
+              href={'https://github.com/Amir-Zouerami/zouerami-blog'}
+              className="transition-transform hover:scale-150 hover:animate-pulse"
+            >
+              <Image src={github} alt="github" width={25} />
+            </Link>
+
+            {/* TODO: internationalization */}
+            <Link
+              href={'#'}
+              className="transition-transform hover:scale-150 hover:animate-pulse"
+            >
               <Image src={translate} alt="translate" width={25} />
             </Link>
 
-            <Link href={'#'}>
+            {/* TODO: dark mode toggle */}
+            <Link
+              href={'#'}
+              className="transition-transform hover:scale-150 hover:animate-pulse"
+            >
               <Image src={moon} alt="dark-mode" width={25} />
             </Link>
           </div>
