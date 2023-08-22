@@ -4,10 +4,19 @@
 
 html {
     direction: rtl;
-    /* background-color: #31333c;  ALTERNATE COLOR: #0f172a */
+    /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
 }
 
 
+/* ------------------ Prevent sticky hover effect after a touch (mobile devices) ------------------ */
+
+@media (hover: none) {
+
+    .fix-hover>*:hover,
+    .fix-hover>*:active {
+        transform: scale(1) !important;
+    }
+}
 
 
 
