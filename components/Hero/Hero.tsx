@@ -1,13 +1,11 @@
-import heroImage from '@/public/Amir Zouerami Light(1.5).png';
-import amirHero from '@/public/small-blog-landing-page-me-min.png';
+import heroImage from '@/public/hero-image.svg';
 import Image from 'next/image';
 
 const Hero = () => {
   return (
     <Image
-    // TODO: Use an svg image to increase quality or change logo alltogether.
       src={heroImage}
-      className="flex-2 max-w-2/3 my-10 min-w-[30%]"
+      className="mt-10 max-w-[70%] md:col-span-5"
       alt="hero section image"
     />
   );

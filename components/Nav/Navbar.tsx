@@ -5,7 +5,6 @@ import Image from 'next/image';
 import moon from '@/icons/moon.svg';
 import menu from '@/icons/menu.svg';
 import search from '@/icons/search.svg';
-import translate from '@/icons/translate.svg';
 import github from '@/icons/github.svg';
 import Link from 'next/link';
 
@@ -16,8 +15,7 @@ function Navbar() {
   // const [active, setActive] = useState('main-page');
 
   return (
-    // <nav className="fixed right-1/2 top-0 h-16 w-full translate-x-1/2 bg-gray-200 lg:w-2/3">
-    <nav className="sticky top-0 rounded-b-2xl backdrop-blur-md lg:py-2">
+    <nav className="sticky top-0 rounded-b-2xl bg-white lg:py-2">
       <div className="">
         <div className="flex items-center justify-between lg:mr-5">
           <div className="p-4 lg:hidden">
@@ -68,14 +66,6 @@ function Navbar() {
             >
               <Image src={github} alt="github" width={25} />
             </Link>
-
-            {/* TODO: internationalization */}
-            {/* <Link
-              href={'#'}
-              className="transition-transform hover:scale-150 hover:animate-pulse"
-            >
-              <Image src={translate} alt="translate" width={25} />
-            </Link> */}
 
             {/* TODO: dark mode toggle */}
             <Link
