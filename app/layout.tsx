@@ -7,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fa" className={IranYekan.variable}>
+    <html lang="fa" className={`${IranYekan.variable} overflow-x-hidden`}>
       <body className="dark:bg-[#31333c]">{children}</body>
     </html>
   );
