@@ -15,7 +15,7 @@ function Navbar() {
   // const [active, setActive] = useState('main-page');
 
   return (
-    <nav className="sticky top-0 z-10 rounded-b-2xl bg-white lg:py-2">
+    <nav className="sticky top-0 z-10 rounded-b-2xl bg-white max-w-[1200px] mx-auto">
       <div className="">
         <div className="flex items-center justify-between lg:mr-5">
           <div className="p-4 lg:hidden">

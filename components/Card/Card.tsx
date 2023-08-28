@@ -7,17 +7,19 @@ function Card() {
   return (
     // <div className="flex flex-col justify-center">
     <div className="p-5 xl:max-w-[80%]">
-      <p className="mb-5 text-center text-lg font-bold">اخبار تکنولوژی</p>
+      <p className="my-5 text-center text-2xl font-bold text-slate-500">
+        اخبار تکنولوژی
+      </p>
 
       <div className="min-w-52 mx-auto mb-5 overflow-hidden">
-        <Image src={newsPostgres} alt="news redis" className="rounded-md" />
+        <Image src={newsPostgres} alt="news redis" className="rounded-2xl" />
       </div>
 
       <div className="my-8">
-        <h2 className="font-bold leading-9">
+        <h2 className="mb-3 text-xl font-bold leading-9">
           ردیس حافظه ی خود را افزایش می دهد
         </h2>
-        <p className="text-justify leading-7">
+        <p className="text-justify leading-8 2xl:leading-10">
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
           استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
           ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و

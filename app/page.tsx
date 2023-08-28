@@ -20,7 +20,7 @@ export default function Home() {
     <main className="container mx-auto">
       <Navbar />
 
-      <section className="md:mb-50 mb-24 grid grid-cols-1 items-center justify-items-center md:gap-10 lg:mt-28 lg:grid-cols-12">
+      <section className="md:mb-50 mx-auto mb-24 grid max-w-[1200px] grid-cols-1 items-center justify-items-center md:gap-10 lg:grid-cols-12 2xl:mt-16">
         <Hero />
         <div className="col-span-6 justify-self-start px-5 text-justify lg:px-0">
           <h1 className="hidden">وب سایت شخصی امیر زوارمی</h1>
@@ -38,10 +38,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      <section className="mx-auto max-w-[1000px]">
         <p className="mb-14 text-center text-3xl font-black text-slate-500 md:mb-16">
           پــــروژه هــای مــــن
         </p>
+
         <Project />
         <Project />
         <Project />
@@ -56,7 +57,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="my-16 grid items-center justify-items-center lg:grid-cols-2">
+      <section className="mx-auto my-16 grid max-w-[1000px] items-center justify-items-center lg:grid-cols-2">
         <Card />
         <Card />
       </section>
@@ -70,7 +71,7 @@ export default function Home() {
           خلاصــه ای از مــــن
         </h2>
 
-        <p className="text-justify">
+        <p className="mx-auto max-w-[700px] text-justify">
           از اسم این صفحه حتما متوجه شدید که اسم من <strong>امیر زوارمی</strong>{' '}
           هست و یک توسعه دهنده ی وب هستم. من برنامه نویسی رو به عنوان یک سرگرمی
           از
@@ -89,7 +90,7 @@ export default function Home() {
         <Image
           src={suitMe}
           alt="amir zouerami in a suit"
-          className="mx-auto md:absolute md:-left-64 md:top-0 md:max-w-[250px]"
+          className="mx-auto md:absolute md:-left-72 md:top-0 md:max-w-[250px]"
         />
       </section>
 
