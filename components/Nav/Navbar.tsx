@@ -15,12 +15,17 @@ function Navbar() {
   // const [active, setActive] = useState('main-page');
 
   return (
-    <nav className="sticky top-0 z-10 rounded-b-2xl bg-white max-w-[1200px] mx-auto">
+    <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c]">
       <div className="">
         <div className="flex items-center justify-between lg:mr-5">
           <div className="p-4 lg:hidden">
             <Link href={'#'} className="">
-              <Image src={menu} alt="navigation-menu" width={30} />
+              <Image
+                src={menu}
+                alt="navigation-menu"
+                width={30}
+                className="dark:invert"
+              />
             </Link>
           </div>
 
@@ -28,26 +33,46 @@ function Navbar() {
             <li>
               <Link
                 href={'/'}
-                className="mr-0 rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white"
+                className="mr-0 rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white hover:opacity-[0.8] dark:bg-[#e25687]"
               >
                 صفحه اصلی
               </Link>
             </li>
 
             <li>
-              <Link href={'/blog'}>بلاگ</Link>
+              <Link
+                href={'/blog'}
+                className="hover:font-black hover:text-teal-700 dark:hover:text-cyan-300"
+              >
+                بلاگ
+              </Link>
             </li>
 
             <li>
-              <Link href={'/tech-news'}>اخبار تکنولوژی</Link>
+              <Link
+                href={'/tech-news'}
+                className="hover:font-black hover:text-teal-700 dark:hover:text-cyan-300"
+              >
+                اخبار تکنولوژی
+              </Link>
             </li>
 
             <li>
-              <Link href={'/portfolio'}>پروژه ها</Link>
+              <Link
+                href={'/portfolio'}
+                className="hover:font-black hover:text-teal-700 dark:hover:text-cyan-300"
+              >
+                پروژه ها
+              </Link>
             </li>
 
             <li>
-              <Link href={'/about-me'}>درباره من</Link>
+              <Link
+                href={'/about-me'}
+                className="hover:font-black hover:text-teal-700 dark:hover:text-cyan-300"
+              >
+                درباره من
+              </Link>
             </li>
           </ul>
 
@@ -57,20 +82,30 @@ function Navbar() {
               href={'#'}
               className="transition-transform hover:scale-150 hover:animate-pulse"
             >
-              <Image src={search} alt="search" width={25} />
+              <Image
+                src={search}
+                alt="search"
+                width={25}
+                className="dark:invert"
+              />
             </Link>
 
             <Link
               href={'https://github.com/Amir-Zouerami/zouerami-blog'}
               className="transition-transform hover:scale-150 hover:animate-pulse"
             >
-              <Image src={github} alt="github" width={25} />
+              <Image
+                src={github}
+                alt="github"
+                width={25}
+                className="dark:invert"
+              />
             </Link>
 
             {/* TODO: dark mode toggle */}
             <Link
               href={'#'}
-              className="transition-transform hover:scale-150 hover:animate-pulse"
+              className="transition-transform hover:scale-150 hover:animate-pulse dark:invert"
             >
               <Image src={moon} alt="dark-mode" width={25} />
             </Link>

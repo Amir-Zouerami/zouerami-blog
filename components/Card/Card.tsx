@@ -7,7 +7,7 @@ function Card() {
   return (
     // <div className="flex flex-col justify-center">
     <div className="p-5 xl:max-w-[80%]">
-      <p className="my-5 text-center text-2xl font-bold text-slate-500">
+      <p className="my-5 text-center text-2xl font-bold text-slate-500 dark:text-[#acacac]">
         اخبار تکنولوژی
       </p>
 
@@ -31,7 +31,7 @@ function Card() {
 
       <div className="my-14 text-center">
         <Link
-          className=" rounded-md bg-[#1f2124] px-10 py-5 font-bold text-white"
+          className=" rounded-md bg-[#1f2124] px-10 py-5 font-bold text-white hover:bg-[#696a6b] dark:bg-[#e25687] dark:hover:bg-[#843c55]"
           href={'#'}
         >
           مشاهده اخبار بیشتر

@@ -9,9 +9,9 @@ export default function RootLayout({
   return (
     <html
       lang="fa"
-      className={`${IranYekan.variable} overflow-x-hidden text-sm`}
+      className={`${IranYekan.variable} dark overflow-x-hidden text-sm`}
     >
-      <body className="dark:bg-[#31333c]">{children}</body>
+      <body className="dark:bg-[#31333c] dark:text-white">{children}</body>
     </html>
   );
 }

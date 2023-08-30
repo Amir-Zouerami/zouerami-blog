@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 function Project() {
   return (
-    <div className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 lg:flex-row">
+    <div className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 dark:bg-[#424551] lg:flex-row">
       <div className="flex rounded-3xl lg:max-w-[400px]">
         <Image
           src={projectSamplePic}
@@ -27,13 +27,15 @@ function Project() {
           <div className="flex max-w-[150px] justify-center lg:max-w-full">
             <Link
               href={'#'}
-              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white lg:w-auto"
+              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white
+              transition-all hover:bg-[#696a6b] lg:w-auto"
             >
               توضیحات بیشتر
             </Link>
             <Link
               href={'#'}
-              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white lg:w-auto"
+              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white
+              transition-all hover:bg-[#696a6b] lg:w-auto"
             >
               دموی پروژه
             </Link>
@@ -42,8 +44,8 @@ function Project() {
           <Link
             href={'#'}
             className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124]
-          bg-gradient-to-l from-[#5D4954] to-[#DC8B83]
-          px-5 py-3 text-white lg:w-auto"
+            bg-gradient-to-l from-[#5D4954] to-[#DC8B83] px-5 py-3 text-white hover:opacity-[0.8] dark:from-[#a67fbe]
+            dark:to-[#51b6af] lg:w-auto"
           >
             <Image
               src={GitHub}
