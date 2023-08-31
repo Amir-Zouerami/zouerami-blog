@@ -1,16 +1,14 @@
 import Card from '@/components/Card/Card';
 import Hero from '@/components/Hero/Hero';
-import Navbar from '@/components/Nav/Navbar';
 import Project from '@/components/Project Showcase/Project';
 import NewsLetter from '@/components/NewsLetter/NewsLetter';
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import arrow from '@/icons/arrow.svg';
-
 import suitMe from '@/public/suitMe.png';
-import FooterSocials from '@/components/FooterSocials/FooterSocials';
 
 export const metadata: Metadata = {
   title: 'امیر زوارمی برنامه نویس و طراح وب',
@@ -19,9 +17,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="container mx-auto">
-      <Navbar />
-
+    <>
       <section className="md:mb-50 fadeInDown mx-auto mb-24 grid max-w-[1200px] grid-cols-1 items-center justify-items-center md:gap-10 lg:grid-cols-12 2xl:mt-16">
         <Hero />
         <div className="col-span-6 justify-self-start px-5 text-justify lg:px-0">
@@ -110,42 +106,6 @@ export default function Home() {
           className="mx-auto md:absolute md:-left-72 md:top-0 md:max-w-[250px]"
         />
       </section>
-
-      <footer className="mt-36 md:mt-36">
-        <div className="mb-10 flex justify-center gap-7 font-bold md:mb-24 md:gap-32">
-          <Link
-            className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-            href={'#'}
-          >
-            خانه
-          </Link>
-          <Link
-            className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-            href={'#'}
-          >
-            وبلاگ
-          </Link>
-          <Link
-            className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-            href={'#'}
-          >
-            پروژه
-          </Link>
-          <Link
-            className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-            href={'#'}
-          >
-            درباره من
-          </Link>
-        </div>
-
-        <FooterSocials />
-
-        <p className="mx-auto mb-10 mt-24 max-w-[90%] text-center text-slate-500">
-          © تمامی حقوق مادی و معنوی این سایت قانونا و شرعاً متعلق به امیر
-          زوارمی است.
-        </p>
-      </footer>
-    </main>
+    </>
   );
 }

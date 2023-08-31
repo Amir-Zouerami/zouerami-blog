@@ -1,8 +1,8 @@
 // 'use client';
 
 import Image from 'next/image';
+import DarkMode from './DarkMode';
 
-import moon from '@/icons/moon.svg';
 import menu from '@/icons/menu.svg';
 import search from '@/icons/search.svg';
 import github from '@/icons/github.svg';
@@ -15,7 +15,7 @@ function Navbar() {
   // const [active, setActive] = useState('main-page');
 
   return (
-    <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c]">
+    <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c] lg:pt-5">
       <div className="">
         <div className="flex items-center justify-between lg:mr-5">
           <div className="p-4 lg:hidden">
@@ -102,13 +102,7 @@ function Navbar() {
               />
             </Link>
 
-            {/* TODO: dark mode toggle */}
-            <Link
-              href={'#'}
-              className="transition-transform hover:scale-150 hover:animate-pulse dark:invert"
-            >
-              <Image src={moon} alt="dark-mode" width={25} />
-            </Link>
+            <DarkMode />
           </div>
         </div>
       </div>

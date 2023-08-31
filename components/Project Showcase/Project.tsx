@@ -27,15 +27,15 @@ function Project() {
           <div className="flex max-w-[150px] justify-center lg:max-w-full">
             <Link
               href={'#'}
-              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white
-              transition-all hover:bg-[#696a6b] lg:w-auto"
+              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white transition-all
+              hover:bg-[#696a6b] dark:bg-[#e25687] dark:hover:bg-[#e25687c1] lg:w-auto"
             >
               توضیحات بیشتر
             </Link>
             <Link
               href={'#'}
-              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white
-              transition-all hover:bg-[#696a6b] lg:w-auto"
+              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white transition-all
+              hover:bg-[#696a6b] dark:bg-[#e25687] dark:hover:bg-[#e25687c1] lg:w-auto"
             >
               دموی پروژه
             </Link>
