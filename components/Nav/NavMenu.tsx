@@ -6,11 +6,10 @@ import Link from 'next/link';
 import menu from '@/icons/menu.svg';
 import x from '@/icons/menu-X.svg';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import NavLinkMobile from './NavLinkMobile';
 
 function NavMenu() {
   const [modal, setModal] = useState(false);
-  const pathName = usePathname();
 
   return (
     <div className="relative p-4 lg:hidden">
@@ -45,62 +44,13 @@ function NavMenu() {
             setModal(!modal);
           }}
         >
-          <div className="absolute top-5 min-w-[93vw] rounded-lg bg-slate-700 text-center dark:bg-slate-600">
+          <div className="absolute top-5 min-w-[93vw] rounded-lg bg-slate-700 text-center text-white dark:bg-slate-600">
             <ul className="flex flex-col gap-7 px-5 py-10">
-              <li>
-                <Link
-                  href={'/'}
-                  className={`${
-                    pathName === '/' ? 'activeMobile' : ''
-                  } mr-0 text-white`}
-                >
-                  صفحه اصلی
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href={'/blog'}
-                  className={`${
-                    pathName.startsWith('/blog') ? 'activeMobile' : ''
-                  } text-white hover:font-black`}
-                >
-                  بلاگ
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href={'/tech-news'}
-                  className={`${
-                    pathName.startsWith('/tech-news') ? 'activeMobile' : ''
-                  } text-white hover:font-black`}
-                >
-                  اخبار تکنولوژی
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href={'/portfolio'}
-                  className={`${
-                    pathName.startsWith('/portfolio') ? 'activeMobile' : ''
-                  } text-white hover:font-black`}
-                >
-                  پروژه ها
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href={'/about-me'}
-                  className={`${
-                    pathName === '/about-me' ? 'activeMobile' : ''
-                  } text-white hover:font-black`}
-                >
-                  درباره من
-                </Link>
-              </li>
+              <NavLinkMobile href="/">صفحه اصلی</NavLinkMobile>
+              <NavLinkMobile href="/blog">بلاگ</NavLinkMobile>
+              <NavLinkMobile href="/tech-news">اخبار تکنولوژی</NavLinkMobile>
+              <NavLinkMobile href="/portfolio">پروژه ها</NavLinkMobile>
+              <NavLinkMobile href="/about-me">درباره من</NavLinkMobile>
             </ul>
           </div>
         </div>

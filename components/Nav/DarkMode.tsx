@@ -20,13 +20,7 @@ function DarkMode() {
   }, []);
 
   if (!mounted) {
-    return (
-      <Image
-        src={loading}
-        width={25}
-        alt="loading theme button"
-      />
-    );
+    return <Image src={loading} width={25} alt="loading theme button" />;
   }
 
   return (
@@ -38,9 +32,9 @@ function DarkMode() {
       }}
     >
       {theme === 'light' ? (
-        <Image src={moon} alt="dark-mode" width={25} />
+        <Image src={moon} alt="set theme to dark mode" width={25} />
       ) : (
-        <Image src={sun} alt="dark-mode" width={25} />
+        <Image src={sun} alt="set theme to light mode" width={25} />
       )}
     </Link>
   );

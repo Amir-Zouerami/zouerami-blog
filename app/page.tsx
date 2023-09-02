@@ -50,7 +50,7 @@ export default function Home() {
 
         <div className="btn-container overflow-hidden rounded-lg text-center">
           <div className="arrow-container bg-[#396b5e] bg-gradient-to-l dark:bg-[#61a290]">
-            <Image src={arrow} alt="some Image" />
+            <Image src={arrow} alt="arrow icon for 'portfolio' button" />
           </div>
           <Link
             href={'#'}
