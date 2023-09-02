@@ -25,7 +25,6 @@ function DarkMode() {
         src={loading}
         width={25}
         alt="loading theme button"
-        className=""
       />
     );
   }

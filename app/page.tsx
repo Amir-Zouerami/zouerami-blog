@@ -103,7 +103,7 @@ export default function Home() {
         <Image
           src={suitMe}
           alt="amir zouerami in a suit"
-          className="mx-auto md:absolute md:-left-72 md:top-0 md:max-w-[250px]"
+          className="mx-auto lg:absolute lg:-left-72 lg:top-0 lg:max-w-[250px]"
         />
       </section>
     </>

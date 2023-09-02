@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import DarkMode from './DarkMode';
 
-import menu from '@/icons/menu.svg';
 import search from '@/icons/search.svg';
 import github from '@/icons/github.svg';
 import Link from 'next/link';
+import NavMenuMobile from './NavMenu';
 
 // import { useState } from 'react';
 
@@ -18,16 +18,7 @@ function Navbar() {
     <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c] lg:pt-5">
       <div className="">
         <div className="flex items-center justify-between lg:mr-5">
-          <div className="p-4 lg:hidden">
-            <Link href={'#'} className="">
-              <Image
-                src={menu}
-                alt="navigation-menu"
-                width={30}
-                className="dark:invert"
-              />
-            </Link>
-          </div>
+          <NavMenuMobile />
 
           <ul className="hidden transition-all lg:flex lg:gap-20">
             <li>

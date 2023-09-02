@@ -7,6 +7,14 @@ html {
     /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
 }
 
+/* ------------------ TAILWIND CUSTOM ------------------ */
+
+
+.activeMobile {
+    @apply dark:bg-[#e25687] px-4 py-2 font-semibold rounded-[10px] bg-[#1f2124];
+}
+
+
 
 /* ------------------ Prevent sticky hover effect after a touch (mobile devices) ------------------ */
 
@@ -17,7 +25,6 @@ html {
         transform: scale(1) !important;
     }
 }
-
 
 
 /* ------------------ BUTTON ANIMATIONS ------------------ */
