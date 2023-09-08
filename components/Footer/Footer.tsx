@@ -7,25 +7,25 @@ function Footer() {
       <div className="mb-10 flex justify-center gap-7 font-bold md:mb-24 md:gap-32">
         <Link
           className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-          href={'#'}
+          href={'/'}
         >
           خانه
         </Link>
         <Link
           className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-          href={'#'}
+          href={'/blog'}
         >
           وبلاگ
         </Link>
         <Link
           className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-          href={'#'}
+          href={'/portfolio'}
         >
           پروژه
         </Link>
         <Link
           className="transition-all hover:text-lg hover:text-cyan-700 dark:hover:text-cyan-300"
-          href={'#'}
+          href={'/about-me'}
         >
           درباره من
         </Link>

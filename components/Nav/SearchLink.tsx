@@ -14,7 +14,7 @@ function SearchLink() {
       <div
         className={`${
           searchModal && 'hidden'
-        } fixed right-0 top-0 z-50 flex min-h-[100vh] min-w-[100vw] flex-col items-center justify-center bg-slate-600 lg:flex-row`}
+        } fixed right-0 top-0 z-50 flex min-h-[100vh] min-w-[100vw] bg-opacity-[0.9] flex-col items-center justify-center bg-slate-600 lg:flex-row`}
       >
         <input
           className="w-[90%] rounded-xl px-5 py-5 font-bold lg:w-1/2"

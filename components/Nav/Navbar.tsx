@@ -1,47 +1,40 @@
-import Image from 'next/image';
 import DarkMode from './DarkMode';
 
-import github from '@/icons/github.svg';
-import Link from 'next/link';
 import NavMenuMobile from './NavMenu';
 import NavLinkDesktop from './NavLinkDesktop';
 import SearchLink from './SearchLink';
+import UserProfile from './UserProfile';
+import Notify from './Notify';
 
 function Navbar() {
   return (
-    <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c] lg:pt-5">
-      <div className="">
-        <div className="flex items-center justify-between lg:mr-5">
-          <NavMenuMobile />
+    <>
+      <Notify />
 
-          <ul className="hidden transition-all lg:flex lg:gap-20">
-            <NavLinkDesktop href="/">صفحه اصلی</NavLinkDesktop>
-            <NavLinkDesktop href="/blog">بلاگ</NavLinkDesktop>
-            <NavLinkDesktop href="/tech-news">اخبار تکنولوژی</NavLinkDesktop>
-            <NavLinkDesktop href="/portfolio">پروژه ها</NavLinkDesktop>
-            <NavLinkDesktop href="/about-me">درباره من</NavLinkDesktop>
-          </ul>
+      <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c] lg:pt-5">
+        <div>
+          <div className="flex items-center justify-between lg:mr-5">
+            <NavMenuMobile />
 
-          <div className="fix-hover flex gap-2 p-5 lg:gap-4">
-            <SearchLink />
+            <ul className="hidden transition-all lg:flex lg:gap-20">
+              <NavLinkDesktop href="/">صفحه اصلی</NavLinkDesktop>
+              <NavLinkDesktop href="/blog">بلاگ</NavLinkDesktop>
+              <NavLinkDesktop href="/tech-news">اخبار تکنولوژی</NavLinkDesktop>
+              <NavLinkDesktop href="/portfolio">پروژه ها</NavLinkDesktop>
+              <NavLinkDesktop href="/about-me">درباره من</NavLinkDesktop>
+            </ul>
 
-            <Link
-              href={'https://github.com/Amir-Zouerami/zouerami-blog'}
-              className="transition-transform hover:scale-150 hover:animate-pulse"
-            >
-              <Image
-                src={github}
-                alt="github link for this website"
-                width={25}
-                className="dark:invert"
-              />
-            </Link>
+            <div className="fix-hover flex gap-2 p-5 lg:gap-4">
+              <SearchLink />
 
-            <DarkMode />
+              <UserProfile />
+
+              <DarkMode />
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 
