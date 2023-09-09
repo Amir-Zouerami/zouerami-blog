@@ -23,37 +23,44 @@ function Project() {
           کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
         </p>
 
-        <div className="mx-auto mt-5 flex flex-col items-center justify-end text-center lg:flex-row">
-          <div className="flex max-w-[150px] justify-center lg:max-w-full">
-            <Link
+        <div className="mt-5 text-center">
+          <div className="flex flex-wrap items-center justify-between gap-5 lg:justify-end">
+            {/* <Link
               href={'#'}
               className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white transition-all
               hover:bg-[#696a6b] dark:bg-[#e25687] dark:hover:bg-[#e25687c1] lg:w-auto"
+            > */}
+
+            <Link
+              href={'#'}
+              className="inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all hover:bg-[#696a6b]
+              dark:bg-[#e25687] dark:hover:bg-[#e25687c1] lg:flex-none"
             >
               توضیحات بیشتر
             </Link>
+
             <Link
               href={'#'}
-              className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124] px-5 py-4 text-white transition-all
-              hover:bg-[#696a6b] dark:bg-[#e25687] dark:hover:bg-[#e25687c1] lg:w-auto"
+              className="inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all hover:bg-[#696a6b]
+              dark:bg-[#e25687] dark:hover:bg-[#e25687c1] lg:flex-none"
             >
               دموی پروژه
             </Link>
-          </div>
 
-          <Link
-            href={'#'}
-            className="mr-5 mt-4 w-full flex-shrink-0 rounded-[10px] bg-[#1f2124]
-            bg-gradient-to-l from-[#5D4954] to-[#DC8B83] px-5 py-3 text-white hover:opacity-[0.8] dark:from-[#a67fbe]
-            dark:to-[#51b6af] lg:w-auto"
-          >
-            <Image
-              src={GitHub}
-              alt="Source code on GitHub"
-              className="ml-1 inline-block w-[25px] invert"
-            />{' '}
-            سورس کد
-          </Link>
+            <Link
+              href={'#'}
+              className="inline-block w-full rounded-[10px] bg-[#1f2124] bg-gradient-to-l from-[#5D4954] to-[#DC8B83] px-4 py-3
+             text-white transition-all hover:opacity-[0.8] dark:from-[#a67fbe] dark:to-[#51b6af] lg:w-auto"
+            >
+              <Image
+                src={GitHub}
+                width={25}
+                alt="Source code on GitHub"
+                className="inline invert"
+              />
+              <span className=""> سورس کد</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
