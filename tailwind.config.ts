@@ -25,18 +25,6 @@ const config: Config = {
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
     },
-
-    // fontSize: {
-    //   sm: ['14px', '20px'],
-    //   base: ['16px', '24px'],
-    //   lg: ['20px', '28px'],
-    //   xl: ['24px', '32px'],
-    //   '2xl': '1.563rem',
-    //   '3xl': '1.953rem',
-    //   '4xl': '2.441rem',
-    //   '5xl': '3.052rem',
-    // },
-
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

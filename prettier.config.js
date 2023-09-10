@@ -9,3 +9,4 @@ module.exports = {
   arrowParens: "always",
   plugins: ["prettier-plugin-tailwindcss"],
 };
+

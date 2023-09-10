@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import postcover from '@/public/sample-blog-post-cover-main-page.webp';
+import BlogPostHeader from '@/components/Blog/BlogPostHeader';
 
 interface SingleBlogPost {
   params: { slug: string };
@@ -16,7 +17,9 @@ function page({ params }: SingleBlogPost) {
           className="h-full w-full rounded-3xl object-cover"
         />
       </div>
-      <p>{params.slug}</p>
+      {/* <p>{params.slug}</p> */}
+
+      <BlogPostHeader />
     </div>
   );
 }
