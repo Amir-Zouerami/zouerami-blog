@@ -21,8 +21,17 @@ function BlogPostHeader() {
             سطح مقاله: <span className="text-slate-400">پیشرفته</span>
           </p>
           <p className="py-3 lg:mx-3 lg:inline-block">
-            دسته: <span className="text-slate-400">NFT</span>
-            <span className="text-slate-400">بلاک چین</span>
+            دسته:
+            <Link href={'#'}>
+              <span className="mx-1 rounded-lg bg-slate-600 px-2 py-1 text-white transition-all hover:bg-orange-400">
+                NFT
+              </span>
+            </Link>
+            <Link href={'#'}>
+              <span className="mx-1 rounded-lg bg-slate-600 px-2 py-1 text-white transition-all hover:bg-orange-400">
+                بلاک چین
+              </span>
+            </Link>
           </p>
         </div>
 

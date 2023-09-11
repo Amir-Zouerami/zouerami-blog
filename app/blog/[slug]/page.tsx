@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import postcover from '@/public/sample-blog-post-cover-main-page.webp';
 import BlogPostHeader from '@/components/Blog/BlogPostHeader';
+import BlogPostContent from '@/components/Blog/BlogPostContent';
 
 interface SingleBlogPost {
   params: { slug: string };
@@ -20,6 +21,8 @@ function page({ params }: SingleBlogPost) {
       {/* <p>{params.slug}</p> */}
 
       <BlogPostHeader />
+
+      <BlogPostContent />
     </div>
   );
 }

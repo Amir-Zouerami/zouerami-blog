@@ -13,7 +13,7 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="fa"
-      className={`${IranYekan.variable} overflow-x-hidden text-sm`}
+      className={`${IranYekan.variable} overflow-x-hidden text-sm scroll-smooth`}
     >
       <body className="dark:bg-[#31333c] dark:text-white">
         <Providers>

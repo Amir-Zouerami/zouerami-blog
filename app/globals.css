@@ -4,8 +4,16 @@
 
 html {
     direction: rtl;
+    --scroll-behavior: smooth !important;
+    scroll-behavior: smooth !important;
     /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
 }
+
+/* @layer base {
+    html {
+        @apply scroll-smooth;
+    }
+} */
 
 /* ------------------ TAILWIND CUSTOM ------------------ */
 

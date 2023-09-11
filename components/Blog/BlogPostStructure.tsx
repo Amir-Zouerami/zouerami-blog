@@ -29,7 +29,10 @@ function BlogPostStructure() {
       {structureModal && (
         <>
           <ul className="rounded-xl border p-5">
-            <Link href={'#'} className="transition-all hover:text-teal-400">
+            <Link
+              href={'#installation'}
+              className="transition-all hover:text-teal-400"
+            >
               <li className="py-4">۱. نصب ابزار های مورد نیاز</li>
             </Link>
 
