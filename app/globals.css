@@ -9,11 +9,62 @@ html {
     /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
 }
 
+::selection {
+    background-color: #e25687;
+}
+
+.ltr {
+    direction: ltr !important;
+    line-height: 2;
+    /* font-size: 13px; */
+}
+
 /* @layer base {
     html {
         @apply scroll-smooth;
     }
 } */
+
+#commentPreviewMarkDown h1, h2, h3, h4{
+    @apply font-black text-lg;
+}
+
+
+/* ------------------ COLUMN HELPER ------------------ */
+
+.columnHelper {
+    overflow: hidden;
+    width: 60px;
+    transition: all 0.5s;
+    white-space: nowrap;
+}
+
+.columnSpan {
+    display: inline-block;
+    transform: translateX(-200%);
+}
+
+
+.columnHelper:hover .columnSpan {
+    animation: columnHelperAnimation forwards 0.5s;
+}
+
+.columnHelper:hover {
+    width: 250px;
+}
+
+
+@keyframes columnHelperAnimation {
+    from {
+        transform: translateX(-200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+
 
 /* ------------------ TAILWIND CUSTOM ------------------ */
 
@@ -35,6 +86,14 @@ html {
     .fix-hover>*:hover,
     .fix-hover>*:active {
         transform: scale(1) !important;
+    }
+}
+
+@media (hover: none) {
+
+    .fix-hoverOpacity>*:hover,
+    .fix-hoverOpacity>*:active {
+        opacity: 1 !important;
     }
 }
 

@@ -3,15 +3,31 @@ import Link from 'next/link';
 
 import Attention from './Attention';
 import BlogHeading from './BlogHeading';
-// import ImageWithCaption from '../Card/ImageWithCaption';
 
 import sampleImage from '@/public/sample-blog-image.jpg';
 import download from '@/icons/download.svg';
+import { Code } from 'bright';
+import SimilarArticles from './SimilarArticles';
+import BlogCommentsButton from './BlogCommentsButton';
 
 function BlogPostContent() {
+  const myCode = `// pages/user-info/[id].ts
+  export default function UserInfo(props) {
+    return <div>Hello {props.user?.name}</div>;
+  }
+  
+  export async function getServerSideProps(context) {
+    const id = context.params.id;
+    const user = await prisma.user.findFirst({ where: { id: id } });
+  
+    return { props: { user } };
+  }`;
+
   return (
-    <div className="mx-auto my-20 max-w-[95%] text-justify leading-[3] selection:bg-[#e25687] lg:text-lg lg:leading-[3]">
-      <BlogHeading id="installation">۱. نصب ابزار های مورد نیاز</BlogHeading>
+    <div className="mx-auto my-20 max-w-[95%] text-justify leading-[3]  2xl:text-lg 2xl:leading-10">
+      <BlogHeading href="#installation" id="installation">
+        ۱. نصب ابزار های مورد نیاز
+      </BlogHeading>
 
       <p>
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
@@ -47,7 +63,9 @@ function BlogPostContent() {
         متنوع با هدف بهبود ابزارهای کاربردی می باشد.
       </Attention>
 
-      <BlogHeading id="installation">۲. طراحی UI</BlogHeading>
+      <BlogHeading href="#design" id="design">
+        ۲. طراحی UI
+      </BlogHeading>
 
       <p>
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
@@ -82,8 +100,11 @@ function BlogPostContent() {
         پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
       </p>
 
-      {/* TODO: CODE DISPLAY */}
-      <br />
+      <div className="ltr mx-auto lg:max-w-[90%]">
+        <Code lang="tsx" theme={'one-dark-pro'}>
+          {myCode}
+        </Code>
+      </div>
 
       <p>
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
@@ -92,13 +113,15 @@ function BlogPostContent() {
         متنوع با هدف بهبود ابزارهای کاربردی می باشد.
       </p>
 
-      <div className="my-10">
+      <div className="my-10 text-center">
         <Image
           src={sampleImage}
           alt=""
           className="mx-auto max-w-full rounded-xl lg:max-w-[1000px]"
         />
-        <span></span>
+        <span className="text-sm text-slate-400 lg:text-base">
+          نمونه ی توضیح تصاویر شماره ۱
+        </span>
       </div>
 
       <p>
@@ -108,19 +131,29 @@ function BlogPostContent() {
         متنوع با هدف بهبود ابزارهای کاربردی می باشد.
       </p>
 
-      <div className="text-center my-10">
-        <Link href={'#'} className=" w-10 rounded-xl bg-[#FE634E] px-10 py-5">
-          <Image
-            width={30}
-            src={download}
-            alt="download article"
-            className="inline-block"
-          />
-          <span> PDF </span>
-        </Link>
+      <div className="mb-32 mt-10">
+        <div className="my-10 text-center">
+          <Link href={'#'} className="w-10 rounded-xl bg-[#FE634E] px-12 py-4">
+            <Image
+              width={25}
+              src={download}
+              alt="download article"
+              className="inline-block align-text-bottom"
+            />
+            <span className="pr-2 font-bold text-white"> PDF </span>
+          </Link>
+        </div>
+
+        <BlogCommentsButton />
       </div>
 
-      {/* <ImageWithCaption  /> */}
+      <div className="">
+        <p className="text-2xl font-bold text-slate-400">
+          شاید از این مقالات نیز خوشتان بیاید:
+        </p>
+
+        <SimilarArticles />
+      </div>
     </div>
   );
 }

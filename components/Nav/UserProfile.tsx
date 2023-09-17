@@ -35,7 +35,7 @@ function UserProfile() {
         {userModal ? (
           <div>
             <div
-              className="absolute left-0 top-10 h-auto min-w-[85vw] rounded-lg bg-slate-600
+              className="absolute left-0 top-10 h-auto min-w-[85vw] rounded-lg bg-slate-600 dark:bg-[#293036]
         p-5 lg:left-16 lg:top-20 lg:min-w-[500px] lg:text-lg"
               id="userProfileModal"
               onClick={() => {
@@ -91,13 +91,13 @@ function UserProfile() {
                 <p className="mb-10">شما وارد حساب کاربری خود نشده اید!</p>
                 <Link
                   href={'#'}
-                  className="ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3"
+                  className="ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                 >
                   ثبت نام
                 </Link>
                 <Link
                   href={'#'}
-                  className="rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3"
+                  className="rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                 >
                   ورود
                 </Link>

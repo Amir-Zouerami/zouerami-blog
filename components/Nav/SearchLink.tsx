@@ -14,7 +14,8 @@ function SearchLink() {
       <div
         className={`${
           searchModal && 'hidden'
-        } fixed right-0 top-0 z-50 flex min-h-[100vh] min-w-[100vw] bg-opacity-[0.9] flex-col items-center justify-center bg-slate-600 lg:flex-row`}
+        } fixed right-0 top-0 z-50 flex min-h-[100vh] min-w-[100vw]
+        flex-col items-center justify-center bg-[#293036] bg-opacity-[0.95] lg:flex-row`}
       >
         <input
           className="w-[90%] rounded-xl px-5 py-5 font-bold lg:w-1/2"
@@ -25,13 +26,13 @@ function SearchLink() {
         />
         <div>
           <input
-            className="my-5 ml-5 rounded-xl bg-sky-600 px-5 py-5 font-semibold lg:mr-5"
+            className="my-5 ml-5 rounded-xl bg-gradient-to-r from-[#3E5151] to-[#80755f] px-5 py-5 font-semibold lg:mr-5"
             type="submit"
             value="جست و جو"
           />
 
           <Link
-            className="rounded-xl bg-pink-600 px-5 py-5 font-semibold"
+            className="rounded-xl bg-gradient-to-r from-[#1D4350] to-[#A43931] px-5 py-5 font-semibold"
             href={'#'}
             onClick={() => {
               setSearchModal(!searchModal);

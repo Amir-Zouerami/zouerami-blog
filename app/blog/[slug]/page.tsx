@@ -3,6 +3,8 @@ import Image from 'next/image';
 import postcover from '@/public/sample-blog-post-cover-main-page.webp';
 import BlogPostHeader from '@/components/Blog/BlogPostHeader';
 import BlogPostContent from '@/components/Blog/BlogPostContent';
+import CoulumnHelper from '@/components/Blog/CoulumnHelper';
+import Comments from '@/components/Blog/Comments';
 
 interface SingleBlogPost {
   params: { slug: string };
@@ -18,11 +20,13 @@ function page({ params }: SingleBlogPost) {
           className="h-full w-full rounded-3xl object-cover"
         />
       </div>
-      {/* <p>{params.slug}</p> */}
+
+      <CoulumnHelper />
 
       <BlogPostHeader />
-
       <BlogPostContent />
+
+      <Comments />
     </div>
   );
 }

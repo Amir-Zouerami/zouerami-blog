@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 
 import fingerTap from '@/icons/finger-tap.svg';
@@ -15,7 +14,7 @@ function BlogPostStructure() {
         onClick={() => {
           setStructureModal(!structureModal);
         }}
-        className="mb-3 rounded-xl bg-slate-500 p-5"
+        className="mb-3 rounded-xl bg-[#3b404b] p-5"
       >
         <Image
           src={fingerTap}
@@ -29,41 +28,44 @@ function BlogPostStructure() {
       {structureModal && (
         <>
           <ul className="rounded-xl border p-5">
-            <Link
+            <a
               href={'#installation'}
               className="transition-all hover:text-teal-400"
             >
               <li className="py-4">۱. نصب ابزار های مورد نیاز</li>
-            </Link>
+            </a>
 
             <li className="pt-3">
-              <Link href={'#'} className="transition-all hover:text-teal-400">
+              <a
+                href={'#design'}
+                className="transition-all hover:text-teal-400"
+              >
                 ۲. طراحی UI
-              </Link>
+              </a>
               <ul className="px-5">
-                <Link href={'#'} className="transition-all hover:text-teal-400">
+                <a href={'#'} className="transition-all hover:text-teal-400">
                   <li className="py-4">۲.۱. پیاده سازی حالت شب</li>
-                </Link>
-                <Link href={'#'} className="transition-all hover:text-teal-400">
+                </a>
+                <a href={'#'} className="transition-all hover:text-teal-400">
                   <li className="py-4">
                     ۲.۲. رفتار وب سایت در هنگام تغییر سایز (موبایل و ...)
                   </li>
-                </Link>
-                <Link href={'#'} className="transition-all hover:text-teal-400">
+                </a>
+                <a href={'#'} className="transition-all hover:text-teal-400">
                   <li className="py-4">۲.۳. استفاده از تصاویر ریسپانسیو</li>
-                </Link>
+                </a>
               </ul>
             </li>
 
-            <Link href={'#'} className="transition-all hover:text-teal-400">
+            <a href={'#'} className="transition-all hover:text-teal-400">
               <li className="py-4">۳. کدنویسی در سمت سرور</li>
-            </Link>
-            <Link href={'#'} className="transition-all hover:text-teal-400">
+            </a>
+            <a href={'#'} className="transition-all hover:text-teal-400">
               <li className="py-4">۴. اتصال به بلاک‌چین و Web3</li>
-            </Link>
-            <Link href={'#'} className="transition-all hover:text-teal-400">
+            </a>
+            <a href={'#'} className="transition-all hover:text-teal-400">
               <li className="py-4">۵. پیش نمایشی کوچک از پلتفرم جدید ما</li>
-            </Link>
+            </a>
           </ul>
         </>
       )}

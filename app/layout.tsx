@@ -1,8 +1,9 @@
 import './globals.css';
 import { IranYekan } from './(utility)/font';
-import { Providers } from './provider';
+import { ThemeProviders } from './themeProvider';
 import Navbar from '@/components/Nav/Navbar';
 import Footer from '@/components/Footer/Footer';
+import { JotaiProviders } from './jotaiProvider';
 
 export default function RootLayout({
   children,
@@ -10,22 +11,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      suppressHydrationWarning
-      lang="fa"
-      className={`${IranYekan.variable} overflow-x-hidden text-sm scroll-smooth`}
-    >
-      <body className="dark:bg-[#31333c] dark:text-white">
-        <Providers>
-          <header>
-            <Navbar />
-          </header>
+    <JotaiProviders>
+      <html
+        suppressHydrationWarning
+        lang="fa"
+        className={`${IranYekan.variable} overflow-x-hidden scroll-smooth text-sm`}
+      >
+        <body className="dark:bg-[#31333c] dark:text-white">
+          <ThemeProviders>
+            <header>
+              <Navbar />
+            </header>
 
-          <main>{children}</main>
+            <main>{children}</main>
 
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+            <Footer />
+          </ThemeProviders>
+        </body>
+      </html>
+    </JotaiProviders>
   );
 }
