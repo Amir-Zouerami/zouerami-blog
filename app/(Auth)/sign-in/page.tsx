@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 function Page() {
   return (
-    <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
+    <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
       <div className="flex items-center justify-center">
         <div className="text-center lg:w-1/2">
           <p className="py-3 pt-10 text-4xl font-black">ورود به حساب کاربری</p>
@@ -37,7 +37,7 @@ function Page() {
                   type="text"
                   placeholder="ایمیل، شماره تلفن یا نام کاربری"
                   required
-                  className="w-full rounded-xl border-2 border-[#CE29A2] p-5 pr-14 outline-none dark:bg-[#31333c]"
+                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
               </div>
 
@@ -52,14 +52,14 @@ function Page() {
                   type="password"
                   placeholder="رمز عبور خود را وارد کنید"
                   required
-                  className="w-full rounded-xl border-2 border-[#CE29A2] p-5 pr-14 outline-none dark:bg-[#31333c]"
+                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
               </div>
             </form>
 
             <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
-              <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white">
-                ساخت حساب کاربری
+              <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
+                ورود به حساب کاربری
               </button>
             </div>
           </div>
@@ -69,10 +69,10 @@ function Page() {
               ثبت نام سریع با شبکه های اجتماعی:
             </p>
 
-            <div className="mx-auto flex max-w-[80%] flex-col items-center justify-center gap-10 pb-10">
+            <div className="mx-auto flex max-w-[90%] flex-col items-center justify-center gap-10 pb-10 lg:max-w-[70%]">
               <Link
                 href={'#'}
-                className="to=[#7B68EE] w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4"
+                className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
               >
                 <Image
                   src={google}
@@ -87,7 +87,7 @@ function Page() {
 
               <Link
                 href={'#'}
-                className="to=[#7B68EE] w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4"
+                className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
               >
                 <Image
                   src={github}
@@ -102,7 +102,10 @@ function Page() {
 
               <p>
                 اگر حساب کاربری ندارید، باید{' '}
-                <Link href={'sign-up'} className="font-bold text-sky-400">
+                <Link
+                  href={'sign-up'}
+                  className="font-bold text-sky-400 hover:opacity-[.7]"
+                >
                   ثبت نام کنید
                 </Link>
                 .
@@ -112,9 +115,9 @@ function Page() {
         </div>
 
         <div className="relative hidden bg-blue-300 text-center lg:block lg:h-[800px] lg:w-1/2">
-          <div className="absolute flex h-full w-full flex-col items-center justify-end bg-gray-900 opacity-[.5]">
-            <div className="mb-20">
-              <p className="py-4 text-4xl font-black text-white">
+          <div className="absolute flex h-full w-full flex-col items-center justify-end bg-gray-900 bg-opacity-[.6]">
+            <div className="mb-32">
+              <p className="py-6 text-4xl font-black text-white">
                 به جمع ما ملحق شو!
               </p>
               <p className="font-bold text-white">

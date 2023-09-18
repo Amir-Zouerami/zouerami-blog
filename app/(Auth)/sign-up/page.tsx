@@ -16,7 +16,7 @@ function Page() {
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
 
   return (
-    <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
+    <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
       <div className="flex items-center justify-center">
         <div className="text-center lg:w-1/2">
           <p className="py-3 pt-10 text-4xl font-black">
@@ -44,7 +44,7 @@ function Page() {
                   type="text"
                   placeholder="نام و نام خانوادگی شما"
                   required
-                  className="w-full rounded-xl border-2 border-[#CE29A2] p-5 pr-14 outline-none dark:bg-[#31333c]"
+                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
               </div>
 
@@ -59,7 +59,7 @@ function Page() {
                   type="email"
                   placeholder="ایمیل شما"
                   required
-                  className="w-full rounded-xl border-2 border-[#CE29A2] p-5 pr-14 outline-none dark:bg-[#31333c]"
+                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
               </div>
 
@@ -76,7 +76,7 @@ function Page() {
                   placeholder="رمز عبور دلخواه"
                   autoComplete="new-password"
                   required
-                  className="w-full rounded-xl border-2 border-[#CE29A2] p-5 pr-14 outline-none dark:bg-[#31333c]"
+                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
 
                 <Image
@@ -92,7 +92,7 @@ function Page() {
             </form>
 
             <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
-              <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white">
+              <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
                 ساخت حساب کاربری
               </button>
             </div>
@@ -103,10 +103,10 @@ function Page() {
               ثبت نام سریع با شبکه های اجتماعی:
             </p>
 
-            <div className="mx-auto flex max-w-[80%] flex-col items-center justify-center gap-10 pb-10">
+            <div className="mx-auto flex max-w-[85%] flex-col items-center justify-center gap-10 pb-10 lg:max-w-[70%]">
               <Link
                 href={'#'}
-                className="to=[#7B68EE] w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4"
+                className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
               >
                 <Image
                   src={google}
@@ -115,13 +115,13 @@ function Page() {
                   className="ml-3 inline-block"
                 />
                 <span className="font-bold text-white">
-                  ورود بــا حســــاب گوگــــــــل
+                  ثبت نام بــا حســــاب گوگــــــــل
                 </span>
               </Link>
 
               <Link
                 href={'#'}
-                className="to=[#7B68EE] w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4"
+                className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
               >
                 <Image
                   src={github}
@@ -130,13 +130,16 @@ function Page() {
                   className="ml-3 inline-block invert"
                 />
                 <span className="font-bold text-white">
-                  ورود با حساب گیت هاب
+                  ثبت نام با حساب گیت هاب
                 </span>
               </Link>
 
               <p>
                 اگر حساب کاربری دارید، باید{' '}
-                <Link href={'sign-in'} className="font-bold text-sky-400">
+                <Link
+                  href={'sign-in'}
+                  className="font-bold text-sky-400 hover:opacity-[.7]"
+                >
                   وارد حسابتان شوید
                 </Link>
                 .
@@ -146,9 +149,9 @@ function Page() {
         </div>
 
         <div className="relative hidden bg-blue-300 text-center lg:block lg:h-[900px] lg:w-1/2">
-          <div className="absolute flex h-full w-full flex-col items-center justify-end bg-gray-900 opacity-[.5]">
-            <div className="mb-20">
-              <p className="py-4 text-4xl font-black text-white">
+          <div className="absolute flex h-full w-full flex-col items-center justify-end bg-gray-900 bg-opacity-[.6]">
+            <div className="mb-32">
+              <p className="py-6 text-4xl font-black text-white">
                 به جمع ما ملحق شو!
               </p>
               <p className="font-bold text-white">
