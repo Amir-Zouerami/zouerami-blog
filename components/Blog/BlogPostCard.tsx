@@ -13,36 +13,36 @@ function BlogPostCard() {
   return (
     <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
       <div className="col-span-12 my-auto hidden justify-center gap-10 px-5 lg:col-span-1  lg:mx-auto lg:flex lg:flex-col lg:px-0">
-        <Link href={'#'} className="mx-1">
+        <Link href={'#'} className="svg-red mx-1">
           <Image
             src={heart}
             width={35}
             alt="like the post"
-            className="invert hover:opacity-[0.6] dark:invert-0"
+            className="invert dark:invert-0"
           />
         </Link>
-        <Link href={'#'} className="mx-1">
+        <Link href={'#'} className="svg-yellow mx-1">
           <Image
             src={bookmark}
             width={35}
             alt="bookmark the post"
-            className="invert hover:opacity-[0.6] dark:invert-0"
+            className="invert dark:invert-0"
           />
         </Link>
-        <Link href={'#'} className="mx-1">
+        <Link href={'#'} className="svg-blue mx-1">
           <Image
             src={share}
             width={35}
             alt="share the post"
-            className="invert hover:opacity-[0.6] dark:invert-0"
+            className="invert dark:invert-0"
           />
         </Link>
-        <Link href={'#'} className="mx-1">
+        <Link href={'#'} className="svg-orange mx-1">
           <Image
             src={report}
             width={35}
             alt="report the post"
-            className="invert hover:opacity-[0.6] dark:invert-0"
+            className="invert dark:invert-0"
           />
         </Link>
       </div>

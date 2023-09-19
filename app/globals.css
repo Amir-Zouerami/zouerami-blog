@@ -44,7 +44,7 @@ svg-purple:active {
 
 .svg-orange:hover,
 svg-orange:active {
-    filter: brightness(0) saturate(100%) invert(42%) sepia(35%) saturate(2875%) hue-rotate(340deg) brightness(102%) contrast(102%);
+    filter: brightness(0) saturate(100%) invert(64%) sepia(40%) saturate(3863%) hue-rotate(347deg) brightness(104%) contrast(101%);
 }
 
 
