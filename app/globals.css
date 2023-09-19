@@ -19,45 +19,34 @@ html {
     /* font-size: 13px; */
 }
 
-/* @layer base {
-    html {
-        @apply scroll-smooth;
-    }
-} */
 
+/* ------------------ SVG COLOR CHANGE ------------------ */
 
+.svg-red:hover,
+.svg-red:active {
+    filter: brightness(0) saturate(100%) invert(47%) sepia(79%) saturate(5829%) hue-rotate(333deg) brightness(86%) contrast(101%);
+}
 
-/* ------------------ BORDER GRADIENT FOR INPUT ------------------ */
+.svg-blue:hover,
+svg-blue:active {
+    filter: brightness(0) saturate(100%) invert(47%) sepia(30%) saturate(5950%) hue-rotate(212deg) brightness(95%) contrast(88%);
+}
 
+.svg-yellow:hover,
+svg-yellow:active {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(78%) saturate(1495%) hue-rotate(316deg) brightness(103%) contrast(98%);
+}
 
-/* .border-gradient {
-    border-width: 4px;
-    border-style: solid;
-    border-image: linear-gradient(to right, darkblue, darkorchid);
-    border-image-slice: 1;
-    -webkit-background-clip: text;
-    background-clip: text;
-} */
+.svg-purple:hover,
+svg-purple:active {
+    filter: brightness(0) saturate(100%) invert(10%) sepia(77%) saturate(6575%) hue-rotate(278deg) brightness(104%) contrast(115%);
+}
 
-/* .border-gradient::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50px; 
-    padding: 10px; 
-    background:linear-gradient(45deg,red,blue); 
-    -webkit-mask: 
-       linear-gradient(#fff 0 0) content-box, 
-       linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude; 
-} */
+.svg-orange:hover,
+svg-orange:active {
+    filter: brightness(0) saturate(100%) invert(42%) sepia(35%) saturate(2875%) hue-rotate(340deg) brightness(102%) contrast(102%);
+}
 
-
-
-/* #commentPreviewMarkDown h1, h2, h3, h4{
-    @apply font-black text-lg;
-} */
 
 
 /* ------------------ COLUMN HELPER ------------------ */

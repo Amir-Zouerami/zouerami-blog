@@ -7,7 +7,7 @@ import bookmark from '@/icons/bookmark.svg';
 import comment from '@/icons/comment.svg';
 import report from '@/icons/report.svg';
 
-function CoulumnHelper() {
+function CoulumnHelperDesktop() {
   return (
     <div
       className="columnHelper fixed bottom-0 right-0 hidden flex-col justify-center gap-8 rounded-3xl bg-[#1E1F25] p-5 font-bold lg:bottom-auto
@@ -66,4 +66,4 @@ function CoulumnHelper() {
   );
 }
 
-export default CoulumnHelper;
+export default CoulumnHelperDesktop;

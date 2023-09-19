@@ -3,7 +3,8 @@ import Image from 'next/image';
 import postcover from '@/public/sample-blog-post-cover-main-page.webp';
 import BlogPostHeader from '@/components/Blog/BlogPostHeader';
 import BlogPostContent from '@/components/Blog/BlogPostContent';
-import CoulumnHelper from '@/components/Blog/CoulumnHelper';
+import CoulumnHelperDesktop from '@/components/Blog/CoulumnHelperDesktop';
+import CoulumnHelperMobile from '@/components/Blog/CoulumnHelperMobile';
 import Comments from '@/components/Blog/Comments';
 
 interface SingleBlogPost {
@@ -21,7 +22,8 @@ function page({ params }: SingleBlogPost) {
         />
       </div>
 
-      <CoulumnHelper />
+      <CoulumnHelperDesktop />
+      <CoulumnHelperMobile />
 
       <BlogPostHeader />
       <BlogPostContent />

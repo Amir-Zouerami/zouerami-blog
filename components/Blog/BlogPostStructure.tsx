@@ -20,9 +20,9 @@ function BlogPostStructure() {
           src={fingerTap}
           width={25}
           alt="see article headlines and structure"
-          className="inline"
+          className="inline text-white"
         />
-        <span> ساختار و سرتیتر های مقاله: </span>
+        <span className="text-white"> ساختار و سرتیتر های مقاله: </span>
       </p>
 
       {structureModal && (
