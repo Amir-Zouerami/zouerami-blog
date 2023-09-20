@@ -5,13 +5,18 @@ function Event({
 }: {
   year: string;
   title: string;
-  text?: string;
+  text: string;
 }) {
   return (
     <div className="my-5 text-center">
-      <span className="text-lg font-bold text-amber-400">{year}: </span>
-      <span>{title}</span>
-      <p className="text-justify leading-relaxed opacity-[.6]">{text}</p>
+      <div className="pb-3">
+        <span className="text-lg font-bold text-amber-400">{year}: </span>
+        <span dangerouslySetInnerHTML={{ __html: title }}></span>
+      </div>
+      <p
+        className="text-justify leading-relaxed text-gray-400"
+        dangerouslySetInnerHTML={{ __html: text }}
+      ></p>
     </div>
   );
 }
