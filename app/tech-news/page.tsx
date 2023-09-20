@@ -11,7 +11,11 @@ import BlogPostCard from '@/components/Blog/BlogPostCard';
 function page() {
   return (
     <section className="container mx-auto max-w-[1200px]">
-      <div className="mt-8 lg:mt-36">
+      <h1 className="my-10 text-center text-4xl font-black leading-loose">
+        <span className="text-yellow-400">اخبار</span> برنامه نویسی!
+      </h1>
+
+      <div className="mt-8 lg:mt-20">
         <p className="mx-3 mb-10">مرتب سازی سریع بر اساس:</p>
         <div className="mx-auto grid w-[95%] grid-cols-1 place-items-center gap-5 lg:grid-cols-2">
           <div className="flex gap-3 lg:gap-10">
