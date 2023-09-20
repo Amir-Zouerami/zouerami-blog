@@ -10,7 +10,7 @@ import Link from 'next/link';
 function FooterSocials() {
   return (
     <div className="flex justify-center gap-2 md:gap-32">
-      <Link href={'#'} className="p-5 hover:animate-bounce">
+      <Link href={'https://t.me/Amir_ZMI'} className="p-5 hover:animate-bounce">
         <Image
           src={telegram}
           width={40}
@@ -18,7 +18,10 @@ function FooterSocials() {
           className="dark:invert"
         />
       </Link>
-      <Link href={'#'} className="p-5 hover:animate-bounce">
+      <Link
+        href={'https://linkedin.com/in/amir-zouerami/'}
+        className="p-5 hover:animate-bounce"
+      >
         <Image
           src={linkedin}
           width={40}
@@ -26,7 +29,10 @@ function FooterSocials() {
           className="dark:invert"
         />
       </Link>
-      <Link href={'#'} className="p-5 hover:animate-bounce">
+      <Link
+        href={'https://instagram.com/zouerami'}
+        className="p-5 hover:animate-bounce"
+      >
         <Image
           src={instagram}
           width={40}

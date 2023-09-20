@@ -19,6 +19,21 @@ html {
     /* font-size: 13px; */
 }
 
+/* ------------------ CIRCLES & LINES ------------------ */
+.circle {
+    height: 20px;
+    width: 20px;
+    background-color: #3dc7b7;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.verticalLine {
+    width: 1px;
+    height: 150px;
+    border-right: 2px solid #3dc7b7;
+}
+
 
 /* ------------------ SVG COLOR CHANGE ------------------ */
 
