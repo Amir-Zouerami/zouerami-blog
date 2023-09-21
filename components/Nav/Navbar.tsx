@@ -19,8 +19,8 @@ function Navbar() {
             <ul className="hidden transition-all lg:flex lg:gap-20">
               <NavLinkDesktop href="/">صفحه اصلی</NavLinkDesktop>
               <NavLinkDesktop href="/blog">بلاگ</NavLinkDesktop>
+              <NavLinkDesktop href="/portfolio">پورتفولیو</NavLinkDesktop>
               <NavLinkDesktop href="/developers">توسعه دهندگان</NavLinkDesktop>
-              <NavLinkDesktop href="/portfolio">پروژه ها</NavLinkDesktop>
               <NavLinkDesktop href="/about-me">درباره من</NavLinkDesktop>
             </ul>
 

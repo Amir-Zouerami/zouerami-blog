@@ -12,6 +12,13 @@ import google from '@/icons/google.svg';
 import github from '@/icons/github.svg';
 import Link from 'next/link';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'ساخت حساب کاربری',
+  description: 'sign up an account',
+};
+
 function Page() {
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
 

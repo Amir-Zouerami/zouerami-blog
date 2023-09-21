@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'پورتفولیو',
+  description: 'Portfolio of Amir Zouerami',
+};
+
 function page() {
   return (
     <section className="container mx-auto max-w-[1200px]">

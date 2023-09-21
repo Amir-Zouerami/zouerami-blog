@@ -9,6 +9,13 @@ import google from '@/icons/google.svg';
 import github from '@/icons/github.svg';
 import Link from 'next/link';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'ورود به حساب کاربری',
+  description: 'Sign-in to your account',
+};
+
 function Page() {
   return (
     <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">

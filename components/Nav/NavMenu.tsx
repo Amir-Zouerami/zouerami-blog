@@ -48,8 +48,8 @@ function NavMenu() {
             <ul className="flex flex-col gap-7 px-5 py-10">
               <NavLinkMobile href="/">صفحه اصلی</NavLinkMobile>
               <NavLinkMobile href="/blog">بلاگ</NavLinkMobile>
+              <NavLinkMobile href="/portfolio">پورتفولیو</NavLinkMobile>
               <NavLinkMobile href="/developers">توسعه دهندگان</NavLinkMobile>
-              <NavLinkMobile href="/portfolio">پروژه ها</NavLinkMobile>
               <NavLinkMobile href="/about-me">درباره من</NavLinkMobile>
             </ul>
           </div>

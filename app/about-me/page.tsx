@@ -4,6 +4,12 @@ import me from '@/public/me.png';
 import Event from '@/components/AboutMe/Event';
 import Line from '@/components/AboutMe/Line';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'درباره من',
+  description: 'A Timeline About Amir Zouerami',
+};
 
 function page() {
   return (
