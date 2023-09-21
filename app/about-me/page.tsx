@@ -9,15 +9,18 @@ function page() {
   return (
     <section className="container mx-auto max-w-[1000px]">
       <div className="my-20 flex items-center justify-center">
-        <div className="w-96">
+        <div className="mx-auto w-96 text-center">
           <Image
             src={me}
             className="h-full w-full rounded-3xl object-cover"
             alt="amir zouerami"
           />
-          <h1 className="mt-10 text-center text-2xl font-black">
-            امیر زوارمی، طراح و توسعه دهنده وب
+          <h1 className="mb-3 mt-10 text-center text-2xl font-black">
+            امیر زوارمی، طراح و توسعه دهنده
           </h1>
+          <span className="text-gray-400">
+            توسعه دهنده وب Node.js و React.js
+          </span>
         </div>
       </div>
 
