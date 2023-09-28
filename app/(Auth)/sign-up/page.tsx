@@ -1,27 +1,25 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
 
 import authImage from '@/public/auth-image-big.webp';
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
 import password from '@/icons/password.svg';
-import eye from '@/icons/eye.svg';
 import google from '@/icons/google.svg';
 import github from '@/icons/github.svg';
 import Link from 'next/link';
 
 import { Metadata } from 'next';
+import PasswordInput from '@/components/Auth/PasswordInput';
+import { signIn } from 'next-auth/react';
 
-export const metadata: Metadata = {
-  title: 'ساخت حساب کاربری',
-  description: 'sign up an account',
-};
+// export const metadata: Metadata = {
+//   title: 'ساخت حساب کاربری',
+//   description: 'sign up an account',
+// };
 
 function Page() {
-  const [passwordVisibility, SetpasswordVisibility] = useState(false);
-
   return (
     <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
       <div className="flex items-center justify-center">
@@ -78,23 +76,7 @@ function Page() {
                   className="absolute right-5 top-1/2 inline -translate-y-[50%] translate-x-0 dark:invert"
                 />
 
-                <input
-                  type={passwordVisibility ? 'text' : 'password'}
-                  placeholder="رمز عبور دلخواه"
-                  autoComplete="new-password"
-                  required
-                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
-                />
-
-                <Image
-                  src={eye}
-                  width={20}
-                  alt="enter your name"
-                  onClick={() => {
-                    SetpasswordVisibility(!passwordVisibility);
-                  }}
-                  className="absolute left-5 top-1/2 inline -translate-y-[50%] translate-x-0 cursor-pointer dark:invert"
-                />
+                <PasswordInput />
               </div>
             </form>
 
@@ -106,13 +88,17 @@ function Page() {
           </div>
 
           <div>
-            <p className="mb-10 pr-3 text-right">
+            <p className="mb-10 pr-6 text-right">
               ثبت نام سریع با شبکه های اجتماعی:
             </p>
 
             <div className="mx-auto flex max-w-[85%] flex-col items-center justify-center gap-10 pb-10 lg:max-w-[70%]">
               <Link
                 href={'#'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  signIn('google');
+                }}
                 className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
               >
                 <Image

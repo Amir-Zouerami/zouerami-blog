@@ -1,11 +1,27 @@
-import React from 'react';
+'use client';
 
-function page() {
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+
+function Page() {
+  const { data: session } = useSession({
+    required: true,
+    // onUnauthenticated() {
+    //   redirect('/sign-in');
+    // },
+  });
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">
-      <p>TESTING</p>
+      {session ? (
+        <>
+          <p>TESTING</p>
+          <p>{session?.toString() ?? 'no user'}</p>
+        </>
+      ) : (
+        'UNAUTHORIZED'
+      )}
     </div>
   );
 }
 
-export default page;
+export default Page;

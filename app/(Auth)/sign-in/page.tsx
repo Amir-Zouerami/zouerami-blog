@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import Image from 'next/image';
 
@@ -72,7 +72,7 @@ function Page() {
           </div>
 
           <div>
-            <p className="mb-10 pr-3 text-right">
+            <p className="mb-10 pr-6 text-right">
               ثبت نام سریع با شبکه های اجتماعی:
             </p>
 
