@@ -4,7 +4,6 @@ import { ThemeProviders } from './themeProvider';
 import Navbar from '@/components/Nav/Navbar';
 import Footer from '@/components/Footer/Footer';
 import { JotaiProviders } from './jotaiProvider';
-import AuthSessionProvider from '@/app/(utility)/authSessionProvider';
 
 export default function RootLayout({
   children,
@@ -13,25 +12,23 @@ export default function RootLayout({
 }) {
   return (
     <JotaiProviders>
-      <AuthSessionProvider>
-        <html
-          suppressHydrationWarning
-          lang="fa"
-          className={`${IranYekan.variable} overflow-x-hidden scroll-smooth text-sm`}
-        >
-          <body className="dark:bg-[#31333c] dark:text-white">
-            <ThemeProviders>
-              <header>
-                <Navbar />
-              </header>
+      <html
+        suppressHydrationWarning
+        lang="fa"
+        className={`${IranYekan.variable} overflow-x-hidden scroll-smooth text-sm`}
+      >
+        <body className="dark:bg-[#31333c] dark:text-white">
+          <ThemeProviders>
+            <header>
+              <Navbar />
+            </header>
 
-              <main>{children}</main>
+            <main>{children}</main>
 
-              <Footer />
-            </ThemeProviders>
-          </body>
-        </html>
-      </AuthSessionProvider>
+            <Footer />
+          </ThemeProviders>
+        </body>
+      </html>
     </JotaiProviders>
   );
 }

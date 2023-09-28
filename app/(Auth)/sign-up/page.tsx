@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import Image from 'next/image';
 
@@ -12,12 +12,11 @@ import Link from 'next/link';
 
 import { Metadata } from 'next';
 import PasswordInput from '@/components/Auth/PasswordInput';
-import { signIn } from 'next-auth/react';
 
-// export const metadata: Metadata = {
-//   title: 'ساخت حساب کاربری',
-//   description: 'sign up an account',
-// };
+export const metadata: Metadata = {
+  title: 'ساخت حساب کاربری',
+  description: 'sign up an account',
+};
 
 function Page() {
   return (
@@ -95,10 +94,6 @@ function Page() {
             <div className="mx-auto flex max-w-[85%] flex-col items-center justify-center gap-10 pb-10 lg:max-w-[70%]">
               <Link
                 href={'#'}
-                onClick={(e) => {
-                  e.preventDefault();
-                  signIn('google');
-                }}
                 className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
               >
                 <Image
