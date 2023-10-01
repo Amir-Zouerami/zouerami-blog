@@ -65,6 +65,10 @@ function Page() {
             </form>
 
             <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
+              <p className="mb-10">
+                <Link href={'#'}>رمز عبورم را فراموش کرده ام.</Link>
+              </p>
+
               <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
                 ورود به حساب کاربری
               </button>
@@ -121,7 +125,7 @@ function Page() {
           </div>
         </div>
 
-        <div className="relative hidden bg-blue-300 text-center lg:block lg:h-[800px] lg:w-1/2">
+        <div className="relative hidden bg-blue-300 text-center lg:block lg:h-[850px] lg:w-1/2">
           <div className="absolute flex h-full w-full flex-col items-center justify-end bg-gray-900 bg-opacity-[.6]">
             <div className="mb-32">
               <p className="py-6 text-4xl font-black text-white">

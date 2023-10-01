@@ -1,0 +1,38 @@
+import { pg } from '@lucia-auth/adapter-postgresql';
+import { lucia } from 'lucia';
+import { nextjs_future } from 'lucia/middleware';
+import { pool } from './Postgresql';
+
+export const auth = lucia({
+  env: process.env.NODE_ENV === 'development' ? 'DEV' : 'PROD',
+  middleware: nextjs_future(),
+
+  sessionCookie: {
+    expires: false,
+  },
+
+  getUserAttributes: (data) => {
+    return {
+      username: data.username,
+      email: data.email,
+      phone_number: data.phone_number,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email_verified: data.email_verified,
+    };
+  },
+
+  getSessionAttributes: (data) => {
+    return {
+      username: data.username,
+    };
+  },
+
+  adapter: pg(pool, {
+    user: 'users',
+    key: 'lucia_user_key',
+    session: 'lucia_user_session',
+  }),
+});
+
+export type Auth = typeof auth;

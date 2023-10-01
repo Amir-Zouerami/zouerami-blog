@@ -6,19 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate:up": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down",
+    "migrate:redo": "node-pg-migrate redo",
+    "migrate:create": "node-pg-migrate create"
   },
   "dependencies": {
+    "@lucia-auth/adapter-postgresql": "^2.0.1",
+    "@lucia-auth/oauth": "^3.3.0",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "bright": "^0.8.4",
     "eslint": "8.46.0",
-    "eslint-config-next": "^13.5.2",
-    "jotai": "^2.4.2",
-    "next": "^13.5.2",
+    "eslint-config-next": "^13.5.3",
+    "jotai": "^2.4.3",
+    "lucia": "^2.7.0",
+    "next": "^13.5.3",
     "next-themes": "^0.2.1",
+    "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",
     "postcss": "8.4.27",
     "react": "^18.2.0",
@@ -31,7 +39,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/pg": "^8.10.3",
-    "prettier": "^3.0.1",
-    "prettier-plugin-tailwindcss": "^0.5.1"
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4"
   }
 }
