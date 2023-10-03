@@ -1,4 +1,3 @@
--- Up Migration
 CREATE TABLE users (
     id TEXT NOT NULL PRIMARY KEY,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -22,10 +21,3 @@ CREATE TABLE lucia_user_sessions (
     active_expires BIGINT NOT NULL,
     idle_expires BIGINT NOT NULL
 );
-
--- Down Migration
-DROP TABLE lucia_user_sessions;
-
-DROP TABLE lucia_user_keys;
-
-DROP TABLE users;
