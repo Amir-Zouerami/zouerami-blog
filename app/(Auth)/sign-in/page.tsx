@@ -43,6 +43,7 @@ function Page() {
                 <input
                   type="text"
                   placeholder="ایمیل، شماره تلفن یا نام کاربری"
+                  name="username"
                   required
                   className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
@@ -59,20 +60,20 @@ function Page() {
                   type="password"
                   placeholder="رمز عبور خود را وارد کنید"
                   required
+                  name="password"
                   className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
               </div>
             </form>
 
-            <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
-              <p className="mb-10">
-                <Link href={'#'}>رمز عبورم را فراموش کرده ام.</Link>
-              </p>
-
+            <div className="mx-auto mt-10 max-w-[90%] lg:max-w-[70%]">
               <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
                 ورود به حساب کاربری
               </button>
             </div>
+            <p className="mb-10 mt-5 font-bold text-sky-400 hover:opacity-[.7]">
+              <Link href={'#'}>رمز عبورم را فراموش کرده ام.</Link>
+            </p>
           </div>
 
           <div>

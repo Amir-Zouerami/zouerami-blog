@@ -2,7 +2,7 @@
 declare namespace Lucia {
   type Auth = import('@/auth/lucia').Auth;
   type DatabaseUserAttributes = {
-    phone_number: number;
+    phone_number: string;
     first_name: string;
     last_name?: string;
     username: string;

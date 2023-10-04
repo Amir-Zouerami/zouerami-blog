@@ -10,6 +10,8 @@ import google from '@/icons/google.svg';
 import github from '@/icons/github.svg';
 import Link from 'next/link';
 
+import { auth, Auth } from '@/app/(utility)/lucia';
+
 import { Metadata } from 'next';
 import PasswordInput from '@/components/Auth/PasswordInput';
 
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   description: 'sign up an account',
 };
 
-function Page() {
+async function Page() {
   return (
     <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
       <div className="flex items-center justify-center">
