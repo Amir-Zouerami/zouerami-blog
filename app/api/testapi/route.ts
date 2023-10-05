@@ -11,8 +11,8 @@ export async function POST(request: Request) {
     formData[key] = value;
   }
 
-  console.log(formData);
+  // console.log(formData);
 
+  // console.log(req);
   return Response.json(formData);
-  // console.log(request);
 }

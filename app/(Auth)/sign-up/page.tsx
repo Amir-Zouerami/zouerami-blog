@@ -24,24 +24,14 @@ function Page() {
           <p className="py-3 pt-10 text-4xl font-black">
             ساخت حساب کاربری جدید
           </p>
-          <p className="mb-10">
+          <p className="mb-12">
             برای ساخت حساب اطلاعاتتان را به صورت دقیق وارد کنید.
           </p>
 
-          <div className="p-3">
-            <p className="pr-3 text-right">ثبت نام با ایمیل:</p>
-
-            <SignupForm />
-
-            <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
-              <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
-                ساخت حساب کاربری
-              </button>
-            </div>
-          </div>
+          <SignupForm />
 
           <div>
-            <p className="mb-10 pr-6 text-right">
+            <p className="mb-10 pr-6 pt-3 text-right">
               ثبت نام سریع با شبکه های اجتماعی:
             </p>
 
