@@ -13,6 +13,7 @@ function PasswordInput() {
         type={passwordVisibility ? 'text' : 'password'}
         placeholder="رمز عبور دلخواه"
         autoComplete="new-password"
+        name="password"
         required
         className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
       />

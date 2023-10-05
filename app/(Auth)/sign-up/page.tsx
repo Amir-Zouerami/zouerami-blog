@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: 'sign up an account',
 };
 
-async function Page() {
+function Page() {
   return (
     <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
       <div className="flex items-center justify-center">
@@ -38,6 +38,11 @@ async function Page() {
             <form
               className="mx-auto my-5 flex flex-col gap-10 lg:w-[90%]"
               action=""
+              onSubmit={async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(e.target as HTMLFormElement);
+              }}
             >
               <div className="relative w-full">
                 <Image
@@ -49,6 +54,7 @@ async function Page() {
                 <input
                   type="text"
                   placeholder="نام و نام خانوادگی شما"
+                  name='name'
                   required
                   className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
@@ -64,6 +70,7 @@ async function Page() {
                 <input
                   type="email"
                   placeholder="ایمیل شما"
+                  name='email'
                   required
                   className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />

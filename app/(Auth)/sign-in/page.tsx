@@ -43,7 +43,7 @@ function Page() {
                 <input
                   type="text"
                   placeholder="ایمیل، شماره تلفن یا نام کاربری"
-                  name="username"
+                  name="identifier"
                   required
                   className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
@@ -59,21 +59,18 @@ function Page() {
                 <input
                   type="password"
                   placeholder="رمز عبور خود را وارد کنید"
-                  required
                   name="password"
+                  required
                   className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
                 />
               </div>
             </form>
 
-            <div className="mx-auto mt-10 max-w-[90%] lg:max-w-[70%]">
+            <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
               <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
                 ورود به حساب کاربری
               </button>
             </div>
-            <p className="mb-10 mt-5 font-bold text-sky-400 hover:opacity-[.7]">
-              <Link href={'#'}>رمز عبورم را فراموش کرده ام.</Link>
-            </p>
           </div>
 
           <div>
@@ -112,21 +109,27 @@ function Page() {
                 </span>
               </Link>
 
-              <p>
-                اگر حساب کاربری ندارید، باید{' '}
-                <Link
-                  href={'sign-up'}
-                  className="font-bold text-sky-400 hover:opacity-[.7]"
-                >
-                  ثبت نام کنید
-                </Link>
-                .
-              </p>
+              <div className="mt-5">
+                <p>
+                  اگر حساب کاربری ندارید، باید{' '}
+                  <Link
+                    href={'sign-up'}
+                    className="font-bold text-sky-400 hover:opacity-[.7]"
+                  >
+                    ثبت نام کنید
+                  </Link>
+                  .
+                </p>
+
+                <p className="mt-6 font-bold text-sky-400 hover:opacity-[.7]">
+                  <Link href={'#'}>رمز عبورم را فراموش کرده ام.</Link>
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="relative hidden bg-blue-300 text-center lg:block lg:h-[850px] lg:w-1/2">
+        <div className="relative hidden bg-blue-300 text-center lg:block lg:h-[900px] lg:w-1/2">
           <div className="absolute flex h-full w-full flex-col items-center justify-end bg-gray-900 bg-opacity-[.6]">
             <div className="mb-32">
               <p className="py-6 text-4xl font-black text-white">
