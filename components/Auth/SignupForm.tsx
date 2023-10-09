@@ -1,37 +1,59 @@
 'use client';
 
 import Image from 'next/image';
-import PasswordInput from './PasswordInput';
 import { useState } from 'react';
+import { signupUserSchema } from '@/utility/zod-schema';
+import { isObjEmpty } from '@/utility/utils';
+import { ZodError } from 'zod';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
 import password from '@/icons/password.svg';
 import loading from '@/icons/loading.svg';
+import eye from '@/icons/eye.svg';
 
 function SignupForm() {
   const [isLoading, setisLoading] = useState(false);
+  const [formError, setFormError] = useState<ZodError>();
+  const [passwordVisibility, SetpasswordVisibility] = useState(false);
 
   return (
     <>
       <div className="relative px-3">
         <p className="pr-3 text-right">ثبت نام با ایمیل:</p>
         <form
-          className="mx-auto my-5 flex flex-col gap-10 lg:w-[90%]"
+          className={`mx-auto my-5 flex flex-col ${
+            formError ? 'gap-5' : 'gap-10'
+          } lg:w-[90%]`}
           id="signup-form"
           onSubmit={async (e) => {
             e.preventDefault();
-            setisLoading(true);
+            // setisLoading(true);
 
             const formData = new FormData(e.target as HTMLFormElement);
 
-            const res = await fetch('/api/testapi', {
-              method: 'POST',
-              body: formData,
+            const formfields: Record<string, FormDataEntryValue> = {};
+            formData.forEach((value, name) => {
+              formfields[name] = value;
             });
 
-            setisLoading(false);
-            console.log('server response client side: ', await res.json());
+            const res = signupUserSchema.safeParse(formfields);
+            if (res.success) {
+              console.log('success');
+            } else {
+              console.log(res.error.flatten())
+              // setFormError(res.error);
+            }
+
+            // console.log(formfields)
+
+            // const res = await fetch('/api/testapi', {
+            //   method: 'POST',
+            //   body: formData,
+            // });
+
+            // setisLoading(false);
+            // console.log('server response client side: ', await res.json());
           }}
         >
           {isLoading ? (
@@ -53,6 +75,7 @@ function SignupForm() {
               className="absolute right-5 top-1/2 inline -translate-y-[50%] translate-x-0 dark:invert"
             />
             <input
+              id="name"
               type="text"
               placeholder="نام و نام خانوادگی شما"
               name="name"
@@ -60,6 +83,9 @@ function SignupForm() {
               className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
             />
           </div>
+          {/* {formError?.formErrors.name ? (
+            <p className="font-bold text-red-300">{formError.errors.}</p>
+          ) : null} */}
           <div className="relative w-full">
             <Image
               src={email}
@@ -68,13 +94,18 @@ function SignupForm() {
               className="absolute right-5 top-1/2 inline -translate-y-[50%] translate-x-0 invert dark:invert-0"
             />
             <input
-              type="email"
+              id="email"
+              // type="email"
               placeholder="ایمیل شما"
               name="email"
               required
               className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
             />
           </div>
+          {formError ? (
+            <p className="font-bold text-red-300">error bro</p>
+          ) : null}
+
           <div className="relative w-full">
             <Image
               src={password}
@@ -83,8 +114,29 @@ function SignupForm() {
               className="absolute right-5 top-1/2 inline -translate-y-[50%] translate-x-0 dark:invert"
             />
 
-            <PasswordInput />
+            <input
+              id="password"
+              type={passwordVisibility ? 'text' : 'password'}
+              placeholder="رمز عبور دلخواه"
+              autoComplete="new-password"
+              name="password"
+              required
+              className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
+            />
+
+            <Image
+              src={eye}
+              width={20}
+              alt="enter your name"
+              onClick={() => {
+                SetpasswordVisibility(!passwordVisibility);
+              }}
+              className="absolute left-5 top-1/2 inline -translate-y-[50%] translate-x-0 cursor-pointer dark:invert"
+            />
           </div>
+          {formError ? (
+            <p className="font-bold text-red-300">error bro</p>
+          ) : null}
         </form>
 
         <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">

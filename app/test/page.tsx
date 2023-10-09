@@ -1,6 +1,6 @@
 'use client';
 
-import { auth } from '@/app/(utility)/lucia';
+import { auth } from '@/utility/lucia';
 import * as context from 'next/headers';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SignupForm from '@/components/Auth/SignupForm';
 
-import { auth, Auth } from '@/app/(utility)/lucia';
+import { auth, Auth } from '@/utility/lucia';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

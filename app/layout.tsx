@@ -1,5 +1,5 @@
 import './globals.css';
-import { IranYekan } from './(utility)/font';
+import { IranYekan } from '@/utility/font';
 import { ThemeProviders } from './themeProvider';
 import Navbar from '@/components/Nav/Navbar';
 import Footer from '@/components/Footer/Footer';
