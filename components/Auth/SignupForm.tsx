@@ -14,7 +14,7 @@ import eye from '@/icons/eye.svg';
 
 function SignupForm() {
   const [isLoading, setisLoading] = useState(false);
-  const [formError, setFormError] = useState<ZodError>();
+  const [formError, setFormError] = useState<SignupErrors>({});
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
 
   return (
@@ -28,32 +28,41 @@ function SignupForm() {
           id="signup-form"
           onSubmit={async (e) => {
             e.preventDefault();
-            // setisLoading(true);
 
             const formData = new FormData(e.target as HTMLFormElement);
-
             const formfields: Record<string, FormDataEntryValue> = {};
+
             formData.forEach((value, name) => {
               formfields[name] = value;
             });
 
-            const res = signupUserSchema.safeParse(formfields);
-            if (res.success) {
-              console.log('success');
+            const validatedForm = signupUserSchema.safeParse(formfields);
+
+            if (validatedForm.success) {
+              setisLoading(true);
+
+              try {
+                const res = await fetch('/api/testapi', {
+                  method: 'POST',
+                  body: formData,
+                  // headers: {
+                  //   'Content-Type': 'application/json',
+                  // },
+                });
+
+                if (!res.ok) {
+                  throw new Error('NO RESPONSE');
+                }
+
+                console.log(await res.json());
+              } catch (error) {
+                console.log('error: ', error);
+              }
+
+              setisLoading(false);
             } else {
-              console.log(res.error.flatten())
-              // setFormError(res.error);
+              setFormError(validatedForm.error.flatten().fieldErrors);
             }
-
-            // console.log(formfields)
-
-            // const res = await fetch('/api/testapi', {
-            //   method: 'POST',
-            //   body: formData,
-            // });
-
-            // setisLoading(false);
-            // console.log('server response client side: ', await res.json());
           }}
         >
           {isLoading ? (
@@ -83,9 +92,11 @@ function SignupForm() {
               className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
             />
           </div>
-          {/* {formError?.formErrors.name ? (
-            <p className="font-bold text-red-300">{formError.errors.}</p>
-          ) : null} */}
+          {formError?.name && (
+            <p className="text-xs font-bold text-red-300">
+              {formError.name[0]}
+            </p>
+          )}
           <div className="relative w-full">
             <Image
               src={email}
@@ -102,9 +113,11 @@ function SignupForm() {
               className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
             />
           </div>
-          {formError ? (
-            <p className="font-bold text-red-300">error bro</p>
-          ) : null}
+          {formError?.email && (
+            <p className="text-xs font-bold text-red-300">
+              {formError.email[0]}
+            </p>
+          )}
 
           <div className="relative w-full">
             <Image
@@ -134,9 +147,11 @@ function SignupForm() {
               className="absolute left-5 top-1/2 inline -translate-y-[50%] translate-x-0 cursor-pointer dark:invert"
             />
           </div>
-          {formError ? (
-            <p className="font-bold text-red-300">error bro</p>
-          ) : null}
+          {formError?.password && (
+            <p className="text-xs font-bold text-red-300">
+              {formError.password[0]}
+            </p>
+          )}
         </form>
 
         <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">

@@ -13,20 +13,18 @@ export const auth = lucia({
 
   getUserAttributes: (data) => {
     return {
-      username: data.username,
       email: data.email,
       phone_number: data.phone_number,
-      first_name: data.first_name,
-      last_name: data.last_name,
+      name: data.name,
       email_verified: data.email_verified,
     };
   },
 
-  getSessionAttributes: (data) => {
-    return {
-      username: data.username,
-    };
-  },
+  // getSessionAttributes: (data) => {
+  //   return {
+  //     username: data.username,
+  //   };
+  // },
 
   adapter: pg(pool, {
     user: 'users',
