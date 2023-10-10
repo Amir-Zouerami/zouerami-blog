@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { signupUserSchema } from '@/utility/zod-schema';
-import { isObjEmpty } from '@/utility/utils';
-import { ZodError } from 'zod';
+import toast, { Toaster } from 'react-hot-toast';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
@@ -13,6 +13,7 @@ import loading from '@/icons/loading.svg';
 import eye from '@/icons/eye.svg';
 
 function SignupForm() {
+  const router = useRouter();
   const [isLoading, setisLoading] = useState(false);
   const [formError, setFormError] = useState<SignupErrors>({});
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
@@ -42,16 +43,22 @@ function SignupForm() {
               setisLoading(true);
 
               try {
-                const res = await fetch('/api/testapi', {
+                const res = await fetch('/api/testapis', {
                   method: 'POST',
                   body: formData,
-                  // headers: {
-                  //   'Content-Type': 'application/json',
-                  // },
                 });
 
                 if (!res.ok) {
-                  throw new Error('NO RESPONSE');
+                  toast.error(`خطا در ثبت نام! بعدا دوباره امتحان کنید.`, {
+                    id: 'signup-form-submission-error',
+                    position: 'bottom-center',
+                    style: {
+                      backgroundColor: 'black',
+                      color: 'white',
+                      fontWeight: 'bolder',
+                    },
+                  });
+                  // router.push('/');
                 }
 
                 console.log(await res.json());
@@ -65,6 +72,8 @@ function SignupForm() {
             }
           }}
         >
+          <Toaster />
+
           {isLoading ? (
             <div className="absolute right-0 top-9 z-10 flex h-full w-full items-center justify-center rounded-lg backdrop-blur-sm">
               <Image
