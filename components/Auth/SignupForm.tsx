@@ -1,10 +1,12 @@
 'use client';
 
+// import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { signupUserSchema } from '@/utility/zod-schema';
 import toast, { Toaster } from 'react-hot-toast';
+import { SignupErrors, formDataObj } from '@/utility/types';
+import { someacc } from '@/utility/server-actions';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
@@ -13,7 +15,7 @@ import loading from '@/icons/loading.svg';
 import eye from '@/icons/eye.svg';
 
 function SignupForm() {
-  const router = useRouter();
+  // const router = useRouter();
   const [isLoading, setisLoading] = useState(false);
   const [formError, setFormError] = useState<SignupErrors>({});
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
@@ -23,54 +25,53 @@ function SignupForm() {
       <div className="relative px-3">
         <p className="pr-3 text-right">ثبت نام با ایمیل:</p>
         <form
+          action={someacc}
+          method="POST"
           className={`mx-auto my-5 flex flex-col ${
             formError ? 'gap-5' : 'gap-10'
           } lg:w-[90%]`}
           id="signup-form"
-          onSubmit={async (e) => {
-            e.preventDefault();
+          // onSubmit={async (e: FormEvent<HTMLFormElement>) => {
+          //   // e.preventDefault();
+          //   const form = e.currentTarget;
+          //   const rawFormData = new FormData(form);
+          //   const formData = Object.fromEntries(rawFormData);
+          //   const validatedForm = signupUserSchema.safeParse(formData);
 
-            const formData = new FormData(e.target as HTMLFormElement);
-            const formfields: Record<string, FormDataEntryValue> = {};
+          //   if (validatedForm.success) {
+          //     setisLoading(true);
 
-            formData.forEach((value, name) => {
-              formfields[name] = value;
-            });
+          //     // try {
+          //     //   const res = await fetch('/api/testapi', {
+          //     //     method: 'POST',
+          //     //     body: formData,
+          //     //   });
 
-            const validatedForm = signupUserSchema.safeParse(formfields);
+          //     //   if (!res.ok) {
+          //     //     toast.error(`خطا در ثبت نام! بعدا دوباره امتحان کنید.`, {
+          //     //       id: 'signup-form-submission-error',
+          //     //       position: 'bottom-center',
+          //     //       style: {
+          //     //         backgroundColor: 'black',
+          //     //         color: 'white',
+          //     //         fontWeight: 'bolder',
+          //     //       },
+          //     //     });
+          //     //   }
 
-            if (validatedForm.success) {
-              setisLoading(true);
+          //     //   console.log(await res.json());
+          //     // } catch (error) {
+          //     //   console.log('error: ', error);
+          //     // }
 
-              try {
-                const res = await fetch('/api/testapis', {
-                  method: 'POST',
-                  body: formData,
-                });
+          //     // form.requestSubmit();
+          //     console.log('loging');
 
-                if (!res.ok) {
-                  toast.error(`خطا در ثبت نام! بعدا دوباره امتحان کنید.`, {
-                    id: 'signup-form-submission-error',
-                    position: 'bottom-center',
-                    style: {
-                      backgroundColor: 'black',
-                      color: 'white',
-                      fontWeight: 'bolder',
-                    },
-                  });
-                  // router.push('/');
-                }
-
-                console.log(await res.json());
-              } catch (error) {
-                console.log('error: ', error);
-              }
-
-              setisLoading(false);
-            } else {
-              setFormError(validatedForm.error.flatten().fieldErrors);
-            }
-          }}
+          //     setisLoading(false);
+          //   } else {
+          //     setFormError(validatedForm.error.flatten().fieldErrors);
+          //   }
+          // }}
         >
           <Toaster />
 

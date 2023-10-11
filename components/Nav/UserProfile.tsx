@@ -90,13 +90,13 @@ function UserProfile() {
               <div className="py-5 text-center text-white">
                 <p className="mb-10">شما وارد حساب کاربری خود نشده اید!</p>
                 <Link
-                  href={'#'}
+                  href={'/sign-up'}
                   className="ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                 >
                   ثبت نام
                 </Link>
                 <Link
-                  href={'#'}
+                  href={'/sign-in'}
                   className="rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                 >
                   ورود
