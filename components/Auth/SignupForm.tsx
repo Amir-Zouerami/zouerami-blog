@@ -25,8 +25,12 @@ function SignupForm() {
       <div className="relative px-3">
         <p className="pr-3 text-right">ثبت نام با ایمیل:</p>
         <form
-          action={someacc}
-          method="POST"
+          action={async (data: FormData) => {
+            // console.log('FORM DATA: ', data);
+
+            const res = await someacc(data);
+            console.log('INSIDE ACTION: ', res);
+          }}
           className={`mx-auto my-5 flex flex-col ${
             formError ? 'gap-5' : 'gap-10'
           } lg:w-[90%]`}
@@ -96,8 +100,8 @@ function SignupForm() {
             <input
               id="name"
               type="text"
-              placeholder="نام و نام خانوادگی شما"
-              name="name"
+              placeholder="نام کاربری دلخواه"
+              name="username"
               required
               className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
             />

@@ -3,13 +3,13 @@ declare namespace Lucia {
   type Auth = import('@/auth/lucia').Auth;
   type DatabaseUserAttributes = {
     email: string;
-    name: string;
-    phone_number: string;
-    email_verified: number;
+    username: string;
+    phone_number?: string;
+    email_verified?: number;
     // last_name?: string;
     // username: string;
   };
-  // type DatabaseSessionAttributes = {
-  //   username: string;
-  // };
+  type DatabaseSessionAttributes = {
+    username: string;
+  };
 }

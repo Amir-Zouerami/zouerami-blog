@@ -11,25 +11,25 @@ export const auth = lucia({
     expires: false,
   },
 
-  getUserAttributes: (data) => {
+  getUserAttributes: data => {
     return {
       email: data.email,
+      username: data.username,
       phone_number: data.phone_number,
-      name: data.name,
       email_verified: data.email_verified,
     };
   },
 
-  // getSessionAttributes: (data) => {
-  //   return {
-  //     username: data.username,
-  //   };
-  // },
+  getSessionAttributes: data => {
+    return {
+      username: data.username,
+    };
+  },
 
   adapter: pg(pool, {
     user: 'users',
-    key: 'lucia_user_key',
-    session: 'lucia_user_session',
+    key: 'lucia_user_keys',
+    session: 'lucia_user_sessions',
   }),
 });
 
