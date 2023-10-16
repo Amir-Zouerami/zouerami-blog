@@ -1,12 +1,13 @@
 'use client';
 
-// import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
-import { signupUserSchema } from '@/utility/zod-schema';
 import toast, { Toaster } from 'react-hot-toast';
 import { SignupErrors, formDataObj } from '@/utility/types';
-import { someacc } from '@/utility/server-actions';
+import { registerUser } from '@/utility/actions';
+import { toastOptions } from '@/utility/toast';
+import { validateSignupForm } from '@/utility/validate';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
@@ -15,67 +16,59 @@ import loading from '@/icons/loading.svg';
 import eye from '@/icons/eye.svg';
 
 function SignupForm() {
-  // const router = useRouter();
   const [isLoading, setisLoading] = useState(false);
   const [formError, setFormError] = useState<SignupErrors>({});
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
+  const router = useRouter();
 
   return (
     <>
       <div className="relative px-3">
         <p className="pr-3 text-right">ثبت نام با ایمیل:</p>
         <form
-          action={async (data: FormData) => {
-            // console.log('FORM DATA: ', data);
+          action={async (rawFormData: FormData) => {
+            setisLoading(true);
+            const validatedForm = validateSignupForm(rawFormData);
 
-            const res = await someacc(data);
-            console.log('INSIDE ACTION: ', res);
+            if (!validatedForm.success) {
+              setFormError(validatedForm.error.flatten().fieldErrors);
+              return setisLoading(false);
+            }
+
+            const res = await registerUser(rawFormData);
+
+            setisLoading(false);
+
+            if (res?.message === 'EMAIL_CONSTRAINT') {
+              return toast.error('این ایمیل قبلا ثبت شده است.', {
+                id: 'EMAIL_CONSTRAINT_TOAST',
+                ...toastOptions,
+              });
+            }
+
+            if (res?.message === 'USERNAME_CONSTRAINT') {
+              return toast.error('این نام کاربری قبلا ثبت شده است.', {
+                id: 'USERNAME_CONSTRAINT_TOAST',
+                ...toastOptions,
+              });
+            }
+
+            if (!res?.ok) {
+              return toast.error(
+                'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
+                {
+                  id: 'SIGNUP_ERROR_TOAST',
+                  ...toastOptions,
+                }
+              );
+            }
+
+            router.push('/');
           }}
           className={`mx-auto my-5 flex flex-col ${
             formError ? 'gap-5' : 'gap-10'
           } lg:w-[90%]`}
           id="signup-form"
-          // onSubmit={async (e: FormEvent<HTMLFormElement>) => {
-          //   // e.preventDefault();
-          //   const form = e.currentTarget;
-          //   const rawFormData = new FormData(form);
-          //   const formData = Object.fromEntries(rawFormData);
-          //   const validatedForm = signupUserSchema.safeParse(formData);
-
-          //   if (validatedForm.success) {
-          //     setisLoading(true);
-
-          //     // try {
-          //     //   const res = await fetch('/api/testapi', {
-          //     //     method: 'POST',
-          //     //     body: formData,
-          //     //   });
-
-          //     //   if (!res.ok) {
-          //     //     toast.error(`خطا در ثبت نام! بعدا دوباره امتحان کنید.`, {
-          //     //       id: 'signup-form-submission-error',
-          //     //       position: 'bottom-center',
-          //     //       style: {
-          //     //         backgroundColor: 'black',
-          //     //         color: 'white',
-          //     //         fontWeight: 'bolder',
-          //     //       },
-          //     //     });
-          //     //   }
-
-          //     //   console.log(await res.json());
-          //     // } catch (error) {
-          //     //   console.log('error: ', error);
-          //     // }
-
-          //     // form.requestSubmit();
-          //     console.log('loging');
-
-          //     setisLoading(false);
-          //   } else {
-          //     setFormError(validatedForm.error.flatten().fieldErrors);
-          //   }
-          // }}
         >
           <Toaster />
 
@@ -170,6 +163,7 @@ function SignupForm() {
 
         <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
           <button
+            id="submitButton"
             type="submit"
             disabled={isLoading}
             form="signup-form"

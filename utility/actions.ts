@@ -3,9 +3,9 @@
 import { LuciaError } from 'lucia';
 import { signupUserSchema } from './zod-schema';
 import { auth, Auth } from '@/utility/lucia';
-// import { pool } from './Postgresql';
+import { isPGConstraintError } from './types';
 
-export const someacc = async (formData: FormData) => {
+export const registerUser = async (formData: FormData) => {
   const validation = signupUserSchema.safeParse({
     username: formData.get('username'),
     email: formData.get('email'),
@@ -20,15 +20,6 @@ export const someacc = async (formData: FormData) => {
     };
   }
 
-  // try {
-  //   const res = pool.connect();
-  //   console.log('CLIENT DID', res);
-  // } catch (error) {
-  //   console.log('INSIDE PG CLIENT', error);
-  // }
-
-  // return { message: 'DID IT', data: validation.data };
-
   try {
     const newUser = await auth.createUser({
       key: {
@@ -41,14 +32,23 @@ export const someacc = async (formData: FormData) => {
         email: validation.data.email,
       },
     });
-    return { message: 'CREATED OK: ', newUser };
-  } catch (e) {
-    if (e instanceof LuciaError) {
-      console.log('LUCIA ERROR: ');
-      return { message: 'LUCIA ERROR: ', e };
+
+    return { ok: true, message: 'REGISTERED', user: newUser };
+  } catch (error: any) {
+    if (error instanceof LuciaError) {
+      return { ok: false, message: 'UNKNOWN_LUCIA_ERROR' };
     } else {
-      console.log('NOT LUCIA ERROR: ', e);
-      return { message: 'NOT LUCIA ERROR: ', e };
+      if (isPGConstraintError(error)) {
+        if (error.constraint === 'users_email_key') {
+          return { ok: false, message: 'EMAIL_CONSTRAINT' };
+        }
+
+        if (error.constraint === 'users_username_key') {
+          return { ok: false, message: 'USERNAME_CONSTRAINT' };
+        }
+      } else {
+        return { ok: false, message: 'UNKNOWN_PG_ERROR' };
+      }
     }
   }
 };

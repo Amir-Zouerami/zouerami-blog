@@ -1,31 +1,31 @@
 import { ZodErrorMap, ZodIssueCode, z } from 'zod';
 
 // -------------- ERROR MAP --------------
-// const customErrorMap: ZodErrorMap = (error, ctx) => {
-//   switch (error.code) {
-//     case ZodIssueCode.invalid_type:
-//       if (error.expected === 'string') {
-//         return { message: 'لطفا در این فیلد فقط از متن ساده استفاده کنید.' };
-//       }
-//       break;
+const customErrorMap: ZodErrorMap = (error, ctx) => {
+  switch (error.code) {
+    // case ZodIssueCode.invalid_type:
+    //   if (error.expected === 'string') {
+    //     return { message: 'لطفا در این فیلد فقط از متن ساده استفاده کنید.' };
+    //   }
+    //   break;
 
-//     case ZodIssueCode.invalid_string:
-//       if (error.validation === 'email') {
-//         return { message: 'ایمیل وارد شده معتبر نیست.' };
-//       }
+    case ZodIssueCode.invalid_string:
+      if (error.validation === 'email') {
+        return { message: 'ایمیل وارد شده معتبر نیست.' };
+      }
 
-//       if (error.validation === 'datetime') {
-//         return { message: 'تاریخ وارد شده معتبر نیست.' };
-//       }
+      if (error.validation === 'datetime') {
+        return { message: 'تاریخ وارد شده معتبر نیست.' };
+      }
 
-//       if (error.validation === 'url') {
-//         return { message: 'لینک ارسالی صحیح نیست.' };
-//       }
-//   }
-//   return { message: ctx.defaultError };
-// };
+      if (error.validation === 'url') {
+        return { message: 'لینک ارسالی صحیح نیست.' };
+      }
+  }
+  return { message: ctx.defaultError };
+};
 
-// z.setErrorMap(customErrorMap);
+z.setErrorMap(customErrorMap);
 
 // -------------- SIGN IN --------------
 
