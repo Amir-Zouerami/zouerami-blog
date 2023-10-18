@@ -1,8 +1,6 @@
 'use server';
 
-import { LuciaError } from 'lucia';
 import { signupUserSchema } from './zod-schema';
-import { auth, Auth } from '@/utility/lucia';
 import { isPGConstraintError } from './types';
 
 export const registerUser = async (formData: FormData) => {
@@ -20,35 +18,43 @@ export const registerUser = async (formData: FormData) => {
     };
   }
 
-  try {
-    const newUser = await auth.createUser({
-      key: {
-        providerId: 'email',
-        providerUserId: validation.data.username.toLocaleLowerCase(),
-        password: validation.data.password,
-      },
-      attributes: {
-        username: validation.data.username,
-        email: validation.data.email,
-      },
-    });
+  // try {
+  //   const newUser = await auth.createUser({
+  //     key: {
+  //       providerId: 'email',
+  //       providerUserId: validation.data.username.toLocaleLowerCase(),
+  //       password: validation.data.password,
+  //     },
+  //     attributes: {
+  //       username: validation.data.username,
+  //       email: validation.data.email,
+  //     },
+  //   });
 
-    return { ok: true, message: 'REGISTERED', user: newUser };
-  } catch (error: any) {
-    if (error instanceof LuciaError) {
-      return { ok: false, message: 'UNKNOWN_LUCIA_ERROR' };
-    } else {
-      if (isPGConstraintError(error)) {
-        if (error.constraint === 'users_email_key') {
-          return { ok: false, message: 'EMAIL_CONSTRAINT' };
-        }
+  //   const session = await auth.createSession({
+  //     userId: newUser.userId,
+  //     attributes: { username: newUser.username },
+  //   });
 
-        if (error.constraint === 'users_username_key') {
-          return { ok: false, message: 'USERNAME_CONSTRAINT' };
-        }
-      } else {
-        return { ok: false, message: 'UNKNOWN_PG_ERROR' };
-      }
-    }
-  }
+  //   const authReq = auth.handleRequest();
+
+  //   console.log(newUser);
+  //   return { ok: true, message: 'REGISTERED', user: newUser };
+  // } catch (error: any) {
+  //   if (error instanceof LuciaError) {
+  //     return { ok: false, message: 'UNKNOWN_LUCIA_ERROR' };
+  //   } else {
+  //     if (isPGConstraintError(error)) {
+  //       if (error.constraint === 'users_email_key') {
+  //         return { ok: false, message: 'EMAIL_CONSTRAINT' };
+  //       }
+
+  //       if (error.constraint === 'users_username_key') {
+  //         return { ok: false, message: 'USERNAME_CONSTRAINT' };
+  //       }
+  //     } else {
+  //       return { ok: false, message: 'UNKNOWN_PG_ERROR' };
+  //     }
+  //   }
+  // }
 };
