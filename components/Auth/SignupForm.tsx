@@ -37,33 +37,50 @@ function SignupForm() {
 
             const res = await registerUser(rawFormData);
 
-            setisLoading(false);
+            if (res?.code === 'INVALID_EMAIL') {
+              setisLoading(false);
 
-            if (res?.message === 'EMAIL_CONSTRAINT') {
-              return toast.error('این ایمیل قبلا ثبت شده است.', {
+              return toast.error('ایمیل نامعتبر بوده یا قبلا ثبت شده است.', {
                 id: 'EMAIL_CONSTRAINT_TOAST',
                 ...toastOptions,
               });
             }
 
-            if (res?.message === 'USERNAME_CONSTRAINT') {
-              return toast.error('این نام کاربری قبلا ثبت شده است.', {
-                id: 'USERNAME_CONSTRAINT_TOAST',
-                ...toastOptions,
-              });
-            }
+            if (res?.code === 'INVALID_USERNAME') {
+              setisLoading(false);
 
-            if (!res?.ok) {
               return toast.error(
-                'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
+                'نام کاربری نامعتبر بوده یا قبلا ثبت شده است.',
                 {
-                  id: 'SIGNUP_ERROR_TOAST',
+                  id: 'USERNAME_CONSTRAINT_TOAST',
                   ...toastOptions,
                 }
               );
             }
 
-            router.push('/');
+            if (res?.code === 200) {
+              setTimeout(() => {
+                setisLoading(false);
+                router.push('/');
+              }, 1500);
+
+              return toast.error(
+                'ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...',
+                {
+                  id: 'SIGNUP_SUCCESSFUL',
+                  ...toastOptions,
+                }
+              );
+            }
+
+            setisLoading(false);
+            return toast.error(
+              'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
+              {
+                id: 'SIGNUP_UNKNOWN_ERROR_TOAST',
+                ...toastOptions,
+              }
+            );
           }}
           className={`mx-auto my-5 flex flex-col ${
             formError ? 'gap-5' : 'gap-10'
@@ -99,9 +116,9 @@ function SignupForm() {
               className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
             />
           </div>
-          {formError?.name && (
+          {formError?.username && (
             <p className="text-xs font-bold text-red-300">
-              {formError.name[0]}
+              {formError.username[0]}
             </p>
           )}
           <div className="relative w-full">

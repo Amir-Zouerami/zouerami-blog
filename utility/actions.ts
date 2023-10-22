@@ -1,9 +1,12 @@
 'use server';
 
 import { signupUserSchema } from './zod-schema';
-import { isPGConstraintError } from './types';
+import { pb } from './pocketbase';
+import { AuthenticatedUser, PBSignupError } from './types';
 
 export const registerUser = async (formData: FormData) => {
+  // TODO: Throttle Requests Sent By User
+
   const validation = signupUserSchema.safeParse({
     username: formData.get('username'),
     email: formData.get('email'),
@@ -16,6 +19,44 @@ export const registerUser = async (formData: FormData) => {
       message: 'داده ی ارسال شده معتبر نیست.',
       error: validation.error.flatten(),
     };
+  }
+
+  try {
+    const AuthenticatedUser = await pb
+      .collection('users')
+      .create<AuthenticatedUser>({
+        email: validation.data.email.toLocaleLowerCase(),
+        username: validation.data.username,
+        password: validation.data.password,
+        passwordConfirm: validation.data.password,
+        verified: false,
+      });
+
+    console.log(AuthenticatedUser);
+    return { code: 200 };
+  } catch (error) {
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'status' in error &&
+      'response' in error
+    ) {
+      if (error.status === 403) return { code: '403' };
+
+      if (
+        (error as PBSignupError)?.response?.data?.email?.code ===
+        'validation_invalid_email'
+      )
+        return { code: 'INVALID_EMAIL' };
+
+      if (
+        (error as PBSignupError)?.response?.data?.username?.code ===
+        'validation_invalid_username'
+      )
+        return { code: 'INVALID_USERNAME' };
+    }
+
+    return { code: 'UNKNOWN', error };
   }
 
   // try {

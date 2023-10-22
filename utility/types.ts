@@ -8,7 +8,23 @@ type anyObj = { [key: string]: string | number };
 export interface SignupErrors {
   password?: string[] | undefined;
   email?: string[] | undefined;
-  name?: string[] | undefined;
+  username?: string[] | undefined;
+}
+
+/**
+ * Type for A Registered User On DB
+ */
+
+export interface AuthenticatedUser {
+  id?: string;
+  name?: string;
+  email: string;
+  username: string;
+  password: string;
+  passwordConfirm: string;
+  emailVisibility?: boolean;
+  verified?: boolean;
+  avatar?: string;
 }
 
 /**
@@ -34,6 +50,51 @@ type PGErrorConstraint = Partial<PGError> & { constraint: string };
 export const isPGConstraintError = (e: anyObj): e is PGErrorConstraint => {
   return typeof e === 'object' && 'constraint' in e;
 };
+
+/**
+ * General Shape For Signup Error
+ */
+// export interface PBError {
+//   url: string;
+//   status: number;
+//   response: DataOrResponse;
+//   isAbort: boolean;
+//   originalError: OriginalError;
+//   name: string;
+//   [key: string]: any;
+// }
+
+export interface PBSignupError {
+  url: string;
+  status: number;
+  response: DataOrResponse;
+  isAbort: boolean;
+  originalError: OriginalError;
+  name: string;
+  [key: string]: any;
+}
+interface DataOrResponse {
+  code: number;
+  message: string;
+  data: errorData;
+}
+
+interface errorData {
+  email?: fieldError;
+  username?: fieldError;
+  password?: fieldError;
+}
+
+interface fieldError {
+  code: string;
+  message: string;
+}
+
+interface OriginalError {
+  url: string;
+  status: number;
+  data: DataOrResponse;
+}
 
 /**
  * FormData Type
