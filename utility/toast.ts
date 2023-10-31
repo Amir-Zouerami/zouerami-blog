@@ -1,4 +1,4 @@
-import { ToastOptions } from 'react-hot-toast';
+import { ToastOptions, toast } from 'react-hot-toast';
 
 export const toastOptions: ToastOptions = {
   position: 'bottom-center',

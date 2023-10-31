@@ -8,12 +8,14 @@ import { SignupErrors, formDataObj } from '@/utility/types';
 import { registerUser } from '@/utility/actions';
 import { toastOptions } from '@/utility/toast';
 import { validateSignupForm } from '@/utility/validate';
+import PocketBase from 'pocketbase';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
 import password from '@/icons/password.svg';
 import loading from '@/icons/loading.svg';
 import eye from '@/icons/eye.svg';
+import { clientPB } from '@/utility/clientPB';
 
 function SignupForm() {
   const [isLoading, setisLoading] = useState(false);
@@ -59,21 +61,37 @@ function SignupForm() {
             }
 
             if (res?.code === 200) {
-              setTimeout(() => {
-                setisLoading(false);
-                router.push('/');
-              }, 1500);
+              try {
+                const pb = new PocketBase(process.env.NEXT_PUBLIC_DOMAIN);
 
-              return toast.error(
-                'ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...',
-                {
-                  id: 'SIGNUP_SUCCESSFUL',
-                  ...toastOptions,
-                }
-              );
+                await pb
+                  .collection('users')
+                  .authWithPassword(
+                    validatedForm.data.email,
+                    validatedForm.data.password
+                  );
+              } catch (error) {
+                return toast.error(
+                  'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
+                  {
+                    id: 'SIGN_UP_AUTH_FAILED_TOAST',
+                    ...toastOptions,
+                  }
+                );
+              }
+
+              setisLoading(false);
+
+              toast.success('ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...', {
+                id: 'SIGNUP_SUCCESSFUL',
+                ...toastOptions,
+              });
+
+              return router.push('/');
             }
 
             setisLoading(false);
+
             return toast.error(
               'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
               {
