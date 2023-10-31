@@ -86,15 +86,15 @@ export const signupUserSchema = z.object({
     .trim()
     .min(8, { message: 'رمز عبور باید حداقل ۸ حرفی باشد.' })
     .max(50, { message: 'رمز عبور باید حداکثر ۵۰ حرفی باشد.' }),
-  phone_number: z
-    .string()
-    .trim()
-    .refine(
-      value => {
-        const phoneRegex = /^09\d{9}$/;
-        return phoneRegex.test(value) || value === '';
-      },
-      { message: 'شماره تلفن باید ۱۱ رقم باشد. به طور مثال ۰۹۱۵۰۰۰۰۰۰۰' }
-    )
-    .optional(),
+  // phone_number: z
+  //   .string()
+  //   .trim()
+  //   .refine(
+  //     value => {
+  //       const phoneRegex = /^09\d{9}$/;
+  //       return phoneRegex.test(value) || value === '';
+  //     },
+  //     { message: 'شماره تلفن باید ۱۱ رقم باشد. به طور مثال ۰۹۱۵۰۰۰۰۰۰۰' }
+  //   )
+  //   .optional(),
 });
