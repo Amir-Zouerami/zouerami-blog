@@ -1,15 +1,12 @@
-// 'use client';
-
-import Image from 'next/image';
-
 import authImage from '@/public/auth-image-big.webp';
-import email from '@/icons/messages.svg';
-import password from '@/icons/password.svg';
+
 import google from '@/icons/google.svg';
 import github from '@/icons/github.svg';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { Metadata } from 'next';
+import SigninForm from '@/components/Auth/SigninForm';
 
 export const metadata: Metadata = {
   title: 'ورود به حساب کاربری',
@@ -29,48 +26,7 @@ function Page() {
           <div className="p-3">
             <p className="pr-3 text-right">ورود با ایمیل و رمز عبور:</p>
 
-            <form
-              className="mx-auto my-5 flex flex-col gap-7 lg:w-[90%]"
-              action=""
-            >
-              <div className="relative w-full">
-                <Image
-                  src={email}
-                  width={25}
-                  alt="enter your name"
-                  className="absolute right-5 top-1/2 inline -translate-y-[50%] translate-x-0 invert dark:invert-0"
-                />
-                <input
-                  type="text"
-                  placeholder="ایمیل، شماره تلفن یا نام کاربری"
-                  name="identifier"
-                  required
-                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
-                />
-              </div>
-
-              <div className="relative w-full">
-                <Image
-                  src={password}
-                  width={25}
-                  alt="enter your name"
-                  className="dark absolute right-5 top-1/2 inline -translate-y-[50%] translate-x-0 invert-0 dark:invert"
-                />
-                <input
-                  type="password"
-                  placeholder="رمز عبور خود را وارد کنید"
-                  name="password"
-                  required
-                  className="w-full rounded-xl border-2 border-[#ee8b68] p-5 pr-14 outline-none dark:bg-[#31333c]"
-                />
-              </div>
-            </form>
-
-            <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
-              <button className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7]">
-                ورود به حساب کاربری
-              </button>
-            </div>
+            <SigninForm />
           </div>
 
           <div>

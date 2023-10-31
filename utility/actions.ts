@@ -1,6 +1,6 @@
 'use server';
 
-import { signupUserSchema } from './zod-schema';
+import { signupUserSchema, loginUserSchema } from './zod-schema';
 import Pocketbase from 'pocketbase';
 import { AuthenticatedUser, PBSignupError } from './types';
 
@@ -56,5 +56,34 @@ export const registerUser = async (formData: FormData) => {
     }
 
     return { code: 'UNKNOWN', error };
+  }
+};
+
+export const loginUser = async (formData: FormData) => {
+  const validation = loginUserSchema.safeParse({
+    identifier: formData.get('identifier'),
+    password: formData.get('password'),
+  });
+
+  if (!validation.success) {
+    return {
+      ok: false,
+      message: 'داده ی ارسال شده معتبر نیست.',
+      error: validation.error.flatten(),
+    };
+  }
+
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_DOMAIN);
+
+    await pb
+      .collection('users')
+      .authWithPassword(validation.data.identifier, validation.data.password);
+
+    const pb_auth = pb.authStore.exportToCookie();
+
+    return { code: 200, pb_auth };
+  } catch (error) {
+    return { code: 'ERROR' };
   }
 };

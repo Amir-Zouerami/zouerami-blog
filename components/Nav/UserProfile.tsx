@@ -13,9 +13,11 @@ import messages from '@/icons/messages.svg';
 import settings from '@/icons/settings.svg';
 import logout from '@/icons/logout.svg';
 import ProfileMenuLink from './ProfileMenuLink';
+import { useRouter } from 'next/navigation';
 
 function UserProfile() {
   const pb = clientPB();
+  const router = useRouter();
 
   const [userModal, setUserModal] = useState(false);
   const [authed, setAuthed] = useState(pb.authStore.isValid);
@@ -94,6 +96,7 @@ function UserProfile() {
                     title="خروج از حساب کاربری"
                     subtitle="به صورت کامل از حساب کاربری خود خارج شوید."
                     onClick={() => {
+                      router.push('/');
                       pb.authStore.clear();
                     }}
                   />

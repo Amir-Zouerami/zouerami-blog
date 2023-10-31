@@ -12,6 +12,15 @@ export interface SignupErrors {
 }
 
 /**
+ * Potential Errors Which Might happen In The Sign-in Form
+ */
+
+export interface SigninErrors {
+  identifier?: string[] | undefined;
+  password?: string[] | undefined;
+}
+
+/**
  * Type for A Registered User On DB
  */
 

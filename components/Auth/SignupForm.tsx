@@ -15,7 +15,6 @@ import email from '@/icons/messages.svg';
 import password from '@/icons/password.svg';
 import loading from '@/icons/loading.svg';
 import eye from '@/icons/eye.svg';
-import { clientPB } from '@/utility/clientPB';
 
 function SignupForm() {
   const [isLoading, setisLoading] = useState(false);
@@ -70,7 +69,9 @@ function SignupForm() {
                     validatedForm.data.email,
                     validatedForm.data.password
                   );
+                setisLoading(false);
               } catch (error) {
+                setisLoading(false);
                 return toast.error(
                   'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
                   {
@@ -80,14 +81,14 @@ function SignupForm() {
                 );
               }
 
-              setisLoading(false);
-
               toast.success('ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...', {
                 id: 'SIGNUP_SUCCESSFUL',
                 ...toastOptions,
               });
 
-              return router.push('/');
+              setTimeout(() => {
+                return router.push('/');
+              }, 1000);
             }
 
             setisLoading(false);
@@ -198,7 +199,7 @@ function SignupForm() {
 
         <div className="mx-auto my-10 max-w-[90%] lg:max-w-[70%]">
           <button
-            id="submitButton"
+            id="signUpSubmitButton"
             type="submit"
             disabled={isLoading}
             form="signup-form"
