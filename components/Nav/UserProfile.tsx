@@ -14,6 +14,7 @@ import settings from '@/icons/settings.svg';
 import logout from '@/icons/logout.svg';
 import ProfileMenuLink from './ProfileMenuLink';
 import { useRouter } from 'next/navigation';
+import { deleteCookie, getCookie } from '@/utility/cookie';
 
 function UserProfile() {
   const pb = clientPB();
@@ -96,8 +97,9 @@ function UserProfile() {
                     title="خروج از حساب کاربری"
                     subtitle="به صورت کامل از حساب کاربری خود خارج شوید."
                     onClick={() => {
-                      router.push('/');
                       pb.authStore.clear();
+                      deleteCookie('pb_auth');
+                      router.push('/');
                     }}
                   />
                 </>

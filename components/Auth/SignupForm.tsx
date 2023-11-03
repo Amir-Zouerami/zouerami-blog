@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { SignupErrors, formDataObj } from '@/utility/types';
@@ -9,6 +9,7 @@ import { registerUser } from '@/utility/actions';
 import { toastOptions } from '@/utility/toast';
 import { validateSignupForm } from '@/utility/validate';
 import PocketBase from 'pocketbase';
+import { getCookie } from '@/utility/cookie';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';
@@ -21,6 +22,7 @@ function SignupForm() {
   const [formError, setFormError] = useState<SignupErrors>({});
   const [passwordVisibility, SetpasswordVisibility] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   return (
     <>
@@ -62,32 +64,29 @@ function SignupForm() {
             if (res?.code === 200) {
               try {
                 const pb = new PocketBase(process.env.NEXT_PUBLIC_DOMAIN);
+                const authCookie = getCookie('pb_auth');
 
-                await pb
-                  .collection('users')
-                  .authWithPassword(
-                    validatedForm.data.email,
-                    validatedForm.data.password
-                  );
+                if (authCookie) {
+                  pb.authStore.loadFromCookie(authCookie);
+                }
+
+                toast.success('ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...', {
+                  ...toastOptions,
+                });
                 setisLoading(false);
               } catch (error) {
                 setisLoading(false);
+
                 return toast.error(
                   'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
                   {
-                    id: 'SIGN_UP_AUTH_FAILED_TOAST',
                     ...toastOptions,
                   }
                 );
               }
 
-              toast.success('ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...', {
-                id: 'SIGNUP_SUCCESSFUL',
-                ...toastOptions,
-              });
-
-              setTimeout(() => {
-                return router.push('/');
+              return setTimeout(() => {
+                return router.push(searchParams.get('next') ?? '/');
               }, 1000);
             }
 
@@ -96,7 +95,6 @@ function SignupForm() {
             return toast.error(
               'مشکلی در ثبت نام پیش آمده است! بعدا مجددا تلاش کنید.',
               {
-                id: 'SIGNUP_UNKNOWN_ERROR_TOAST',
                 ...toastOptions,
               }
             );

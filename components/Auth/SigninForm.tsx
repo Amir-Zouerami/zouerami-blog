@@ -6,17 +6,20 @@ import { loginUser } from '@/utility/actions';
 import { SigninErrors } from '@/utility/types';
 import { validateSigninForm } from '@/utility/validate';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { toastOptions } from '@/utility/toast';
 import PocketBase from 'pocketbase';
 import loading from '@/icons/loading.svg';
+// import { cookies } from 'next/headers';
+import { getCookie } from '@/utility/cookie';
 
 function SigninForm() {
   const [isLoading, setisLoading] = useState(false);
   const [formError, setFormError] = useState<SigninErrors>({});
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   return (
     <div>
@@ -34,7 +37,12 @@ function SigninForm() {
 
           if (res.code === 200) {
             const pb = new PocketBase(process.env.NEXT_PUBLIC_DOMAIN);
-            pb.authStore.loadFromCookie(res.pb_auth);
+            const authCookie = getCookie('pb_auth');
+
+            if (authCookie) {
+              pb.authStore.loadFromCookie(authCookie);
+            }
+
             setisLoading(false);
             toast.success('ورود موفقیت آمیز بود. چند لحظه صبر کنید...', {
               ...toastOptions,
@@ -50,7 +58,7 @@ function SigninForm() {
           }
 
           setTimeout(() => {
-            return router.push('/');
+            return router.push(searchParams.get('next') ?? '/');
           }, 1000);
         }}
         className={`mx-auto my-5 flex flex-col ${

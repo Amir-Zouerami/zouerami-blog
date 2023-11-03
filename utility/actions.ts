@@ -3,6 +3,7 @@
 import { signupUserSchema, loginUserSchema } from './zod-schema';
 import Pocketbase from 'pocketbase';
 import { AuthenticatedUser, PBSignupError } from './types';
+import { cookies } from 'next/headers';
 
 export const registerUser = async (formData: FormData) => {
   // TODO: Throttle Requests Sent By User
@@ -32,7 +33,18 @@ export const registerUser = async (formData: FormData) => {
       verified: false,
     });
 
-    return { code: 200 };
+    await pb
+      .collection('users')
+      .authWithPassword(validation.data.email, validation.data.password);
+
+    const authCookie = pb.authStore.exportToCookie({
+      sameSite: 'Strict',
+      httpOnly: false,
+    });
+
+    cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
+
+    return { code: 200, authCookie: authCookie };
   } catch (error) {
     if (
       typeof error === 'object' &&
@@ -40,7 +52,7 @@ export const registerUser = async (formData: FormData) => {
       'status' in error &&
       'response' in error
     ) {
-      if (error.status === 403) return { code: '403' };
+      // if (error.status === 403) return { code: '403' };
 
       if (
         (error as PBSignupError)?.response?.data?.email?.code ===
@@ -80,9 +92,13 @@ export const loginUser = async (formData: FormData) => {
       .collection('users')
       .authWithPassword(validation.data.identifier, validation.data.password);
 
-    const pb_auth = pb.authStore.exportToCookie();
+    const authCookie = pb.authStore.exportToCookie({
+      sameSite: 'Strict',
+      httpOnly: false,
+    });
+    cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
 
-    return { code: 200, pb_auth };
+    return { code: 200, authCookie: authCookie };
   } catch (error) {
     return { code: 'ERROR' };
   }

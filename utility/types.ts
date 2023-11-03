@@ -26,11 +26,11 @@ export interface SigninErrors {
 
 export interface AuthenticatedUser {
   id?: string;
-  name?: string;
+  // name?: string;
   email: string;
   username: string;
-  password: string;
-  passwordConfirm: string;
+  // password: string;
+  // passwordConfirm: string;
   emailVisibility?: boolean;
   verified?: boolean;
   avatar?: string;
