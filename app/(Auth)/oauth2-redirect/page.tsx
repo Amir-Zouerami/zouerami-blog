@@ -72,10 +72,6 @@ function Page() {
             })
             .then(() => {
               setisLoading(false);
-
-              setTimeout(() => {
-                return router.push('/');
-              }, 500);
             })
             .catch(err => {
               console.log('AVATAR UPDATE ERROR');
@@ -84,10 +80,6 @@ function Page() {
         }
 
         setisLoading(false);
-
-        setTimeout(() => {
-          return router.push('/');
-        }, 500);
       })
       .catch(err => {
         console.log(
