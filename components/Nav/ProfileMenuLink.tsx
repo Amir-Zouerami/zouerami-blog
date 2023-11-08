@@ -20,8 +20,7 @@ function ProfileMenuLink({
       <Link href={'#'} className="flex py-5 hover:opacity-[0.7]">
         <Image
           src={icon}
-          width={35}
-          height={35}
+          style={{ width: '35px', height: '35px' }}
           alt="see your liked articles"
         />
         <div className="mr-3">

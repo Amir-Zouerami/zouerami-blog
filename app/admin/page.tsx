@@ -9,7 +9,7 @@ import DisplayUser from './DisplayUser';
 function Page() {
   // const userdetail = getUserFromCookie(cookies());
 
-  const pb = new Pocketbase(process.env.NEXT_PUBLIC_DOMAIN);
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const cookie = cookies().get('pb_auth')
   pb.authStore.loadFromCookie(cookie?.value || "")
 

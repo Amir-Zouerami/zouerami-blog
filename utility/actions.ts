@@ -23,7 +23,7 @@ export const registerUser = async (formData: FormData) => {
   }
 
   try {
-    const pb = new Pocketbase(process.env.NEXT_PUBLIC_DOMAIN);
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
     await pb.collection('users').create<AuthenticatedUser>({
       email: validation.data.email.toLocaleLowerCase(),
@@ -42,7 +42,15 @@ export const registerUser = async (formData: FormData) => {
       httpOnly: false,
     });
 
-    cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
+    cookies().set('pb_auth', authCookie, { sameSite: 'lax', secure: true });
+
+    if (pb.authStore.model) {
+      const userVerified = pb.authStore.model.verified;
+
+      if (!userVerified) {
+        pb.collection('users').requestVerification(pb.authStore.model.email);
+      }
+    }
 
     return { code: 200, authCookie: authCookie };
   } catch (error) {
@@ -86,17 +94,17 @@ export const loginUser = async (formData: FormData) => {
   }
 
   try {
-    const pb = new Pocketbase(process.env.NEXT_PUBLIC_DOMAIN);
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
     await pb
       .collection('users')
       .authWithPassword(validation.data.identifier, validation.data.password);
 
     const authCookie = pb.authStore.exportToCookie({
-      sameSite: 'Strict',
+      sameSite: 'Lax',
       httpOnly: false,
     });
-    cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
+    cookies().set('pb_auth', authCookie, { sameSite: 'lax', secure: true });
 
     return { code: 200, authCookie: authCookie };
   } catch (error) {

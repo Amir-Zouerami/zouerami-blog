@@ -8,6 +8,7 @@ import search from '@/icons/search.svg';
 
 function SearchLink() {
   const [searchModal, setSearchModal] = useState(true);
+  // TODO: Make Pretty
 
   return (
     <>

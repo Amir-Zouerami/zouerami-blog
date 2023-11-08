@@ -63,11 +63,20 @@ function SignupForm() {
 
             if (res?.code === 200) {
               try {
-                const pb = new PocketBase(process.env.NEXT_PUBLIC_DOMAIN);
-                const authCookie = getCookie('pb_auth');
+                const pb = new PocketBase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+                const authCookie = res.authCookie;
 
                 if (authCookie) {
                   pb.authStore.loadFromCookie(authCookie);
+                }
+
+                if (pb.authStore.model && !pb.authStore.model.verified) {
+                  toast.success(
+                    'ثبت نام موفقیت آمیز بود. لطفا ایمیل خود را تایید کنید!',
+                    {
+                      ...toastOptions,
+                    }
+                  );
                 }
 
                 toast.success('ثبت نام موفقیت آمیز بود. چند لحظه صبر کنید...', {

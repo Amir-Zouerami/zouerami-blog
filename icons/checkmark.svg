@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 100 100" width="100" height="100"
+    style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);"
+    preserveAspectRatio="xMidYMid meet">
+    <defs>
+        <clipPath id="__lottie_element_2">
+            <rect width="100" height="100" x="0" y="0"></rect>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#__lottie_element_2)">
+        <g style="display: block;" transform="matrix(1,0,0,1,50,50)" opacity="1">
+            <g opacity="1" transform="matrix(2,0,0,2,0,0)">
+                <path fill-rule="evenodd" style="mix-blend-mode: exclusion;" fill="rgb(89,177,137)"
+                    fill-opacity="1"
+                    d=" M0.3700000047683716,-20.996999740600586 C11.788999557495117,-20.798999786376953 21,-11.465999603271484 21,0 C21,0 21,0 21,0 C21,0 21,0 21,0 C21,11.589900016784668 11.589900016784668,21 0,21 C0,21 0,21 0,21 C-11.589900016784668,21 -21,11.589900016784668 -21,0 C-21,0 -21,0 -21,0 C-21,-11.589900016784668 -11.589900016784668,-21 0,-21 C0,-21 0,-21 0,-21 C0.12300000339746475,-21 0.24699999392032623,-20.999000549316406 0.3700000047683716,-20.996999740600586"></path>
+                <path stroke-linecap="round" stroke-linejoin="miter" fill-opacity="0"
+                    stroke-miterlimit="4" stroke="rgb(89,177,137)" stroke-opacity="1"
+                    stroke-width="2"
+                    d=" M0.3700000047683716,-20.996999740600586 C11.788999557495117,-20.798999786376953 21,-11.465999603271484 21,0 C21,0 21,0 21,0 C21,0 21,0 21,0 C21,11.589900016784668 11.589900016784668,21 0,21 C0,21 0,21 0,21 C-11.589900016784668,21 -21,11.589900016784668 -21,0 C-21,0 -21,0 -21,0 C-21,-11.589900016784668 -11.589900016784668,-21 0,-21 C0,-21 0,-21 0,-21 C0.12300000339746475,-21 0.24699999392032623,-20.999000549316406 0.3700000047683716,-20.996999740600586"></path>
+            </g>
+        </g>
+        <g style="display: block;" transform="matrix(1,0,0,1,49.75,50)" opacity="1">
+            <g opacity="1" transform="matrix(2,0,0,2,0,0)">
+                <path stroke-linecap="round" stroke-linejoin="round" fill-opacity="0"
+                    stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="4"
+                    d=" M-10,1.1100000143051147 C-10,1.1100000143051147 -3.950000047683716,7 -3.950000047683716,7 C-3.950000047683716,7 2.2049999237060547,0.8230000138282776 6.339000225067139,-3.325000047683716"></path>
+            </g>
+        </g>
+    </g>
+</svg>

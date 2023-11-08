@@ -36,7 +36,7 @@ function SigninForm() {
           const res = await loginUser(rawFormData);
 
           if (res.code === 200) {
-            const pb = new PocketBase(process.env.NEXT_PUBLIC_DOMAIN);
+            const pb = new PocketBase(process.env.NEXT_PUBLIC_PB_DOMAIN);
             const authCookie = getCookie('pb_auth');
 
             if (authCookie) {

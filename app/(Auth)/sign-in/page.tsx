@@ -1,20 +1,35 @@
-import authImage from '@/public/auth-image-big.webp';
+export const fetchCache = 'default-no-store';
 
-import google from '@/icons/google.svg';
-import github from '@/icons/github.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { Metadata } from 'next';
+import Pocketbase from 'pocketbase';
 import SigninForm from '@/components/Auth/SigninForm';
+import { cookies } from 'next/headers';
+
+import authImage from '@/public/auth-image-big.webp';
+import google from '@/icons/google.svg';
+import github from '@/icons/github.svg';
+import AlreadyLoggedinDialogue from '@/components/Auth/AlreadyLoggedinDialogue';
+import GoogleoAuthButton from '@/components/Auth/GoogleoAuthButton';
+import GithuboAuthButton from '@/components/Auth/GithuboAuthButton';
 
 export const metadata: Metadata = {
   title: 'ورود به حساب کاربری',
   description: 'Sign-in to your account',
 };
 
-function Page() {
-  return (
+async function Page() {
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+  const oauthList = (await pb.collection('users').listAuthMethods())
+    .authProviders;
+
+  const googleoAuth = oauthList.find(obj => obj.name === 'google');
+  const githuboAuth = oauthList.find(obj => obj.name === 'github');
+
+  const response = cookies().get('pb_auth') ? (
+    <AlreadyLoggedinDialogue />
+  ) : (
     <div className="mx-auto max-w-[95%] lg:mt-20 lg:max-w-[1000px] lg:shadow-lg dark:lg:bg-[#363842]">
       <div className="flex items-center justify-center">
         <div className="text-center lg:w-1/2">
@@ -31,39 +46,12 @@ function Page() {
 
           <div>
             <p className="mb-10 pr-6 text-right">
-              ثبت نام سریع با شبکه های اجتماعی:
+              ورود سریع با شبکه های اجتماعی:
             </p>
 
             <div className="mx-auto flex max-w-[90%] flex-col items-center justify-center gap-10 pb-10 lg:max-w-[70%]">
-              <Link
-                href={'#'}
-                className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
-              >
-                <Image
-                  src={google}
-                  width={25}
-                  alt="signup with google"
-                  className="ml-3 inline-block"
-                />
-                <span className="font-bold text-white">
-                  ورود بــا حســــاب گوگــــــــل
-                </span>
-              </Link>
-
-              <Link
-                href={'#'}
-                className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
-              >
-                <Image
-                  src={github}
-                  width={28}
-                  alt="signup with github"
-                  className="ml-3 inline-block invert"
-                />
-                <span className="font-bold text-white">
-                  ورود با حساب گیت هاب
-                </span>
-              </Link>
+              <GoogleoAuthButton text="LOGIN" googleoAuth={googleoAuth} />
+              <GithuboAuthButton text="LOGIN" githuboAuth={githuboAuth} />
 
               <div className="mt-5">
                 <p>
@@ -105,6 +93,8 @@ function Page() {
       </div>
     </div>
   );
+
+  return response;
 }
 
 export default Page;
