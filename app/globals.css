@@ -187,7 +187,19 @@ svg-orange:active {
     left: 300px;
 }
 
+/* ------------------ NO SCROLLBAR ------------------ */
+/* TODO: DOES NOT WORK (DISABLES SCROLLING ALTOGETHER*/
+/* .noscrollbar { */
+/* Internet Explorer 10+ */
+/* -ms-overflow-style: none; */
+/* Firefox */
+/* scrollbar-width: none; */
 
+/* Safari and Chrome */
+/* &::-webkit-scrollbar { */
+/* display: none; */
+/* } */
+/* } */
 
 
 /* ------------------ ANIMATIONS ------------------ */

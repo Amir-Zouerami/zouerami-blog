@@ -2,45 +2,99 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { debounce } from '@/utility/utils';
 
 import search from '@/icons/search.svg';
 
 function SearchLink() {
-  const [searchModal, setSearchModal] = useState(true);
-  // TODO: Make Pretty
+  const [searchModal, setSearchModal] = useState(false);
+  const [searchText, setsearchText] = useState('a');
+
+  const debouncedSearchHandler = debounce((userSearchText: string) => {
+    setsearchText(userSearchText);
+  }, 300);
 
   return (
     <>
       <div
         className={`${
-          searchModal && 'hidden'
-        } fixed right-0 top-0 z-50 flex min-h-[100vh] min-w-[100vw]
-        flex-col items-center justify-center bg-[#293036] bg-opacity-[0.95] lg:flex-row`}
+          !searchModal ? 'hidden' : 'block'
+        } fixed left-0 right-0 top-0 z-20 flex min-h-[100vh] min-w-[100vw]
+        flex-col items-center justify-center bg-[#293036] bg-opacity-[0.7]`}
+        id="searchModalBackdrop"
+        onClick={e => {
+          if ((e.target as HTMLDivElement).id === 'searchModalBackdrop') {
+            setSearchModal(false);
+          }
+        }}
       >
-        <input
-          className="w-[90%] rounded-xl px-5 py-5 font-bold lg:w-1/2"
-          type="search"
-          name="search"
-          id="search"
-          placeholder="مطلب مورد نظرتان را جست و جو کنید..."
-        />
-        <div>
-          <input
-            className="my-5 ml-5 rounded-xl bg-gradient-to-r from-[#3E5151] to-[#80755f] px-5 py-5 font-semibold lg:mr-5"
-            type="submit"
-            value="جست و جو"
-          />
+        <div className="flex h-full flex-col items-center justify-center">
+          <div className="relative flex">
+            {/* TODO: DO WE WANT THE FORM TO BE SUBMITTABLE? (DEDICATED SEARCH PAGE?) */}
+            {/* <form action="" className="z-10"> */}
+            <input
+              onChange={e => {
+                debouncedSearchHandler(e.target.value);
+              }}
+              className="w-[300px] rounded-xl px-5 py-5 font-bold lg:w-[600px]"
+              type="text"
+              name="search"
+              id="search"
+              placeholder="مطلب مورد نظرتان را جست و جو کنید..."
+            />
+            {/* <input type="submit" hidden /> */}
+            {/* </form> */}
 
-          <Link
-            className="rounded-xl bg-gradient-to-r from-[#1D4350] to-[#A43931] px-5 py-5 font-semibold"
-            href={'#'}
-            onClick={() => {
-              setSearchModal(!searchModal);
-            }}
+            {/* <button className="absolute left-3 top-3 h-[30px] w-[30px] rounded-full bg-red-500 hover:cursor-pointer">
+              x
+            </button> */}
+          </div>
+
+          <div
+            className={`${
+              searchText ? 'block' : 'hidden'
+            } -mt-2 max-h-[350px] w-[300px] overflow-y-auto overscroll-none
+            rounded-bl-2xl rounded-br-2xl bg-[#2b2a33] py-5 lg:w-[600px]`}
           >
-            بستن صفحه
-          </Link>
+            <Link
+              className="my-3 inline-block px-3 py-2 hover:bg-slate-700"
+              href={'#'}
+            >
+              <p className="text-lg font-bold">{searchText}</p>
+              <p className="text-justify leading-7">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
+                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
+                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+              </p>
+            </Link>
+            <Link
+              className="my-3 inline-block px-3 py-2 hover:bg-slate-700"
+              href={'#'}
+            >
+              <p className="text-lg font-bold">نتیجه ی دوم</p>
+              <p className="text-justify leading-7">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
+                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
+                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+              </p>
+            </Link>
+
+            <Link
+              className="my-3 inline-block px-3 py-2 hover:bg-slate-700"
+              href={'#'}
+            >
+              <p className="text-lg font-bold">نتیجه ی دوم</p>
+              <p className="text-justify leading-7">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
+                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
+                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+              </p>
+            </Link>
+          </div>
         </div>
       </div>
 
