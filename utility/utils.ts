@@ -16,3 +16,15 @@ export const debounce = <T extends (...args: any[]) => void>(
     timeoutId = setTimeout(() => func(...args), delay);
   }) as T;
 };
+
+export const truncateSentence = (sentence: string, maxWords: number) => {
+  const words = sentence.split(' ');
+
+  if (words.length > maxWords) {
+    const truncatedSentence = words.slice(0, maxWords).join(' ');
+    return `${truncatedSentence}...`;
+  }
+
+  // If the sentence is within the limit, return it unchanged
+  return sentence;
+};
