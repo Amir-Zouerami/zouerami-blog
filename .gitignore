@@ -38,7 +38,8 @@ next-env.d.ts
 app/test
 
 # Pocketbase
-pb/pb_hooks/pb_migrations*
+pb/pb_hooks/pb_migrations
+pb/pb_migrations
 pb/migrations
 pb/pb_data
 pb/pocketbase
