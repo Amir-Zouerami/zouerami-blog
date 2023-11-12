@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { debounce } from '@/utility/utils';
 
 import search from '@/icons/search.svg';
@@ -14,6 +14,18 @@ function SearchLink() {
   const debouncedSearchHandler = debounce((userSearchText: string) => {
     setsearchText(userSearchText);
   }, 300);
+
+  const callBack = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') setSearchModal(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', callBack);
+
+    return () => {
+      document.removeEventListener('keydown', callBack);
+    };
+  }, []);
 
   return (
     <>
