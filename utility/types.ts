@@ -109,3 +109,20 @@ interface OriginalError {
  * FormData Type
  */
 export type formDataObj = Record<string, FormDataEntryValue>;
+
+/**
+ * Blog Post Data Type
+ */
+export interface BlogPostData {
+  id: string;
+  title: string;
+  slug: string;
+  summary: string;
+  article_headlines: string;
+  article_version: number;
+  cover: string;
+  content: string;
+  created: string;
+  updated: string;
+  viewcount: number;
+}
