@@ -16,6 +16,7 @@
     "@types/react-dom": "^18.2.14",
     "autoprefixer": "10.4.14",
     "bright": "^0.8.4",
+    "dayjs": "^1.11.10",
     "db-migrate-pg": "^1.5.2",
     "eslint": "8.46.0",
     "eslint-config-next": "^14.0.1",
