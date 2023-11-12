@@ -9,7 +9,7 @@ import search from '@/icons/search.svg';
 
 function SearchLink() {
   const [searchModal, setSearchModal] = useState(false);
-  const [searchText, setsearchText] = useState('a');
+  const [searchText, setsearchText] = useState('');
 
   const debouncedSearchHandler = debounce((userSearchText: string) => {
     setsearchText(userSearchText);

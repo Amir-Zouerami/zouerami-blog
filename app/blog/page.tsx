@@ -1,7 +1,7 @@
 // TODO: ONLY FOR DEVELOPMENT
 // export const revalidate = 0;
-export const dynamic = 'force-dynamic';
-// export const fetchCache = 'default-no-store';
+// export const dynamic = 'force-dynamic';
+export const fetchCache = 'default-no-store';
 
 import { Metadata } from 'next';
 import BlogPostCard from '../../components/Blog/BlogPostCard';
@@ -25,16 +25,38 @@ async function page({
   let posts;
 
   try {
+    let sortIndex;
+
+    switch (searchParams.sort) {
+      case 'views':
+        sortIndex = '-viewcount';
+        break;
+
+      case 'recency':
+        sortIndex = '-updated';
+        break;
+
+      default:
+        sortIndex = '';
+        break;
+    }
+
     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
-    const res = await pb.admins.authWithPassword(
+    await pb.admins.authWithPassword(
       process.env.PB_ADMIN_EM as string,
       process.env.PB_ADMIN_PS as string
     );
 
-    posts = await pb.collection('posts').getList<BlogPostData>(1, 3);
+    posts = await pb.collection('posts').getList<BlogPostData>(1, 3, {
+      sort: sortIndex,
+      filter: pb.filter('title ~ {:title}', {
+        title: searchParams.search ?? '',
+      }),
+      cache: 'no-store',
+    });
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
-    throw new Error('ERROR FETCHING POSTS');
+    throw new Error(JSON.stringify(error));
   }
 
   return (

@@ -126,3 +126,10 @@ export interface BlogPostData {
   updated: string;
   viewcount: number;
 }
+
+/**
+ * Search Parameters
+ */
+export interface searchParams {
+  [key: string]: string | string[] | undefined;
+}

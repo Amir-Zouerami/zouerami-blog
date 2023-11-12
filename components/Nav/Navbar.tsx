@@ -26,11 +26,7 @@ function Navbar() {
 
             <div className="fix-hover flex gap-2 p-5 lg:gap-4">
               <SearchLink />
-
-              {/* <div className="fixed right-0 top-0 h-[100vh] w-[100vw] bg-gray-900"></div> */}
-
               <UserProfile />
-
               <DarkMode />
             </div>
           </div>

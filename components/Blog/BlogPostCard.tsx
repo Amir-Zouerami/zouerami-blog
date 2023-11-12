@@ -5,7 +5,7 @@ dayjs.extend(relativeTime);
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { BlogPostData } from '@/utility/types';
+import { BlogPostData, searchParams } from '@/utility/types';
 
 import postCover from '@/public/sample-post-cover.png';
 import heart from '@/icons/heart.svg';
@@ -26,7 +26,14 @@ export interface BlogPostCardData {
   viewcount: number;
 }
 
-function BlogPostCard({ blogPostData }: { blogPostData: BlogPostCardData }) {
+function BlogPostCard({
+  blogPostData,
+  // searchParams,
+}: {
+  blogPostData: BlogPostCardData;
+  // searchParams: searchParams;
+}) {
+  
   return (
     <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
       <div className="col-span-12 my-auto hidden justify-center gap-10 px-5 lg:col-span-1  lg:mx-auto lg:flex lg:flex-col lg:px-0">

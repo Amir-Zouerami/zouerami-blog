@@ -8,13 +8,17 @@ function SearchArticlesDropDown() {
   return (
     <>
       <div className="w-full text-center lg:text-left">
-        <input
-          type="search"
-          placeholder="جست و جو در مقالات"
-          className={`${
-            articleSearchModal ? 'rounded-tr-2xl' : 'rounded-r-2xl'
-          } h-14 w-[75%] rounded-tr-2xl bg-slate-600 px-3 text-white`}
-        />
+        <form method="GET" className="inline">
+          <input
+            type="search"
+            name="search"
+            placeholder="جست و جو در تیتر مقالات"
+            className={`${
+              articleSearchModal ? 'rounded-tr-2xl' : 'rounded-r-2xl'
+            } h-14 w-[75%] rounded-tr-2xl bg-slate-600 px-3 text-white`}
+          />
+          <input type="hidden" />
+        </form>
 
         <button
           className={`${
