@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-function SearchArtilces() {
+function SearchArticlesDropDown() {
   const [articleSearchModal, setArticleSearchModal] = useState(false);
 
   return (
@@ -82,4 +82,4 @@ function SearchArtilces() {
   );
 }
 
-export default SearchArtilces;
+export default SearchArticlesDropDown;
