@@ -14,26 +14,28 @@ import share from '@/icons/share.svg';
 import report from '@/icons/report.svg';
 import fire from '@/icons/fire.svg';
 import calender from '@/icons/calender.svg';
-import { truncateSentence } from '@/utility/utils';
+import { createFileURL, truncateSentence } from '@/utility/utils';
 
 export interface BlogPostCardData {
+  id: string;
   title: string;
   slug: string;
   cover: string;
+  collectionId: string;
   summary: string;
-  created: string;
+  // created: string;
   updated: string;
   viewcount: number;
 }
 
 function BlogPostCard({
-  blogPostData,
-  // searchParams,
+  post, // searchParams,
 }: {
-  blogPostData: BlogPostCardData;
+  post: BlogPostCardData;
   // searchParams: searchParams;
 }) {
-  
+  // console.log(post);
+
   return (
     <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
       <div className="col-span-12 my-auto hidden justify-center gap-10 px-5 lg:col-span-1  lg:mx-auto lg:flex lg:flex-col lg:px-0">
@@ -73,18 +75,16 @@ function BlogPostCard({
 
       <div className="col-span-11 lg:col-span-7">
         <div className="pr-5 lg:p-0">
-          <h2 className="py-5 text-xl font-black leading-8">
-            {blogPostData.title}
-          </h2>
+          <h2 className="py-5 text-xl font-black leading-8">{post.title}</h2>
 
           <p className="pb-5 pl-5 text-justify leading-8">
-            {truncateSentence(blogPostData.summary, 150)}
+            {truncateSentence(post.summary, 150)}
           </p>
         </div>
 
         <div className="flex items-center justify-between px-5">
           <Link
-            href={'http://localhost:3000/blog/' + blogPostData.slug}
+            href={'http://localhost:3000/blog/' + post.slug}
             className="inline-block rounded-t-2xl bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] px-5 py-4 font-black
             text-white hover:opacity-[0.6] dark:from-[#D93965] dark:to-[#EE8C68]"
           >
@@ -98,11 +98,11 @@ function BlogPostCard({
               className="inline invert dark:invert-0"
             />
             <span className="mr-1">
-              {dayjs(blogPostData.updated).locale('fa').fromNow()}
+              {dayjs(post.updated).locale('fa').fromNow()}
             </span>
           </div>
           <div>
-            <span className="mr-1">{blogPostData.viewcount}</span>
+            <span className="mr-1">{post.viewcount}</span>
             <Image
               src={fire}
               width={20}
@@ -115,7 +115,11 @@ function BlogPostCard({
 
       <div className="-order-1 col-span-12 lg:order-1 lg:col-span-4">
         <Image
-          src={postCover}
+          // src={postCover}
+          src={createFileURL(post.id, post.collectionId, post.cover)}
+          // style={{ width: 'auto', height: 'auto' }}
+          width="350"
+          height="350"
           alt="sample post cover"
           className="h-full w-full rounded-t-2xl object-cover lg:rounded-l-2xl"
         />

@@ -1,6 +1,13 @@
 import Link from 'next/link';
 
-function Pagination() {
+function Pagination({
+  page,
+  cperPage,
+  totalItems,
+  totalPages,
+}: {
+  [key: string]: number;
+}) {
   return (
     <div className="flex items-center justify-center text-center font-black text-white">
       <Link href={'#'}>

@@ -2,15 +2,15 @@ import React from 'react';
 
 function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
   {
-    /* TODO: 1. ADVANCED SEARCH NOT COMPLETED */
+    /* TODO: ADVANCED SEARCH NOT COMPLETED */
   }
 
   return (
     <div
       className={`${
         modalState ? 'block' : 'hidden'
-      } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-scroll
-              rounded-b-lg bg-[#475569] p-5 text-center text-white lg:max-h-max`}
+      } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-scroll rounded-b-lg
+      bg-[#475569] p-5 text-center text-white blur-[2px] hover:cursor-not-allowed lg:max-h-max`}
     >
       <div className="mb-10 flex flex-col gap-3 lg:block">
         <p className="mb-5">زمان انتشار مقاله:</p>

@@ -117,6 +117,7 @@ export interface BlogPostData {
   id: string;
   title: string;
   slug: string;
+  collectionId: string;
   summary: string;
   article_headlines: string;
   article_version: number;

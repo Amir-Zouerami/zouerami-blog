@@ -26,7 +26,7 @@ function ArticleSearchSection() {
             />
             <span>پُر بازدید ها</span>
           </FastSortButton>
-          <FastSortButton sortIndex="?sort=recency">
+          <FastSortButton sortIndex="?sort=lastUpdated">
             <Image
               src={newBadge}
               width={25}
@@ -34,7 +34,7 @@ function ArticleSearchSection() {
               className="ml-2 inline-block"
             />
 
-            <span>جدید ترین ها</span>
+            <span>آخرین ویرایش</span>
           </FastSortButton>
           {/* TODO: MAYBE MOST COMMENTED POSTS IN THE FUTURE? */}
           {/* <FastSortButton>

@@ -32,12 +32,12 @@ async function page({
         sortIndex = '-viewcount';
         break;
 
-      case 'recency':
+      case 'lastUpdated':
         sortIndex = '-updated';
         break;
 
       default:
-        sortIndex = '';
+        sortIndex = '+created';
         break;
     }
 
@@ -49,15 +49,25 @@ async function page({
 
     posts = await pb.collection('posts').getList<BlogPostData>(1, 3, {
       sort: sortIndex,
+      fields: 'id, title, slug, summary, cover, collectionId, viewcount, updated',
       filter: pb.filter('title ~ {:title}', {
         title: searchParams.search ?? '',
       }),
       cache: 'no-store',
     });
+
+    // console.log(posts);
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
     throw new Error(JSON.stringify(error));
   }
+
+  // console.log(posts);
+  // console.log(
+  //   // @ts-ignore
+  //   'FUUUUUUUUUUUUUUUUUUUUULLLLL',
+  //   `http://127.0.0.1:8090/api/files/${posts.items[0].collectionId}/${posts.items[0].id}/${posts.items[0].cover}`
+  // );
 
   return (
     <section className="container mx-auto max-w-[1200px]">
@@ -71,12 +81,13 @@ async function page({
         {posts.items.map(post => (
           <BlogPostCard
             key={post.id}
-            blogPostData={{
+            post={{
+              id: post.id,
+              collectionId: post.collectionId,
               title: post.title,
               slug: post.slug,
               summary: post.summary,
               cover: post.cover,
-              created: post.created,
               updated: post.updated,
               viewcount: post.viewcount,
             }}
