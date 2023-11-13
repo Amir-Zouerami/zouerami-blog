@@ -1,6 +1,7 @@
 'use client';
 
 import Error500 from '@/icons/Error500';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function Error({
@@ -21,11 +22,20 @@ export default function Error({
         <span className="text-red-400">خطایی</span> رخ داده است ... !
       </h2>
 
-      <div className="w-full">
-        <Error500 />
+      <div className="w-full text-center">
+        <Error500 margin="lg:-mb-8" />
+        <p className="text-xs text-gray-400">
+          Illustration & Animation By{' '}
+          <Link
+            className="-mt-10 underline hover:cursor-pointer hover:text-cyan-500"
+            href={'https://codepen.io/henrywr'}
+          >
+            Henry W
+          </Link>
+        </p>
       </div>
 
-      <p className="mb-10 max-w-[500px] px-4 text-justify text-lg leading-9">
+      <p className="mb-10 mt-5 max-w-[500px] px-4 text-justify text-lg leading-9">
         با عرض پوزش خطایی در پردازش درخواست شما اتفاق افتاده است. لطفا دوباره
         تلاش کنید و در صورت عدم موفقیت تا رفع مشکل منتظر بمانید.
       </p>
