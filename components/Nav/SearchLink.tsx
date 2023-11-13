@@ -32,7 +32,7 @@ function SearchLink() {
       <div
         className={`${
           !searchModal ? 'hidden' : 'block'
-        } fixed left-0 right-0 top-0 z-20 flex min-h-[100vh] min-w-[100vw]
+        } fixed left-0 right-0 top-0 z-50 flex min-h-[100vh] min-w-[100vw]
         flex-col items-center justify-center bg-[#293036] bg-opacity-[0.7]`}
         id="searchModalBackdrop"
         onClick={e => {
