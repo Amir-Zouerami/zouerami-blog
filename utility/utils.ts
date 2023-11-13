@@ -28,3 +28,11 @@ export const truncateSentence = (sentence: string, maxWords: number) => {
   // If the sentence is within the limit, return it unchanged
   return sentence;
 };
+
+export const createFileURL = (
+  id: string,
+  collectionId: string,
+  fileName: string
+) => {
+  return `${process.env.NEXT_PUBLIC_PB_DOMAIN}/api/files/${collectionId}/${id}/${fileName}`;
+};
