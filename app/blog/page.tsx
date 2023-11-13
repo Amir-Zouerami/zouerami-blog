@@ -1,15 +1,15 @@
 // TODO: ONLY FOR DEVELOPMENT
-// export const revalidate = 0;
+// export const revalidate = 1800;
 // export const dynamic = 'force-dynamic';
 export const fetchCache = 'default-no-store';
 
 import { Metadata } from 'next';
-import BlogPostCard from '../../components/Blog/BlogPostCard';
+import { BlogPostData } from '@/utility/types';
+import Pocketbase from 'pocketbase';
+
 import Pagination from '@/components/pagination/Pagination';
 import ArticleSearchSection from '@/components/Blog/ArticleSearchSection';
-import { BlogPostData } from '@/utility/types';
-
-import Pocketbase from 'pocketbase';
+import BlogPostCard from '@/components/Blog/BlogPostCard';
 
 export const metadata: Metadata = {
   title: 'مقالات برنامه نویسی امیر زوارمی',
@@ -49,25 +49,17 @@ async function page({
 
     posts = await pb.collection('posts').getList<BlogPostData>(1, 3, {
       sort: sortIndex,
-      fields: 'id, title, slug, summary, cover, collectionId, viewcount, updated',
+      fields:
+        'id, title, slug, summary, cover, collectionId, viewcount, updated',
       filter: pb.filter('title ~ {:title}', {
         title: searchParams.search ?? '',
       }),
-      cache: 'no-store',
+      // cache: 'no-store',
     });
-
-    // console.log(posts);
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
     throw new Error(JSON.stringify(error));
   }
-
-  // console.log(posts);
-  // console.log(
-  //   // @ts-ignore
-  //   'FUUUUUUUUUUUUUUUUUUUUULLLLL',
-  //   `http://127.0.0.1:8090/api/files/${posts.items[0].collectionId}/${posts.items[0].id}/${posts.items[0].cover}`
-  // );
 
   return (
     <section className="container mx-auto max-w-[1200px]">
@@ -93,35 +85,6 @@ async function page({
             }}
           />
         ))}
-        {/* [
-          <BlogPostCard
-          blogPostData={{
-            title: 'some title here',
-            slug: 'the-id-to-read',
-            article_headlines: 'testing',
-            article_version: 1,
-            content: 'the content is here',
-            cover: 'some image cover here as well',
-            created: '2023-11-03 08:11:30.579Z',
-            updated: '2023-11-03 08:11:30.579Z',
-          }}
-        />, 
-        <BlogPostCard
-          blogPostData={{
-            title: 'some title here',
-            slug: 'the-id-to-read',
-            article_headlines: 'testing',
-            article_version: 1,
-            content: 'the content is here',
-            cover: 'some image cover here as well',
-            created: '2023-11-03 08:11:30.579Z',
-            updated: '2023-11-03 08:11:30.579Z',
-          }}
-        />
-        ] */}
-        {/* <BlogPostCard />
-        <BlogPostCard />
-        <BlogPostCard /> */}
       </div>
 
       <div>
