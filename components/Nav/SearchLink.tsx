@@ -67,10 +67,10 @@ function SearchLink() {
             className={`${
               searchText ? 'block' : 'hidden'
             } -mt-2 max-h-[350px] w-[300px] overflow-y-auto overscroll-none
-            rounded-bl-2xl rounded-br-2xl bg-[#2b2a33] py-5 lg:w-[600px]`}
+            rounded-bl-2xl rounded-br-2xl bg-white dark:bg-[#2b2a33] py-5 lg:w-[600px]`}
           >
             <Link
-              className="my-3 inline-block px-3 py-2 hover:bg-slate-700"
+              className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
               href={'#'}
             >
               <p className="text-lg font-bold">{searchText}</p>
@@ -82,7 +82,7 @@ function SearchLink() {
               </p>
             </Link>
             <Link
-              className="my-3 inline-block px-3 py-2 hover:bg-slate-700"
+              className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
               href={'#'}
             >
               <p className="text-lg font-bold">نتیجه ی دوم</p>
@@ -95,7 +95,7 @@ function SearchLink() {
             </Link>
 
             <Link
-              className="my-3 inline-block px-3 py-2 hover:bg-slate-700"
+              className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
               href={'#'}
             >
               <p className="text-lg font-bold">نتیجه ی دوم</p>

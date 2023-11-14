@@ -104,6 +104,7 @@ export const loginUser = async (formData: FormData) => {
       sameSite: 'Lax',
       httpOnly: false,
     });
+    cookies().set('just_authed', 'true', { maxAge: 5 });
     cookies().set('pb_auth', authCookie, { sameSite: 'lax', secure: true });
 
     return { code: 200, authCookie: authCookie };

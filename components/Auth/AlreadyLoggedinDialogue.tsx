@@ -15,7 +15,7 @@ function AlreadyLoggedinDialogue() {
         اگر می خواهید وارد حساب دیگری شوید باید ابتدا از این حساب خارج شوید.
       </p>
       <button
-        className="mt-14 rounded-2xl bg-gradient-to-l from-[#005ffc] to-[#7435ef] p-5 font-extrabold"
+        className="mt-14 rounded-2xl bg-gradient-to-l from-[#005ffc] to-[#7435ef] p-5 font-extrabold text-white"
         onClick={() => {
           deleteCookie('pb_auth');
           pb.authStore.clear();

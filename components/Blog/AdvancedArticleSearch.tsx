@@ -10,7 +10,7 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
       className={`${
         modalState ? 'block' : 'hidden'
       } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-scroll rounded-b-lg
-      bg-[#475569] p-5 text-center text-white blur-[2px] hover:cursor-not-allowed lg:max-h-max`}
+      bg-gradient-to-r from-[#2c343e] to-[#4a5561] p-5 text-center text-white hover:cursor-not-allowed lg:max-h-max`}
     >
       <div className="mb-10 flex flex-col gap-3 lg:block">
         <p className="mb-5">زمان انتشار مقاله:</p>

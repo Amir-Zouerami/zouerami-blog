@@ -44,8 +44,12 @@ function UserProfile() {
         {userModal ? (
           <div>
             <div
-              className="absolute left-0 top-10 h-auto min-w-[85vw] rounded-lg bg-slate-600 p-5
-        dark:bg-[#293036] lg:left-16 lg:top-20 lg:min-w-[500px] lg:text-lg"
+              className={`${
+                authed
+                  ? 'bg-gradient-to-r from-[#2c343e] to-[#424b56] dark:from-[#293036] dark:to-[#293036]'
+                  : 'bg-gradient-to-r from-[#2c343e] to-[#373f48]'
+              } absolute left-0 top-10 h-auto min-w-[85vw] rounded-lg
+              p-5 lg:left-16 lg:top-20 lg:min-w-[500px] lg:text-lg`}
               id="userProfileModal"
               onClick={() => {
                 setUserModal(!userModal);

@@ -115,11 +115,9 @@ function BlogPostCard({
 
       <div className="-order-1 col-span-12 lg:order-1 lg:col-span-4">
         <Image
-          // src={postCover}
           src={createFileURL(post.id, post.collectionId, post.cover)}
-          // style={{ width: 'auto', height: 'auto' }}
-          width="350"
-          height="350"
+          width={400}
+          height={400}
           alt="sample post cover"
           className="h-full w-full rounded-t-2xl object-cover lg:rounded-l-2xl"
         />

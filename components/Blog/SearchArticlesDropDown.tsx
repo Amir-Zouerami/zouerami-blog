@@ -21,7 +21,8 @@ function SearchArticlesDropDown() {
               placeholder="جست و جو در تیتر مقالات"
               className={`${
                 articleSearchModal ? 'rounded-tr-2xl' : 'rounded-r-2xl'
-              } h-14 w-[100%] rounded-tr-2xl bg-slate-600 px-3 text-white`}
+              } h-14 w-[100%] rounded-tr-2xl placeholder:text-white bg-gradient-to-r from-[#2c343e] to-[#4a5561] px-3 text-white`}
+              // } h-14 w-[100%] rounded-tr-2xl placeholder:text-white bg-[#3e5c76] dark:bg-slate-600 px-3 text-white`}
             />
             <input type="hidden" />
 
@@ -29,7 +30,7 @@ function SearchArticlesDropDown() {
           </form>
 
           <button
-            className={`h-14 w-[15%] rounded-bl-2xl rounded-tl-2xl bg-[#2a2c39] font-black text-teal-400 hover:opacity-[.7]`}
+            className={`h-14 w-[15%] rounded-bl-2xl rounded-tl-2xl bg-[#2d4356] dark:bg-[#2a2c39] font-black text-teal-400 hover:opacity-[.7]`}
             onClick={() => {
               setArticleSearchModal(!articleSearchModal);
             }}
