@@ -117,15 +117,67 @@ export interface BlogPostData {
   id: string;
   title: string;
   slug: string;
-  collectionId: string;
-  summary: string;
-  article_headlines: string;
   article_version: number;
+  viewcount: number;
+  comments: string[];
+  post_categories: string;
+  skill_level: 'مبتدی' | 'متوسط' | 'پیشرفته';
   cover: string;
+  article_headlines: string;
+  summary: string;
   content: string;
+  collectionId: string;
+  created: string;
+  updated: string;
+  expand: Expand;
+}
+
+export interface BlogPostHeaderProps {
+  title: string;
+  article_version: number;
+  skill_level: 'مبتدی' | 'متوسط' | 'پیشرفته';
+  categories: PostCategory[];
   created: string;
   updated: string;
   viewcount: number;
+}
+
+/**
+ * Pocketbase Post Expand Relation
+ */
+interface Expand {
+  post_categories: PostCategory[];
+  comments?: Comments[] | null;
+}
+
+/**
+ * Post Categories
+ */
+interface PostCategory {
+  id: string;
+  category: string;
+  collectionId: string;
+  collectionName: string;
+  createdAt: string;
+  UpdatedAt: string;
+}
+
+export interface PostCategories {
+  post_categories: PostCategory[];
+}
+
+/**
+ * Post Comments
+ */
+interface Comments {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  comment_content: string;
+  post_id: string;
+  user_id: string;
+  updated: string;
+  created: string;
 }
 
 /**
