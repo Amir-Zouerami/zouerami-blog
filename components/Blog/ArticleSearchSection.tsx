@@ -4,7 +4,7 @@ import FastSortButton from '@/components/Blog/FastSortButton';
 
 import fire from '@/icons/fire.svg';
 import newBadge from '@/icons/new.svg';
-// import comment from '@/icons/comment.svg';
+import pen from '@/icons/pen.svg';
 
 function ArticleSearchSection() {
   return (
@@ -13,22 +13,9 @@ function ArticleSearchSection() {
 
       <div className="flex flex-col items-center justify-center lg:flex-row">
         <div className="grow">
-          {/* <div className="mt-8 lg:mt-20">
-      <p className="mx-3 mb-10">مرتب سازی سریع بر اساس:</p>
-      <div className="mx-auto grid w-[95%] grid-cols-1 place-items-center gap-5 lg:grid-cols-2">
-        <div className="flex gap-3 lg:gap-10"> */}
-          <FastSortButton sortIndex="?sort=views">
+          <FastSortButton classes="ml-3" sortIndex="?sort=lastUpdated">
             <Image
-              src={fire}
-              width={25}
-              alt="sort by highest view count"
-              className="ml-2 inline-block"
-            />
-            <span>پُر بازدید ها</span>
-          </FastSortButton>
-          <FastSortButton sortIndex="?sort=lastUpdated">
-            <Image
-              src={newBadge}
+              src={pen}
               width={25}
               alt="sort by release date (new)"
               className="ml-2 inline-block"
@@ -36,18 +23,29 @@ function ArticleSearchSection() {
 
             <span>آخرین ویرایش</span>
           </FastSortButton>
-          {/* TODO: MAYBE MOST COMMENTED POSTS IN THE FUTURE? */}
-          {/* <FastSortButton>
+          <FastSortButton classes="mr-3 lg:ml-3" sortIndex="?sort=lastCreated">
             <Image
-              src={comment}
+              src={newBadge}
               width={25}
               alt="sort by most comments"
               className="ml-2 inline-block"
             />
 
-            <span className="hidden lg:inline-block">بحث برانگیز ها</span>
-            <span className="inline-block lg:hidden">کامنت</span>
-          </FastSortButton> */}
+            <span>آخرین انتشار</span>
+          </FastSortButton>
+
+          <div className="mt-5 w-full self-center text-center lg:inline-block lg:w-auto">
+            <FastSortButton sortIndex="?sort=views">
+              <Image
+                src={fire}
+                width={25}
+                alt="sort by highest view count"
+                className="ml-2 inline-block"
+              />
+              <span className="lg:hidden">بیشترین تعداد بازدید</span>
+              <span className="hidden lg:inline">بازدید ها</span>
+            </FastSortButton>
+          </div>
         </div>
 
         <SearchArtilces />

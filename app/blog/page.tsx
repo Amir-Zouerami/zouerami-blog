@@ -37,6 +37,10 @@ async function page({
         sortIndex = '-updated';
         break;
 
+      case 'lastCreated':
+        sortIndex = '+created';
+        break;
+
       default:
         sortIndex = '+created';
         break;
@@ -55,7 +59,6 @@ async function page({
       filter: pb.filter('title ~ {:title}', {
         title: searchParams.search ?? '',
       }),
-      // cache: 'no-store',
     });
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
