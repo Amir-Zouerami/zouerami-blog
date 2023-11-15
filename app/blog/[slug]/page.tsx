@@ -6,12 +6,21 @@ import BlogPostContent from '@/components/Blog/BlogPostContent';
 import CoulumnHelperDesktop from '@/components/Blog/CoulumnHelperDesktop';
 import CoulumnHelperMobile from '@/components/Blog/CoulumnHelperMobile';
 import Comments from '@/components/Blog/Comments';
+import Pocketbase from 'pocketbase';
 
 interface SingleBlogPost {
   params: { slug: string };
 }
 
+const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+
 function page({ params }: SingleBlogPost) {
+
+  // TODO: GET ONE POST
+  pb.collection('posts').getOne('id')
+
+
+
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">
       <div className="mx-auto max-w-[900px]">

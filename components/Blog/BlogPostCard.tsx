@@ -1,7 +1,4 @@
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-require('dayjs/locale/fa');
-dayjs.extend(relativeTime);
+import dayjs from '@/utility/dayjs';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,7 +11,7 @@ import share from '@/icons/share.svg';
 import report from '@/icons/report.svg';
 import fire from '@/icons/fire.svg';
 import calender from '@/icons/calender.svg';
-import { createFileURL, truncateSentence } from '@/utility/utils';
+import { ToFaNumbers, createFileURL, truncateSentence } from '@/utility/utils';
 
 export interface BlogPostCardData {
   id: string;
@@ -38,13 +35,15 @@ function BlogPostCard({
 
   return (
     <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
+      {/* TODO: How About a BG of #e1eae8 */}
+      {/* <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#e1eae8] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12"> */}
       <div className="col-span-12 my-auto hidden justify-center gap-10 px-5 lg:col-span-1  lg:mx-auto lg:flex lg:flex-col lg:px-0">
         <Link href={'#'} className="svg-red mx-1">
           <Image
             src={heart}
             width={35}
             alt="like the post"
-            className="invert dark:invert-0"
+            className="svg-current-color invert dark:invert-0"
           />
         </Link>
         <Link href={'#'} className="svg-yellow mx-1">
@@ -52,7 +51,7 @@ function BlogPostCard({
             src={bookmark}
             width={35}
             alt="bookmark the post"
-            className="invert dark:invert-0"
+            className="svg-current-color invert dark:invert-0"
           />
         </Link>
         <Link href={'#'} className="svg-blue mx-1">
@@ -60,7 +59,7 @@ function BlogPostCard({
             src={share}
             width={35}
             alt="share the post"
-            className="invert dark:invert-0"
+            className="svg-current-color invert dark:invert-0"
           />
         </Link>
         <Link href={'#'} className="svg-orange mx-1">
@@ -68,17 +67,19 @@ function BlogPostCard({
             src={report}
             width={35}
             alt="report the post"
-            className="invert dark:invert-0"
+            className="svg-current-color invert dark:invert-0"
           />
         </Link>
       </div>
 
-      <div className="col-span-11 lg:col-span-7">
+      <div className="col-span-11 lg:col-span-6">
         <div className="pr-5 lg:p-0">
-          <h2 className="py-5 text-xl font-black leading-8">{post.title}</h2>
+          <h2 className="py-5 text-xl font-black leading-8 text-[#4f4e4e] dark:text-white">
+            {post.title}
+          </h2>
 
-          <p className="pb-5 pl-5 text-justify leading-8">
-            {truncateSentence(post.summary, 150)}
+          <p className="pb-5 pl-5 text-justify leading-8 text-[#5b5b5b] dark:text-white">
+            {truncateSentence(post.summary, 100)}
           </p>
         </div>
 
@@ -98,7 +99,7 @@ function BlogPostCard({
               className="inline invert dark:invert-0"
             />
             <span className="mr-1">
-              {dayjs(post.updated).locale('fa').fromNow()}
+              {ToFaNumbers(dayjs(post.updated).locale('fa').fromNow())}
             </span>
           </div>
           <div>
@@ -113,7 +114,7 @@ function BlogPostCard({
         </div>
       </div>
 
-      <div className="-order-1 col-span-12 lg:order-1 lg:col-span-4">
+      <div className="-order-1 col-span-12 lg:order-1 lg:col-span-5">
         <Image
           src={createFileURL(post.id, post.collectionId, post.cover)}
           width={400}

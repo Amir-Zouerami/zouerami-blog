@@ -3,188 +3,186 @@
 @tailwind utilities;
 
 html {
-    direction: rtl;
-    --scroll-behavior: smooth !important;
-    scroll-behavior: smooth !important;
-    /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
+  direction: rtl;
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
+  /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
 }
 
 ::selection {
-    background-color: #e25687;
+  background-color: #e25687;
+  color: white;
 }
 
 .ltr {
-    direction: ltr !important;
-    line-height: 2;
-    /* font-size: 13px; */
+  direction: ltr !important;
+  line-height: 2;
+  /* font-size: 13px; */
 }
 
 /* ------------------ CIRCLES & LINES ------------------ */
 .circle {
-    height: 20px;
-    width: 20px;
-    background-color: #3dc7b7;
-    border-radius: 50%;
-    display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: #3dc7b7;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .verticalLine {
-    width: 1px;
-    height: 150px;
-    border-right: 2px solid #3dc7b7;
+  width: 1px;
+  height: 150px;
+  border-right: 2px solid #3dc7b7;
 }
 
 .verticalLineOpen {
-    width: 1px;
-    height: 150px;
-    border-right: 2px dashed #3dc7b7;
+  width: 1px;
+  height: 150px;
+  border-right: 2px dashed #3dc7b7;
 }
-
 
 /* ------------------ SVG COLOR CHANGE ------------------ */
 
 .svg-red:hover,
 .svg-red:active {
-    filter: brightness(0) saturate(100%) invert(47%) sepia(79%) saturate(5829%) hue-rotate(333deg) brightness(86%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(47%) sepia(79%) saturate(5829%)
+    hue-rotate(333deg) brightness(86%) contrast(101%);
 }
 
 .svg-blue:hover,
 svg-blue:active {
-    filter: brightness(0) saturate(100%) invert(47%) sepia(30%) saturate(5950%) hue-rotate(212deg) brightness(95%) contrast(88%);
+  filter: brightness(0) saturate(100%) invert(47%) sepia(30%) saturate(5950%)
+    hue-rotate(212deg) brightness(95%) contrast(88%);
 }
 
 .svg-yellow:hover,
 svg-yellow:active {
-    filter: brightness(0) saturate(100%) invert(94%) sepia(78%) saturate(1495%) hue-rotate(316deg) brightness(103%) contrast(98%);
+  filter: brightness(0) saturate(100%) invert(94%) sepia(78%) saturate(1495%)
+    hue-rotate(316deg) brightness(103%) contrast(98%);
 }
 
 .svg-purple:hover,
 svg-purple:active {
-    filter: brightness(0) saturate(100%) invert(10%) sepia(77%) saturate(6575%) hue-rotate(278deg) brightness(104%) contrast(115%);
+  filter: brightness(0) saturate(100%) invert(10%) sepia(77%) saturate(6575%)
+    hue-rotate(278deg) brightness(104%) contrast(115%);
 }
 
 .svg-orange:hover,
 svg-orange:active {
-    filter: brightness(0) saturate(100%) invert(64%) sepia(40%) saturate(3863%) hue-rotate(347deg) brightness(104%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(64%) sepia(40%) saturate(3863%)
+    hue-rotate(347deg) brightness(104%) contrast(101%);
 }
 
-
+.svg-current-color {
+  filter: brightness(0) saturate(100%) invert(54%) sepia(8%) saturate(991%)
+    hue-rotate(102deg) brightness(98%) contrast(86%);
+}
 
 /* ------------------ COLUMN HELPER ------------------ */
 
 .columnHelper {
-    overflow: hidden;
-    width: 60px;
-    transition: all 0.5s;
-    white-space: nowrap;
+  overflow: hidden;
+  width: 60px;
+  transition: all 0.5s;
+  white-space: nowrap;
 }
 
 .columnSpan {
-    display: inline-block;
-    transform: translateX(-200%);
+  display: inline-block;
+  transform: translateX(-200%);
 }
 
-
 .columnHelper:hover .columnSpan {
-    animation: columnHelperAnimation forwards 0.5s;
+  animation: columnHelperAnimation forwards 0.5s;
 }
 
 .columnHelper:hover {
-    width: 250px;
+  width: 250px;
 }
-
 
 @keyframes columnHelperAnimation {
-    from {
-        transform: translateX(-200%);
-    }
+  from {
+    transform: translateX(-200%);
+  }
 
-    to {
-        transform: translateX(0);
-    }
+  to {
+    transform: translateX(0);
+  }
 }
-
-
 
 /* ------------------ TAILWIND CUSTOM ------------------ */
 
-
 .activeMobile {
-    @apply px-4 py-2 dark:bg-[#e25687] font-semibold rounded-[10px] bg-[#1f2124] text-white;
+  @apply rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white dark:bg-[#e25687];
 }
 
 .activeDesktop {
-    @apply px-4 py-2 dark:bg-[#e25687] font-semibold rounded-[10px] bg-[#1f2124] text-white hover:opacity-[0.8];
+  @apply rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white hover:opacity-[0.8] dark:bg-[#e25687];
 }
-
-
 
 /* ------------------ Prevent sticky hover effect after a touch (mobile devices) ------------------ */
 
 @media (hover: none) {
-
-    .fix-hover>*:hover,
-    .fix-hover>*:active {
-        transform: scale(1) !important;
-    }
+  .fix-hover > *:hover,
+  .fix-hover > *:active {
+    transform: scale(1) !important;
+  }
 }
 
 @media (hover: none) {
-
-    .fix-hoverOpacity>*:hover,
-    .fix-hoverOpacity>*:active {
-        opacity: 1 !important;
-    }
+  .fix-hoverOpacity > *:hover,
+  .fix-hoverOpacity > *:active {
+    opacity: 1 !important;
+  }
 }
 
 /* ------------------ BUTTON ANIMATIONS ------------------ */
 
 .verticalAlignSub {
-    vertical-align: sub;
+  vertical-align: sub;
 }
-
 
 /* ------------------ BUTTON ANIMATIONS ------------------ */
 
 .btn-container {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    width: 300px;
-    margin: 10px auto;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  width: 300px;
+  margin: 10px auto;
 }
 
 .btn-container a {
-    position: relative;
-    left: 0;
-    transition: all .35s ease-Out;
+  position: relative;
+  left: 0;
+  transition: all 0.35s ease-Out;
 }
 
 .arrow-container {
-    width: 100%;
-    height: 100%;
-    /* background: #396b5e; */
-    left: -200px;
-    position: absolute;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .35s ease-Out;
-    bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* background: #396b5e; */
+  left: -200px;
+  position: absolute;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease-Out;
+  bottom: 0;
 }
 
 .btn-container img {
-    width: 30px;
-    height: auto;
+  width: 30px;
+  height: auto;
 }
 
 .btn-container:hover .arrow-container {
-    left: 0;
+  left: 0;
 }
 
 .btn-container:hover a {
-    left: 300px;
+  left: 300px;
 }
 
 /* ------------------ NO SCROLLBAR ------------------ */
@@ -201,429 +199,520 @@ svg-orange:active {
 /* } */
 /* } */
 
-
 /* ------------------ SVG CUSTOM COLORING USING TAILWIND `dark:` MODIFIER --> https://stackoverflow.com/a/69602689/13218429 ------------------ */
 
 .dark {
-    .dark\:svgNumbers404 {
-        @apply fill-[#20a482];
-    }
+  .dark\:svgNumbers404 {
+    @apply fill-[#20a482];
+  }
 
-    .dark\:svgNumbers500 {
-        @apply fill-[#3f5775];
-    }
+  .dark\:svgNumbers500 {
+    @apply fill-[#3f5775];
+  }
 }
-
 
 /* ------------------ ANIMATIONS ------------------ */
 .slideOutRight:active {
-    animation-name: slideOutRight;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
+  animation-name: slideOutRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
 }
 
 @keyframes slideOutRight {
-    0% {
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(0);
+  }
 
-    100% {
-        transform: translateX(150%);
-    }
+  100% {
+    transform: translateX(150%);
+  }
 }
 
 .fadeIn {
-    animation-name: fadeIn;
-    animation-duration: 2s;
-    animation-fill-mode: both;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: both;
 }
 
 @-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
-
 .fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @-webkit-keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
 
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 @keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
 
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
-
-
 
 /* ------------------ PAGE ERROR 500 & 400 HERE ------------------ */
 
 @keyframes blink-fancy {
+  0%,
+  25%,
+  28.33%,
+  45%,
+  48.33%,
+  51.67%,
+  93.33%,
+  96.67% {
+    transform: scaleY(1);
+  }
 
-    0%,
-    25%,
-    28.33%,
-    45%,
-    48.33%,
-    51.67%,
-    93.33%,
-    96.67% {
-        transform: scaleY(1);
-    }
-
-    26.67%,
-    46.67%,
-    50%,
-    95% {
-        transform: scaleY(0.1);
-    }
+  26.67%,
+  46.67%,
+  50%,
+  95% {
+    transform: scaleY(0.1);
+  }
 }
 
 @keyframes flame-flicker-1 {
-    25% {
-        transform: scale3d(1, 1.1, 1);
-    }
+  25% {
+    transform: scale3d(1, 1.1, 1);
+  }
 
-    40% {
-        transform: scale3d(1, 0.8, 1);
-    }
+  40% {
+    transform: scale3d(1, 0.8, 1);
+  }
 
-    50% {
-        transform: scale3d(1, 1.05, 1);
-    }
+  50% {
+    transform: scale3d(1, 1.05, 1);
+  }
 
-    65% {
-        transform: scale3d(1, 0.75, 1);
-    }
+  65% {
+    transform: scale3d(1, 0.75, 1);
+  }
 
-    75% {
-        transform: scale3d(1, 1, 1);
-    }
+  75% {
+    transform: scale3d(1, 1, 1);
+  }
 
-    90% {
-        transform: scale3d(1, 1.15, 1);
-    }
+  90% {
+    transform: scale3d(1, 1.15, 1);
+  }
 
-    100% {
-        transform: scale3d(1, 1, 1);
-    }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 @keyframes flame-flicker-2 {
-    15% {
-        transform: scale3d(0.9, 0.8, 1);
-    }
+  15% {
+    transform: scale3d(0.9, 0.8, 1);
+  }
 
-    33% {
-        transform: scale3d(1.2, 0.5, 1);
-    }
+  33% {
+    transform: scale3d(1.2, 0.5, 1);
+  }
 
-    47% {
-        transform: scale3d(0.7, 0.7, 1);
-    }
+  47% {
+    transform: scale3d(0.7, 0.7, 1);
+  }
 
-    63% {
-        transform: scale3d(0.72, 1.1, 1);
-    }
+  63% {
+    transform: scale3d(0.72, 1.1, 1);
+  }
 
-    70% {
-        transform: scale3d(0.65, 1, 1);
-    }
+  70% {
+    transform: scale3d(0.65, 1, 1);
+  }
 
-    77% {
-        transform: scale3d(1, 0.8, 1);
-    }
+  77% {
+    transform: scale3d(1, 0.8, 1);
+  }
 
-    85% {
-        transform: scale3d(0.7, 0.95, 1)
-    }
+  85% {
+    transform: scale3d(0.7, 0.95, 1);
+  }
 
-    100% {
-        transform: scale3d(1, 1, 1);
-    }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
 @keyframes flame-ember {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
 
-    25% {
-        transform: translate(10px, -25px) rotate(-45deg);
-    }
+  25% {
+    transform: translate(10px, -25px) rotate(-45deg);
+  }
 
-    50% {
-        transform: translate(0, -50px) rotate(0);
-    }
+  50% {
+    transform: translate(0, -50px) rotate(0);
+  }
 
-    75% {
-        transform: translate(-10px, -75px) rotate(45deg);
-    }
+  75% {
+    transform: translate(-10px, -75px) rotate(45deg);
+  }
 
-    100% {
-        transform: translate(0, -100px) rotate(0);
-    }
+  100% {
+    transform: translate(0, -100px) rotate(0);
+  }
 }
 
 @keyframes flame-ember-alt {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
 
-    25% {
-        transform: translate(-15px, -25px) rotate(45deg);
-    }
+  25% {
+    transform: translate(-15px, -25px) rotate(45deg);
+  }
 
-    50% {
-        transform: translate(0, -50px) rotate(0);
-    }
+  50% {
+    transform: translate(0, -50px) rotate(0);
+  }
 
-    75% {
-        transform: translate(10px, -75px) rotate(-45deg);
-    }
+  75% {
+    transform: translate(10px, -75px) rotate(-45deg);
+  }
 
-    100% {
-        transform: translate(0, -100px) rotate(0);
-    }
+  100% {
+    transform: translate(0, -100px) rotate(0);
+  }
 }
 
 @keyframes flame-ember-opacity {
-    45% {
-        opacity: 1;
-    }
+  45% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes scale-pulse {
-    0% {
-        transform: scale(0.8, 0.8);
-    }
+  0% {
+    transform: scale(0.8, 0.8);
+  }
 
-    50% {
-        transform: scale(1.1, 1.1);
-    }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
 
-    100% {
-        transform: scale(0.8, 0.8);
-    }
+  100% {
+    transform: scale(0.8, 0.8);
+  }
 }
 
 @keyframes opacity-pulse {
-    0% {
-        opacity: 0.2;
-    }
+  0% {
+    opacity: 0.2;
+  }
 
-    50% {
-        opacity: 0.5;
-    }
+  50% {
+    opacity: 0.5;
+  }
 
-    100% {
-        opacity: 0.2;
-    }
+  100% {
+    opacity: 0.2;
+  }
 }
 
 .flame-front {
-    transform-origin: center bottom;
-    animation: flame-flicker-1 1s ease-in-out infinite;
+  transform-origin: center bottom;
+  animation: flame-flicker-1 1s ease-in-out infinite;
 }
 
 .flame-inner {
-    transform-origin: center bottom;
-    animation: flame-flicker-2 .8s ease-in-out infinite;
+  transform-origin: center bottom;
+  animation: flame-flicker-2 0.8s ease-in-out infinite;
 }
 
 #flame-inner-right {
-    animation-duration: 1s;
-    animation-delay: -1s;
+  animation-duration: 1s;
+  animation-delay: -1s;
 }
 
 #flame-back {
-    animation-direction: reverse;
-    animation-delay: 0.5s;
-    animation-duration: 1.6s;
+  animation-direction: reverse;
+  animation-delay: 0.5s;
+  animation-duration: 1.6s;
 }
 
 #flame-front-right {
-    animation-duration: 1.3s;
-    animation-delay: 0.2s
+  animation-duration: 1.3s;
+  animation-delay: 0.2s;
 }
 
 .emitted-ember {
-    transform-origin: center center;
-    -moz-transform-origin: 485.125px 51.33px;
-    animation: flame-ember 2s linear infinite, flame-ember-opacity 2s ease-out infinite;
+  transform-origin: center center;
+  -moz-transform-origin: 485.125px 51.33px;
+  animation:
+    flame-ember 2s linear infinite,
+    flame-ember-opacity 2s ease-out infinite;
 }
 
 .emitted-ember-alt {
-    animation: flame-ember-alt 1.7s linear infinite, flame-ember-opacity 1.7s ease-out infinite;
+  animation:
+    flame-ember-alt 1.7s linear infinite,
+    flame-ember-opacity 1.7s ease-out infinite;
 }
 
 .smoke {
-    transform-origin: center center;
-    animation: scale-pulse .7s ease-in-out infinite;
+  transform-origin: center center;
+  animation: scale-pulse 0.7s ease-in-out infinite;
 }
 
 #smoke-float-1 {
-    animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 #smoke-float-2 {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 #smoke-float-3 {
-    animation-delay: 0s;
+  animation-delay: 0s;
 }
 
 #smoke-float-4 {
-    animation-delay: -0.2s;
+  animation-delay: -0.2s;
 }
 
 #smoke-float-5 {
-    animation-delay: -0.4s;
+  animation-delay: -0.4s;
 }
 
 .glow {
-    transform-origin: center center;
-    -moz-transform-origin: 378.729px 109.75px;
-    animation: opacity-pulse 4s ease-in-out infinite 0.1s, scale-pulse 4s ease-in-out alternate infinite;
+  transform-origin: center center;
+  -moz-transform-origin: 378.729px 109.75px;
+  animation:
+    opacity-pulse 4s ease-in-out infinite 0.1s,
+    scale-pulse 4s ease-in-out alternate infinite;
 }
 
 #glow-outer-1 {
-    animation-delay: -0.1s;
+  animation-delay: -0.1s;
 }
 
 #glow-inner {
-    animation-delay: -0.3s;
+  animation-delay: -0.3s;
 }
 
 #eyes-left,
 #eyes-right {
-    animation: blink-fancy 6s linear infinite;
+  animation: blink-fancy 6s linear infinite;
 }
 
 .bill-highlight {
-    animation: opacity-pulse 4s ease-in-out infinite;
+  animation: opacity-pulse 4s ease-in-out infinite;
 }
 
 /* ------ PAGE 404 */
 
-@keyframes pop-up{
-    0% {transform: translateY(80%); opacity:0;}
-    60% {transform: translateY(-10px);opacity: 1;}
-    80% {transform: translateY(5px)}
-    100% {transform: translateY(0);}
-}
-
-@keyframes blink{
-    20% {transform: scaleY(1);}
-    25% {transform: scaleY(0.1);}
-    30% {transform: scaleY(1);}
-}
-
-@keyframes blink-fancy{
-    0%, 25%, 28.33%, 45%, 48.33%, 51.67%, 93.33%, 96.67%{transform: scaleY(1);}
-    26.67%, 46.67%, 50%, 95% {transform: scaleY(0.1);}
-}
-
-@keyframes looky-loo{
-    0%, 42.31%, 50%, 69.23%, 100% {transform: translate3d(0,0,0);}
-    7.69%, 23.08% {transform: translate3d(-5px,0,0);}
-    26.92%, 38.46% {transform: translate3d(5px, 0,0);}
-    53.85%, 65.38%{transform: translate3d(0, -10px,0);}  
-}
-
-@keyframes looky-loo-ears{
-    0%, 42.31%, 50%, 69.23%, 100% {transform: translate3d(0,0,0);}
-    7.69%, 23.08% {transform: translate3d(3px,0,0);}
-    26.92%, 38.46% {transform: translate3d(-3px, 0,0);}
-    53.85%, 65.38%{transform: translate3d(0, 5px,0);}  
-}
-
-@keyframes looky-loo-beard{
-    50%, 69.23%, 100% {transform: translate3d(0,0,0);}
-    53.85%, 65.38%{transform: translate3d(0, -10px, 0);}   
-}
-
-@keyframes cloud-right{
-    50% {transform: translateX(10px);}
-    100% {transform: translateX(0);}
-}
-
-@keyframes cloud-left{
-    50% {transform: translateX(-8px);}
-    100% {transform: translateX(0);}
-}
-
-circle.blinking-eyes{
-    animation: blink-fancy 6s linear infinite;
-}
-
-#Dave{
-    animation: pop-up 1s ease-in-out 1;
-}
-#Eyes, #unibrow, #moustache, #Blush {animation: looky-loo 13s ease-in-out infinite; animation-delay: 2s;}
-
-#Ears  {animation: looky-loo-ears 13s ease-in-out infinite; animation-delay: 2s}
-
-#beard-lower, #beard-innershadow, #Neck-Innershadow{
-    animation: looky-loo-beard 13s ease-in-out infinite;
-    animation-delay: 2s;
-}
-
-#cloud-right{animation: cloud-right 5s ease-in-out infinite;}
-#cloud-left{animation: cloud-left 5s ease-in-out infinite; animation-delay:1s}
-
-#easter-egg{
-    opacity:0;
-    transition: all 0.1s ease-in-out;
-}
-svg:hover #easter-egg{
+@keyframes pop-up {
+  0% {
+    transform: translateY(80%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-10px);
     opacity: 1;
-    transition: all 0.1s ease-in-out;
+  }
+  80% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  20% {
+    transform: scaleY(1);
+  }
+  25% {
+    transform: scaleY(0.1);
+  }
+  30% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes blink-fancy {
+  0%,
+  25%,
+  28.33%,
+  45%,
+  48.33%,
+  51.67%,
+  93.33%,
+  96.67% {
+    transform: scaleY(1);
+  }
+  26.67%,
+  46.67%,
+  50%,
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes looky-loo {
+  0%,
+  42.31%,
+  50%,
+  69.23%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  7.69%,
+  23.08% {
+    transform: translate3d(-5px, 0, 0);
+  }
+  26.92%,
+  38.46% {
+    transform: translate3d(5px, 0, 0);
+  }
+  53.85%,
+  65.38% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes looky-loo-ears {
+  0%,
+  42.31%,
+  50%,
+  69.23%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  7.69%,
+  23.08% {
+    transform: translate3d(3px, 0, 0);
+  }
+  26.92%,
+  38.46% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  53.85%,
+  65.38% {
+    transform: translate3d(0, 5px, 0);
+  }
+}
+
+@keyframes looky-loo-beard {
+  50%,
+  69.23%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  53.85%,
+  65.38% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes cloud-right {
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes cloud-left {
+  50% {
+    transform: translateX(-8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+circle.blinking-eyes {
+  animation: blink-fancy 6s linear infinite;
+}
+
+#Dave {
+  animation: pop-up 1s ease-in-out 1;
+}
+#Eyes,
+#unibrow,
+#moustache,
+#Blush {
+  animation: looky-loo 13s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+#Ears {
+  animation: looky-loo-ears 13s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+#beard-lower,
+#beard-innershadow,
+#Neck-Innershadow {
+  animation: looky-loo-beard 13s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+#cloud-right {
+  animation: cloud-right 5s ease-in-out infinite;
+}
+#cloud-left {
+  animation: cloud-left 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+#easter-egg {
+  opacity: 0;
+  transition: all 0.1s ease-in-out;
+}
+svg:hover #easter-egg {
+  opacity: 1;
+  transition: all 0.1s ease-in-out;
 }

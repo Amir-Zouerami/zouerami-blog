@@ -6,6 +6,9 @@ export const metadata: Metadata = {
 };
 
 function page() {
+  // TODO: 1. CSP Generator
+  // TODO: 2. SVG Filter --> https://angel-rs.github.io/css-color-filter-generator/
+  // TODO: 3. Benchmarking --> https://jsben.ch/
   return (
     <section className="container mx-auto max-w-[1200px]">
       <h1 className="my-10 text-center text-4xl font-black leading-loose">

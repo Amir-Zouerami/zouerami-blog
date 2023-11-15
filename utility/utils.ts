@@ -36,3 +36,6 @@ export const createFileURL = (
 ) => {
   return `${process.env.NEXT_PUBLIC_PB_DOMAIN}/api/files/${collectionId}/${id}/${fileName}`;
 };
+
+export const ToFaNumbers = (str: any) =>
+  str.replace(/\d/g, (d: number) => '۰۱۲۳۴۵۶۷۸۹'[d]);

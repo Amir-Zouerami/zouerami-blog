@@ -134,3 +134,13 @@ export interface BlogPostData {
 export interface searchParams {
   [key: string]: string | string[] | undefined;
 }
+
+/**
+ * PaginationProps
+ */
+export interface PaginationProps {
+  page: number;
+  // perPage: number;
+  // totalItems: number;
+  totalPages: number;
+}

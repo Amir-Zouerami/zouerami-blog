@@ -23,6 +23,7 @@ async function page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   let posts;
+  let currentPage = searchParams.page ? Number(searchParams.page) : 1;
 
   try {
     let sortIndex;
@@ -47,7 +48,7 @@ async function page({
       process.env.PB_ADMIN_PS as string
     );
 
-    posts = await pb.collection('posts').getList<BlogPostData>(1, 3, {
+    posts = await pb.collection('posts').getList<BlogPostData>(currentPage, 5, {
       sort: sortIndex,
       fields:
         'id, title, slug, summary, cover, collectionId, viewcount, updated',
@@ -88,7 +89,7 @@ async function page({
       </div>
 
       <div>
-        <Pagination />
+        <Pagination page={posts.page} totalPages={posts.totalPages} />
       </div>
     </section>
   );
