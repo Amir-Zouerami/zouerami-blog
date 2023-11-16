@@ -41,3 +41,28 @@ export const ToFaNumbers = (number: string | number) => {
   if (typeof number === 'number') number = number.toString();
   return number.replace(/\d/g, (d: string) => '۰۱۲۳۴۵۶۷۸۹'[parseInt(d, 10)]);
 };
+
+export const formatHeadlines = (rootDiv: HTMLDivElement) => {
+  const listItems = rootDiv.querySelectorAll('li');
+
+  listItems.forEach((li, _index) => {
+    const anchorChild = li.querySelector('a');
+    const nestedList = li.querySelector('ul');
+
+    if (anchorChild) {
+      anchorChild.classList.add('hover:text-teal-400');
+      anchorChild.classList.add('transition-all');
+    }
+
+    if (!nestedList) {
+      li.classList.add('py-4');
+    }
+
+    if (nestedList) {
+      anchorChild?.classList.add('inline-block', 'py-4');
+      li.classList.add('pr-6');
+    }
+  });
+
+  return rootDiv.innerHTML;
+};
