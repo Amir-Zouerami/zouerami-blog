@@ -12,6 +12,7 @@ function BlogPostHeader({
   created,
   updated,
   categories,
+  article_headlines,
 }: BlogPostHeaderProps) {
   return (
     <div className="mt-20">
@@ -67,7 +68,7 @@ function BlogPostHeader({
         </div>
       </div>
 
-      <BlogPostStructure />
+      <BlogPostStructure article_headlines={article_headlines} />
     </div>
   );
 }

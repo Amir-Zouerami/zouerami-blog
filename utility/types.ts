@@ -120,7 +120,7 @@ export interface BlogPostData {
   article_version: number;
   viewcount: number;
   comments: string[];
-  post_categories: string;
+  post_categories: string[];
   skill_level: 'مبتدی' | 'متوسط' | 'پیشرفته';
   cover: string;
   article_headlines: string;
@@ -137,6 +137,7 @@ export interface BlogPostHeaderProps {
   article_version: number;
   skill_level: 'مبتدی' | 'متوسط' | 'پیشرفته';
   categories: PostCategory[];
+  article_headlines: string;
   created: string;
   updated: string;
   viewcount: number;
