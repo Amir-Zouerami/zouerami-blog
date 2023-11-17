@@ -2,16 +2,16 @@
 
 const nextConfig = {
   // Fixes A Problem With The Canvas Element In Linkedom package --> https://github.com/WebReflection/linkedom/issues/237#issuecomment-1812031246
-  webpack: config => ({
-    ...config,
-    resolve: {
-      ...config.resolve,
-      alias: {
-        ...config.resolve?.alias,
-        canvas$: false,
-      },
-    },
-  }),
+  // webpack: config => ({
+  //   ...config,
+  //   resolve: {
+  //     ...config.resolve,
+  //     alias: {
+  //       ...config.resolve?.alias,
+  //       canvas$: false,
+  //     },
+  //   },
+  // }),
   // --------------------------------------
   reactStrictMode: false,
   images: {
