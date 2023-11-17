@@ -34,7 +34,7 @@ async function page({ params }: SingleBlogPostParam) {
           expand: 'post_categories',
         }
       );
-    // console.log(post.article_headlines);
+    // console.log(post);
   } catch (error) {
     console.log('No Such Post');
     return notFound();
@@ -66,7 +66,7 @@ async function page({ params }: SingleBlogPostParam) {
         article_headlines={post.article_headlines}
       />
 
-      <BlogPostContent />
+      <BlogPostContent content={post.content} />
 
       <Comments />
     </div>

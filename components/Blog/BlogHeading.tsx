@@ -15,7 +15,7 @@ function BlogHeading({
   return (
     <a href={href} id={`${id ?? null}`}>
       <Image width={20} src={link} alt="" className="ml-2 inline-block" />
-      <h2 className="mb-10 inline-block text-3xl font-black">{children}</h2>
+      <h2 className="my-10 inline-block text-3xl font-black">{children}</h2>
     </a>
   );
 }

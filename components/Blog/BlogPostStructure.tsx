@@ -17,6 +17,7 @@ function BlogPostStructure({
   );
 
   useEffect(() => {
+    // TODO: Hover Not Working!
     const rootDiv = document.createElement('div');
     rootDiv.innerHTML = article_headlines;
 
@@ -45,7 +46,7 @@ function BlogPostStructure({
       {structureModal && (
         <>
           <div
-            className="rounded-xl border p-5"
+            className="rounded-xl border p-5 hover:cursor-default"
             dangerouslySetInnerHTML={{
               __html: headlineContent ? headlineContent : 'در حال بارگذاری',
             }}
