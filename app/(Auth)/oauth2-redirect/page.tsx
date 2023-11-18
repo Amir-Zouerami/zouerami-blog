@@ -59,9 +59,10 @@ function Page() {
             ? await fetchResponse.blob()
             : undefined;
 
-          const username = authData.meta.username
-            ? authData.meta.username.replace(/-/g, '_')
-            : authData.meta.name.replace(/\s/g, '') +
+          // TODO: from v0.19.4 Release users can have hyphen in username
+          const username =
+            authData.meta.username ??
+            authData.meta.name.replace(/\s/g, '') +
               Math.floor(1000 + Math.random() * 9000).toString();
 
           await pb
