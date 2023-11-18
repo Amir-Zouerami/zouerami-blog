@@ -9,6 +9,9 @@ import parse, {
 import BlogHeading from '@/components/Blog/BlogHeading';
 import Attention from '@/components/Blog/Attention';
 import { Code } from 'bright';
+import BlogPostImage from '@/components/Blog/BlogPostImage';
+
+// ----------------------------- Helper Filter Functions ------------------------------------------------
 
 // Check if the node is a <p> tag with the class "BLOG_ALERT"
 const isBlogAlertParagraph = (node: DOMNode): node is Element => {
@@ -39,6 +42,17 @@ const isH2Tag = (node: DOMNode): node is Element => {
 const isCodeElement = (node: DOMNode): node is Element => {
   return node.type === 'tag' && node.name === 'code';
 };
+
+// Check if the node is a image <Figure> with caption
+const isImageFigure = (node: DOMNode): node is Element => {
+  return (
+    node.type === 'tag' &&
+    node.name === 'p' &&
+    node.attribs.class === 'BLOG_IMAGE_FIGURE'
+  );
+};
+
+// ----------------------------- Parse Options ------------------------------------------------
 
 export const parseOptions: HTMLReactParserOptions = {
   replace: node => {
@@ -81,6 +95,7 @@ export const parseOptions: HTMLReactParserOptions = {
     if (isCodeElement(node)) {
       const code = node.firstChild;
       const { 'data-lang': lang, 'data-title': title } = node.attribs;
+
       if (code instanceof Text && code.data) {
         return (
           <div className="ltr mx-auto lg:max-w-[90%]">
@@ -90,6 +105,14 @@ export const parseOptions: HTMLReactParserOptions = {
           </div>
         );
       }
+    }
+
+    // ---------> SET STYLE FOR IMAGE <Figure> AND ITS CAPTION
+    if (isImageFigure(node)) {
+      const image = node.firstChild as Element;
+      const { src, alt } = image.attribs;
+
+      return <BlogPostImage href={src} caption={alt} />;
     }
   },
 };
