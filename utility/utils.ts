@@ -25,7 +25,6 @@ export const truncateSentence = (sentence: string, maxWords: number) => {
     return `${truncatedSentence}...`;
   }
 
-  // If the sentence is within the limit, return it unchanged
   return sentence;
 };
 

@@ -1,7 +1,6 @@
 export const fetchCache = 'default-no-store';
 
 import Image from 'next/image';
-import postcover from '@/public/sample-blog-post-cover-main-page.webp';
 import BlogPostHeader from '@/components/Blog/BlogPostHeader';
 import BlogPostContent from '@/components/Blog/BlogPostContent';
 import CoulumnHelperDesktop from '@/components/Blog/CoulumnHelperDesktop';
@@ -34,7 +33,6 @@ async function page({ params }: SingleBlogPostParam) {
           expand: 'post_categories',
         }
       );
-    // console.log(post);
   } catch (error) {
     console.log('No Such Post');
     return notFound();
@@ -66,7 +64,10 @@ async function page({ params }: SingleBlogPostParam) {
         article_headlines={post.article_headlines}
       />
 
-      <BlogPostContent content={post.content} />
+      <BlogPostContent
+        content={post.content}
+        categories={post.expand.post_categories}
+      />
 
       <Comments />
     </div>

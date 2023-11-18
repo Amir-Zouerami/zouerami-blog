@@ -2,14 +2,13 @@
 
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { SignupErrors, formDataObj } from '@/utility/types';
+import { SignupErrors } from '@/utility/types';
 import { registerUser } from '@/utility/actions';
 import { toastOptions } from '@/utility/toast';
 import { validateSignupForm } from '@/utility/validate';
 import PocketBase from 'pocketbase';
-import { getCookie } from '@/utility/cookie';
 
 import user from '@/icons/user-auth.svg';
 import email from '@/icons/messages.svg';

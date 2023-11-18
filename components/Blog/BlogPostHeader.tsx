@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import BlogPostStructure from './BlogPostStructure';
 import dayjs from '@/utility/dayjs';
-import { BlogPostHeaderProps, PostCategories } from '@/utility/types';
+import { BlogPostHeaderProps } from '@/utility/types';
 import { ToFaNumbers } from '@/utility/utils';
 
 function BlogPostHeader({

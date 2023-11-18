@@ -154,7 +154,7 @@ interface Expand {
 /**
  * Post Categories
  */
-interface PostCategory {
+export interface PostCategory {
   id: string;
   category: string;
   collectionId: string;

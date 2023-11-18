@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtomValue, useSetAtom } from 'jotai';
-import { commentsModalAtom } from './BlogCommentsButton';
+import { commentsModalAtom } from './ShowCommentsButton';
 
 import SingleComment from './SingleComment';
 import CommentTextarea from './CommentTextarea';

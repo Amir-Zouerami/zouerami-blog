@@ -10,7 +10,7 @@ function BlogPostDownloadButton() {
   return (
     <div className="my-10 text-center">
       <Link
-        href={'#'}
+        href={''}
         onClick={() => {
           toast(
             `این قابلیت در حال حاضر در دسترس نیست.

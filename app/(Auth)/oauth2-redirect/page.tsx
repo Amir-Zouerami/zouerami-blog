@@ -2,7 +2,7 @@
 export const fetchCache = 'default-no-store';
 
 import Pocketbase from 'pocketbase';
-import { redirect, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { addCookie } from '@/utility/cookie';
 import Image from 'next/image';
@@ -48,7 +48,6 @@ function Page() {
         redirectURL
       )
       .then(async authData => {
-        // console.log("HERE'S THE AUTH DATA: ", JSON.stringify(authData));
         addCookie(pb.authStore.exportToCookie({ httpOnly: false }));
         localStorage.removeItem('oAuth_provider');
 
@@ -59,7 +58,6 @@ function Page() {
             ? await fetchResponse.blob()
             : undefined;
 
-          // TODO: from v0.19.4 Release users can have hyphen in username
           const username =
             authData.meta.username ??
             authData.meta.name.replace(/\s/g, '') +
@@ -83,14 +81,10 @@ function Page() {
         setisLoading(false);
       })
       .catch(err => {
-        console.log(
-          "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP HERE'S THE ERROR: ",
-          err
-        );
+        console.log('An Error Occured During the OAuth Callback: ', err);
+        throw new Error('An Error Occured During the OAuth Callback:');
       });
   }, [searchParams, router]);
-
-  //   console.log(providerData, oAuthState, oAuthCode);
 
   return (
     <>

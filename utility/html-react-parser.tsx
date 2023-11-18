@@ -1,5 +1,4 @@
-import parse, {
-  domToReact,
+import {
   HTMLReactParserOptions,
   DOMNode,
   Element,
