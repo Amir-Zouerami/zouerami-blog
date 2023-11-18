@@ -41,7 +41,10 @@ function BlogPostHeader({
           <p className="py-3 lg:mx-3 lg:inline-block">
             دسته:
             {categories.map(postCategory => (
-              <Link key={postCategory.id} href={'#'}>
+              <Link
+                key={postCategory.id}
+                href={`/blog?category=${postCategory.category}`}
+              >
                 <span className="mx-1 rounded-lg bg-slate-600 px-2 py-1 text-white transition-all hover:bg-orange-400">
                   {postCategory.category}
                 </span>

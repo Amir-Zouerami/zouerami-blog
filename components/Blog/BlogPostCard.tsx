@@ -80,7 +80,7 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
           >
             مطالعه مقاله
           </Link>
-          <div>
+          <div title="تاریخ آخرین ویرایش این مقاله">
             <Image
               src={calender}
               width={20}
@@ -91,7 +91,7 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
               {ToFaNumbers(dayjs(post.updated).locale('fa').fromNow())}
             </span>
           </div>
-          <div>
+          <div title="تعداد بازدید های این مقاله">
             <span className="mr-1">{post.viewcount}</span>
             <Image
               src={fire}

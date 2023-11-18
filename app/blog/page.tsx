@@ -1,6 +1,5 @@
 // TODO: ONLY FOR DEVELOPMENT
 // export const revalidate = 1800;
-// export const dynamic = 'force-dynamic';
 export const fetchCache = 'default-no-store';
 
 import { Metadata } from 'next';
@@ -47,6 +46,18 @@ async function page({
     }
 
     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    let pbFilter;
+
+    if (searchParams.category) {
+      pbFilter = pb.filter('post_categories.category ?= {:category}', {
+        category: searchParams.category,
+      });
+    } else if (searchParams.search) {
+      pbFilter = pb.filter('title ~ {:title}', {
+        title: searchParams.search,
+      });
+    }
+
     await pb.admins.authWithPassword(
       process.env.PB_ADMIN_EM as string,
       process.env.PB_ADMIN_PS as string
@@ -56,9 +67,7 @@ async function page({
       sort: sortIndex,
       fields:
         'id, title, slug, summary, cover, collectionId, viewcount, updated',
-      filter: pb.filter('title ~ {:title}', {
-        title: searchParams.search ?? '',
-      }),
+      filter: pbFilter ?? '',
     });
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
