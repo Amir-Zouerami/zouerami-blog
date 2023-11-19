@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { clientPB } from '@/utility/clientPB';
+import Pocketbase from 'pocketbase';
 
 import user from '@/icons/user.svg';
 import heart from '@/icons/heart.svg';
@@ -14,10 +14,10 @@ import settings from '@/icons/settings.svg';
 import logout from '@/icons/logout.svg';
 import ProfileMenuLink from './ProfileMenuLink';
 import { useRouter } from 'next/navigation';
-import { deleteCookie, getCookie } from '@/utility/cookie';
+import { deleteCookie } from '@/utility/cookie';
 
 function UserProfile() {
-  const pb = clientPB();
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const router = useRouter();
 
   const [userModal, setUserModal] = useState(false);
@@ -103,7 +103,7 @@ function UserProfile() {
                     onClick={() => {
                       pb.authStore.clear();
                       deleteCookie('pb_auth');
-                      router.push('/');
+                      router.refresh();
                     }}
                   />
                 </>
