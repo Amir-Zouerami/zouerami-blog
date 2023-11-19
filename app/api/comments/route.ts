@@ -14,7 +14,7 @@ export const POST = async (request: NextRequest) => {
       process.env.PB_ADMIN_PS as string
     );
 
-    const comments = await pb.collection('comments').getList<Comment>(page, 2, {
+    const comments = await pb.collection('comments').getList<Comment>(page, 5, {
       filter: pb.filter('post_id.id = {:postId}', { postId }),
       expand: 'user_id',
       cache: 'no-store',
