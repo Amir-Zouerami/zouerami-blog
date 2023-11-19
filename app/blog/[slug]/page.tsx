@@ -30,11 +30,12 @@ async function page({ params }: SingleBlogPostParam) {
       .getFirstListItem<BlogPostData>(
         pb.filter('slug = {:slug}', { slug: params.slug }),
         {
-          expand: 'post_categories',
+          expand: 'post_categories, comments, comments.user_id',
+          skipTotal: true,
         }
       );
   } catch (error) {
-    console.log('No Such Post');
+    console.log('No Such Post', error);
     return notFound();
   }
 
@@ -69,7 +70,7 @@ async function page({ params }: SingleBlogPostParam) {
         categories={post.expand.post_categories}
       />
 
-      <Comments />
+      <Comments slug={post.slug} postId={post.id} />
     </div>
   );
 }

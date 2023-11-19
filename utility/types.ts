@@ -132,6 +132,22 @@ export interface BlogPostData {
   expand: Expand;
 }
 
+/**
+ * A Single User
+ */
+export interface User {
+  avatar?: string;
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  email: string;
+  emailVisibility: false;
+  id: string;
+  updated: string;
+  username: string;
+  verified: boolean;
+}
+
 export interface BlogPostHeaderProps {
   title: string;
   article_version: number;
@@ -148,7 +164,7 @@ export interface BlogPostHeaderProps {
  */
 interface Expand {
   post_categories: PostCategory[];
-  comments?: Comments[] | null;
+  comments?: Comment[] | null;
 }
 
 /**
@@ -170,7 +186,7 @@ export interface PostCategories {
 /**
  * Post Comments
  */
-interface Comments {
+export interface Comment {
   id: string;
   collectionId: string;
   collectionName: string;
@@ -179,6 +195,9 @@ interface Comments {
   user_id: string;
   updated: string;
   created: string;
+  expand?: {
+    user_id: User;
+  };
 }
 
 /**
