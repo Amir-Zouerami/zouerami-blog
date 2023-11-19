@@ -8,7 +8,7 @@ import { BlogPostData } from '@/utility/types';
 import Pagination from '@/components/pagination/Pagination';
 import ArticleSearchSection from '@/components/Blog/ArticleSearchSection';
 import BlogPostCard from '@/components/Blog/BlogPostCard';
-import { adminPB } from '@/utility/pocketbase';
+import Pocketbase from 'pocketbase';
 
 export const metadata: Metadata = {
   title: 'مقالات برنامه نویسی امیر زوارمی',
@@ -45,7 +45,13 @@ async function page({
         break;
     }
 
-    const pb = await adminPB();
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+
     let pbFilter;
 
     if (searchParams.category) {

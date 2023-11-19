@@ -201,6 +201,15 @@ export interface Comment {
 }
 
 /**
+ * Comments Fetched From API
+ */
+export interface CommentsAPIData {
+  ok: boolean;
+  totalPages: number;
+  data: { items: Comment[] };
+}
+
+/**
  * Search Parameters
  */
 export interface searchParams {

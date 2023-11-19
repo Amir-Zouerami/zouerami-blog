@@ -9,7 +9,7 @@ import Comments from '@/components/Blog/Comments';
 import { BlogPostData } from '@/utility/types';
 import { notFound } from 'next/navigation';
 import { createFileURL } from '@/utility/utils';
-import { adminPB } from '@/utility/pocketbase';
+import Pocketbase from 'pocketbase';
 
 interface SingleBlogPostParam {
   params: { slug: string };
@@ -19,7 +19,12 @@ async function page({ params }: SingleBlogPostParam) {
   let post: BlogPostData;
 
   try {
-    const pb = await adminPB();
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
 
     post = await pb
       .collection('posts')

@@ -2,8 +2,10 @@
 
 import Error404 from '@/icons/Error404';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function NotFound() {
+  const router = useRouter();
   return (
     <div className="mx-auto mt-24 flex max-w-[800px] flex-col items-center justify-center">
       <h2 className="mb-10 text-4xl font-black">
@@ -27,6 +29,15 @@ function NotFound() {
         صفحه ای که درخواست کرده اید وجود ندارد، با دقت بیشتر مجددا تلاش کنید. در
         صورت استمرار خطا، مشکل خود را به مدیریت سایت اطلاع دهید.
       </p>
+
+      <button
+        className="mt-5 rounded-lg bg-teal-600 p-4 font-bold"
+        onClick={() => {
+          router.refresh();
+        }}
+      >
+        تلاش مجدد
+      </button>
     </div>
   );
 }

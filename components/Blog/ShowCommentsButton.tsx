@@ -33,7 +33,8 @@ function BlogCommentsButton() {
         href={'#'}
         scroll={false}
         className="w-10 rounded-xl bg-gradient-to-r from-[#5e4b55] to-[#da8b83] px-12 py-4 dark:from-[#5AA68C] dark:to-[#C0B35F]"
-        onClick={() => {
+        onClick={e => {
+          e.preventDefault();
           setCommentsModal(!commentsModal);
         }}
       >
