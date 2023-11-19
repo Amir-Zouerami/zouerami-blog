@@ -1,34 +1,24 @@
-// import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
-// import Pocketbase from 'pocketbase';
-// import { AuthenticatedUser } from './types';
-// import { cookies } from 'next/headers';
+import Pocketbase from 'pocketbase';
+import type PBType from 'pocketbase';
 
-// export const PBFromCookie = () => {
-//   const pb = new Pocketbase(process.env.NEXT_PUBLIC_DOMAIN);
+let pb: PBType;
 
-//   if (typeof document !== 'undefined') {
-//     pb.authStore.loadFromCookie(document.cookie);
+export const serverPB = () => {
+  if (!pb) {
+    pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+  }
 
-//     pb.authStore.onChange(() => {
-//       document.cookie = pb.authStore.exportToCookie({ httpOnly: false });
-//     });
-//   }
+  return pb;
+};
 
-//   return pb;
-// };
+export const adminPB = async () => {
+  if (!pb) {
+    pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+  }
 
-// export const getUserFromCookie = (
-//   Cookies: ReadonlyRequestCookies
-// ): AuthenticatedUser | null => {
-//   const authCookie = cookies();
-//   authCookie.get('pb_auth')
-
-//   if (!authCookie) return null;
-
-//   const pb = PBFromCookie();
-
-//   pb.authStore.loadFromCookie(`${authCookie.name}=${authCookie.value}`);
-//   const user = pb.authStore.model;
-
-//   return user as AuthenticatedUser;
-// };
+  return pb;
+};

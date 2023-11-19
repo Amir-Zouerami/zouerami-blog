@@ -6,10 +6,10 @@ import BlogPostContent from '@/components/Blog/BlogPostContent';
 import CoulumnHelperDesktop from '@/components/Blog/CoulumnHelperDesktop';
 import CoulumnHelperMobile from '@/components/Blog/CoulumnHelperMobile';
 import Comments from '@/components/Blog/Comments';
-import Pocketbase from 'pocketbase';
 import { BlogPostData } from '@/utility/types';
 import { notFound } from 'next/navigation';
 import { createFileURL } from '@/utility/utils';
+import { adminPB } from '@/utility/pocketbase';
 
 interface SingleBlogPostParam {
   params: { slug: string };
@@ -19,11 +19,7 @@ async function page({ params }: SingleBlogPostParam) {
   let post: BlogPostData;
 
   try {
-    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
-    await pb.admins.authWithPassword(
-      process.env.PB_ADMIN_EM as string,
-      process.env.PB_ADMIN_PS as string
-    );
+    const pb = await adminPB();
 
     post = await pb
       .collection('posts')

@@ -4,11 +4,11 @@ export const fetchCache = 'default-no-store';
 
 import { Metadata } from 'next';
 import { BlogPostData } from '@/utility/types';
-import Pocketbase from 'pocketbase';
 
 import Pagination from '@/components/pagination/Pagination';
 import ArticleSearchSection from '@/components/Blog/ArticleSearchSection';
 import BlogPostCard from '@/components/Blog/BlogPostCard';
+import { adminPB } from '@/utility/pocketbase';
 
 export const metadata: Metadata = {
   title: 'مقالات برنامه نویسی امیر زوارمی',
@@ -45,7 +45,7 @@ async function page({
         break;
     }
 
-    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    const pb = await adminPB();
     let pbFilter;
 
     if (searchParams.category) {
@@ -57,11 +57,6 @@ async function page({
         title: searchParams.search,
       });
     }
-
-    await pb.admins.authWithPassword(
-      process.env.PB_ADMIN_EM as string,
-      process.env.PB_ADMIN_PS as string
-    );
 
     posts = await pb.collection('posts').getList<BlogPostData>(currentPage, 5, {
       sort: sortIndex,
