@@ -10,8 +10,9 @@ function BlogPostDownloadButton() {
   return (
     <div className="my-10 text-center">
       <Link
-        href={''}
-        onClick={() => {
+        href={'#'}
+        onClick={e => {
+          e.preventDefault();
           toast(
             `این قابلیت در حال حاضر در دسترس نیست.
               در آینده ی نزدیک کاربران ویژه می توانند مقالات سایت را دانلود کنند.`,
