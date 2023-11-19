@@ -1,27 +1,42 @@
+export const dynamic = 'force-dynamic';
+
 import { NextRequest, NextResponse } from 'next/server';
-import Pocketbase from 'pocketbase';
 import { Comment } from '@/utility/types';
-import { adminPB } from '@/utility/pocketbase';
+import Pocketbase from 'pocketbase';
 
 export const POST = async (request: NextRequest) => {
   try {
     const { postId, page } = await request.json();
-    const pb = await adminPB();
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
-    const comments = await pb.collection('comments').getList<Comment>(page, 5, {
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+
+    const comments = await pb.collection('comments').getList<Comment>(page, 2, {
       filter: pb.filter('post_id.id = {:postId}', { postId }),
       expand: 'user_id',
+      cache: 'no-store',
     });
 
     if (comments) {
-      return NextResponse.json({ ok: true, data: comments });
+      return NextResponse.json({
+        ok: true,
+        totalPages: comments.totalPages,
+        data: comments,
+      });
     } else {
       return NextResponse.json({
         ok: false,
-        data: 'No comments for this post',
+        data: 'No comments for this post.',
       });
     }
   } catch (error) {
     console.log('ERROR RETREIVING COMMENTS - ROUTE');
+    return NextResponse.json({
+      ok: false,
+      data: 'An Error Happened.',
+    });
   }
 };
