@@ -22,9 +22,10 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [end, setEnd] = useState(false);
+  const [authed, setAuthed] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    console.log('INSIDE EFFECT PAGE', page);
+    setAuthed(pb.authStore.isValid);
 
     if (commentsModal) {
       fetch('http://localhost:3000/api/comments', {
@@ -40,34 +41,6 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
           setEnd(() => true);
         }
       });
-      // ------------------------------------
-      // setCommentsArray([
-      //   {
-      //     collectionId: 'asd',
-      //     collectionName: 'asd',
-      //     comment_content: 'asd',
-      //     created: 'asd',
-      //     id: 'asd',
-      //     post_id: 'asd',
-      //     updated: 'asdasd',
-      //     user_id: 'asdqwe',
-      //     expand: {
-      //       user_id: {
-      //         collectionId: 'asd',
-      //         collectionName: 'asd',
-      //         created: 'asd',
-      //         id: 'asd',
-      //         updated: 'asdasd',
-      //         email: 'asdads',
-      //         emailVisibility: false,
-      //         username: 'aaaaaaaaaaaaaaaaaaaaaa',
-      //         verified: false,
-      //         avatar: '',
-      //       },
-      //     },
-      //   },
-      // ]);
-      // ------------------------------------
     }
   }, [page, postId, commentsModal]);
 
@@ -95,9 +68,9 @@ rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
 
           <h2 className="p-5 text-2xl font-black text-white">نظرات کاربران</h2>
 
-          {pb.authStore.isValid ? (
+          {authed === true ? (
             <CommentTextarea />
-          ) : (
+          ) : authed === false ? (
             <div className="lg:w-1/2">
               <p className="mt-5 text-center text-white">
                 {' '}
@@ -118,6 +91,8 @@ rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
                 </Link>
               </div>
             </div>
+          ) : (
+            ''
           )}
 
           {(() => {
@@ -155,7 +130,7 @@ rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
 
           <div>
             {end ? (
-              <p className="py-5">نظر دیگری وجود ندارد.</p>
+              <p className="py-5">نظری وجود ندارد.</p>
             ) : (
               <button
                 onClick={() => {
