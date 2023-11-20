@@ -19,7 +19,7 @@ function BlogPostDownloadButton() {
             { icon: '📢', duration: 4000 }
           );
         }}
-        className="w-10 rounded-xl bg-[#FE634E] px-12 py-4"
+        className="w-10 hover:opacity-[.7] rounded-xl bg-[#FE634E] px-12 py-4"
       >
         <Image
           width={25}

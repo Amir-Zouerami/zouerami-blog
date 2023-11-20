@@ -32,7 +32,7 @@ function BlogCommentsButton() {
       <Link
         href={'#'}
         scroll={false}
-        className="w-10 rounded-xl bg-gradient-to-r from-[#5e4b55] to-[#da8b83] px-12 py-4 dark:from-[#5AA68C] dark:to-[#C0B35F]"
+        className="w-10 rounded-xl bg-gradient-to-r from-[#5e4b55] to-[#da8b83] px-12 py-4 hover:opacity-[.7] dark:from-[#5AA68C] dark:to-[#C0B35F]"
         onClick={e => {
           e.preventDefault();
           setCommentsModal(!commentsModal);

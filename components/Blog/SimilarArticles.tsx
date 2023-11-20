@@ -48,7 +48,7 @@ async function SimilarArticles({ categories }: { categories: PostCategory[] }) {
             <div className="mt-5 text-center">
               <Link
                 href={'/blog/' + post.slug}
-                className="w-10 rounded-xl bg-gradient-to-r from-[#5AA68C] to-[#C0B35F] px-12 py-4"
+                className="w-10 rounded-xl bg-gradient-to-r from-[#5AA68C] to-[#C0B35F] px-12 py-4 hover:opacity-[.7]"
               >
                 <span className="pr-2 font-bold text-white">مطالعه مقاله</span>
               </Link>
