@@ -11,6 +11,7 @@ import { Comment, CommentsAPIData } from '@/utility/types';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import loading from '@/icons/loading.svg';
+import { notFound } from 'next/navigation';
 
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
@@ -25,10 +26,24 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
   const [authed, setAuthed] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    setAuthed(pb.authStore.isValid);
+    if (pb.authStore.isValid) {
+      pb.collection('users')
+        .authRefresh()
+        .then(() => {
+          setAuthed(pb.authStore.isValid);
+        })
+        .catch(e => {
+          console.log('AUTHENTICATION ERROR - BLOG COMMENTS');
+          return notFound();
+        });
+    } else {
+      setAuthed(false);
+    }
+  }, []);
 
+  useEffect(() => {
     if (commentsModal) {
-      fetch('http://localhost:3000/api/comments', {
+      fetch('http://localhost:3000/api/get-comments', {
         cache: 'no-store',
         method: 'POST',
         body: JSON.stringify({ postId, page }),
@@ -53,8 +68,8 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
         }}
       ></div>
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 mx-auto max-h-[70vh] max-w-[95%] overflow-auto
-rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
+        className="fixed bottom-0 left-0 right-0 z-50 mx-auto max-h-[70vh] md:max-w-[95%] overflow-auto
+        rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
       >
         <div className="relative flex flex-col items-center justify-center overflow-y-auto">
           <span
@@ -68,9 +83,15 @@ rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
 
           <h2 className="p-5 text-2xl font-black text-white">نظرات کاربران</h2>
 
-          {authed === true ? (
-            <CommentTextarea />
-          ) : authed === false ? (
+          {authed && pb.authStore.model?.verified ? (
+            <CommentTextarea postId={postId} />
+          ) : authed && !pb.authStore.model?.verified ? (
+            <p className="px-5 py-5 text-justify leading-8 text-yellow-400">
+              لطفا به تنظیمات حساب و ایمیل خود مراجعه کرده و{' '}
+              <span className="font-bold">حساب کاربری خود را تایید کنید</span>.
+              بدون تایید حساب کاربری امکان ثبت کامنت وجود ندارد.
+            </p>
+          ) : !authed ? (
             <div className="lg:w-1/2">
               <p className="mt-5 text-center text-white">
                 {' '}

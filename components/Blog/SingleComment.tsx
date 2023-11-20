@@ -8,6 +8,13 @@ import dayjs from '@/utility/dayjs';
 import userImage from '@/icons/user-auth.svg';
 import { ToFaNumbers, createFileURL } from '@/utility/utils';
 import { User } from '@/utility/types';
+import dynamic from 'next/dynamic';
+
+import remarkGfm from 'remark-gfm';
+// @ts-ignore
+const Markdown = dynamic(async () => await import('react-markdown'), {
+  ssr: false,
+});
 
 function SingleComment({
   time,
@@ -21,7 +28,7 @@ function SingleComment({
   // const [replystate, setReplystate] = useState(false);
 
   return (
-    <div className="my-5 max-w-full rounded-2xl bg-[#232c33]  p-3 lg:px-16">
+    <div className="my-5 w-full rounded-2xl bg-[#232c33]  p-3 lg:px-16">
       <div className="mb-4 flex items-center">
         <div className="ml-5">
           <Image
@@ -43,17 +50,18 @@ function SingleComment({
       </div>
 
       <div className="px-3 text-justify leading-8">
-        <p className="text-white">{comment_content}</p>
-        <pre className="ltr mt-5 overflow-x-scroll text-white">
-          <code>
-            {`export async function getServerSideProps(context) {
-    const id = context.params.id;
-    const user = await prisma.user.findFirst({ where: { id: id } });
-  
-    return { props: { user } };
-  }`}
-          </code>
-        </pre>
+        <div className="pb-5 pt-3 text-white">
+          <Markdown
+            className="prose-blockquote: prose prose-slate min-w-full text-white prose-p:text-white prose-a:text-white
+            prose-strong:text-white prose-pre:bg-[#0e1727] prose-table:mx-auto prose-table:text-center prose-thead:text-white prose-th:text-white prose-hr:text-white lg:prose-table:max-w-[70%]"
+            remarkPlugins={[remarkGfm]}
+            disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
+            unwrapDisallowed={true}
+            linkTarget={'_blank'}
+          >
+            {comment_content}
+          </Markdown>
+        </div>
       </div>
 
       {/* TODO: MAYBE RESPONDING TO COMMENTS ...? */}

@@ -1,18 +1,29 @@
+'use client';
+
 import Image from 'next/image';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import markdown from '@/icons/markdown.svg';
-import code from '@/icons/code.svg';
+// import code from '@/icons/code.svg';
+import Link from 'next/link';
+import Pocketbase from 'pocketbase';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastOptions } from '@/utility/toast';
+import loading from '@/icons/loading.svg';
+import { useRouter } from 'next/navigation';
 
-function CommentTextarea() {
+function CommentTextarea({ postId }: { postId: string }) {
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const [activeTab, setActiveTab] = useState<'write' | 'preview'>('write');
-  const [commentContent, setCommentContent] = useState('');
+  const [commentContent, setCommentContent] = useState(``);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="w-full p-5">
-      <div className="relative mx-auto max-h-[350px] rounded-xl bg-[#363943] lg:w-[70%]">
+      <div className="relative mx-auto  rounded-xl bg-[#363943] lg:w-[80%]">
         <div className="flex items-center justify-between p-4">
           <div className="fix-hoverOpacity">
             <button
@@ -36,28 +47,32 @@ function CommentTextarea() {
               پیش نمایش دیدگاه
             </button>
           </div>
-          <div>
+          {/* TODO: Maybe Allow For Code? */}
+          {/* <div>
             <button className="hover:opacity-[.7]">
               <Image src={code} width={20} alt="insert code block" />
             </button>
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full">
           {activeTab === 'write' ? (
             <textarea
-              className="mb-5 h-[200px] w-full rounded-t-xl bg-[#363943]  p-3 outline-none"
+              className="mb-5 h-[300px] max-h-[500px] w-full rounded-t-xl bg-[#363943] p-3 leading-8  outline-none lg:h-[200px]"
               placeholder="نظر خود را در این بخش بنویسید (برخی از دستورات مارک داون محدود شده اند) ..."
-              onChange={(e) => {
+              onChange={e => {
                 setCommentContent(e.target.value);
               }}
               value={commentContent}
             />
           ) : (
-            <div className="prose dark:prose-invert mb-5 h-[200px] overflow-y-auto px-5">
+            <div
+              id="rendered-markdown"
+              className="prose mb-5 h-[200px] min-w-full overflow-y-auto px-5 dark:prose-invert"
+            >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                disallowedElements={['h1', 'h2']}
+                disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
                 unwrapDisallowed={true}
                 linkTarget={'_blank'}
               >
@@ -67,28 +82,71 @@ function CommentTextarea() {
           )}
         </div>
 
-        <div className="flex h-[20px] items-center justify-between px-3 pb-7">
+        <div className="flex items-center justify-between px-3 pb-3">
           <div className="text-xs text-slate-400">
-            <Image
-              src={markdown}
-              width={18}
-              alt="comment sections supports markdown"
-              className="ml-1 inline"
-            />
-            از Markdown پشتیبانی می شود.
+            <Link href={'/markdown'} className="hover:text-[#59cdcd]">
+              <Image
+                src={markdown}
+                width={18}
+                alt="comment sections supports markdown"
+                className="ml-1 inline"
+              />
+              <span>از Markdown پشتیبانی می شود.</span>
+            </Link>
           </div>
           <div>
             <button
-              onClick={() => {
-                console.log(commentContent);
+              onClick={async () => {
+                if (isLoading) return;
+                setIsLoading(true);
+
+                try {
+                  if (pb.authStore.model && pb.authStore.isValid) {
+                    const res = await pb.collection('comments').create({
+                      post_id: postId,
+                      user_id: pb.authStore.model.id,
+                      comment_content: commentContent,
+                    });
+
+                    toast.success(
+                      'کامنت شما با موفقیت ثبت شد. \n \n پس از تایید نمایش داده می شود.',
+                      {
+                        duration: 6000,
+                        ...toastOptions,
+                      }
+                    );
+                  }
+
+                  setCommentContent('');
+                } catch (error) {
+                  toast.error('خطایی در ثبت دیدگاه شما اتفاق افتاده است...', {
+                    duration: 6000,
+                    ...toastOptions,
+                  });
+                  console.log('ERRORRRRRR SETTING COMMENT ', error);
+                }
+
+                setIsLoading(false);
               }}
-              className="rounded-3xl bg-[darkcyan] px-5 py-2 text-white hover:opacity-[.7]"
+              className={`${
+                isLoading ? 'hover:cursor-wait' : ''
+              } rounded-3xl bg-[darkcyan] px-5 py-2 text-white hover:opacity-[.7]`}
             >
-              ثبت دیدگاه
+              {isLoading ? (
+                <Image
+                  className="svg-white"
+                  src={loading}
+                  width={25}
+                  alt="در حال ثبت نظر شما هستیم، لطفا منتظر بمانید..."
+                />
+              ) : (
+                'ثبت دیدگاه'
+              )}
             </button>
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
