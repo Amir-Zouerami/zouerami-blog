@@ -15,7 +15,10 @@ export const POST = async (request: NextRequest) => {
     );
 
     const comments = await pb.collection('comments').getList<Comment>(page, 5, {
-      filter: pb.filter('post_id.id = {:postId}', { postId }),
+      filter: pb.filter('post_id.id = {:postId} && confirmed = true', {
+        postId,
+      }),
+      sort: '-created',
       expand: 'user_id',
       cache: 'no-store',
     });
