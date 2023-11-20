@@ -55,11 +55,14 @@ async function page({
     let pbFilter;
 
     if (searchParams.category) {
-      pbFilter = pb.filter('post_categories.category ?= {:category}', {
-        category: searchParams.category,
-      });
+      pbFilter = pb.filter(
+        'post_categories.category ?= {:category} && published = true',
+        {
+          category: searchParams.category,
+        }
+      );
     } else if (searchParams.search) {
-      pbFilter = pb.filter('title ~ {:title}', {
+      pbFilter = pb.filter('title ~ {:title} && published = true', {
         title: searchParams.search,
       });
     }
@@ -68,7 +71,7 @@ async function page({
       sort: sortIndex,
       fields:
         'id, title, slug, summary, cover, collectionId, viewcount, updated',
-      filter: pbFilter ?? '',
+      filter: pbFilter ?? 'published = true',
     });
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
