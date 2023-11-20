@@ -59,9 +59,18 @@ function Page() {
             : undefined;
 
           const username =
-            authData.meta.username ??
+            authData.meta.username && authData.meta.username !== ''
+              ? authData.meta.username
+              : authData.meta.name.replace(/\s/g, '') +
+                Math.floor(1000 + Math.random() * 9000).toString();
+
+          console.log('META USERNAME: ', authData.meta.username);
+          console.log(
+            'META USERNAME 2: ',
             authData.meta.name.replace(/\s/g, '') +
-              Math.floor(1000 + Math.random() * 9000).toString();
+              Math.floor(1000 + Math.random() * 9000).toString()
+          );
+          console.log('ALL IN ONE: ', username);
 
           await pb
             .collection('users')
