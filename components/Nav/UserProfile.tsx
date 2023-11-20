@@ -13,12 +13,13 @@ import messages from '@/icons/messages.svg';
 import settings from '@/icons/settings.svg';
 import logout from '@/icons/logout.svg';
 import ProfileMenuLink from './ProfileMenuLink';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { deleteCookie } from '@/utility/cookie';
 
 function UserProfile() {
   const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const router = useRouter();
+  const pathName = usePathname();
 
   const [userModal, setUserModal] = useState(false);
   const [authed, setAuthed] = useState(pb.authStore.isValid);
@@ -111,13 +112,13 @@ function UserProfile() {
                 <div className="py-5 text-center text-white">
                   <p className="mb-10">شما وارد حساب کاربری خود نشده اید!</p>
                   <Link
-                    href={'/sign-up'}
+                    href={'/sign-up' + `?next=${pathName}`}
                     className="ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                   >
                     ثبت نام
                   </Link>
                   <Link
-                    href={'/sign-in'}
+                    href={'/sign-in' + `?next=${pathName}`}
                     className="rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                   >
                     ورود
