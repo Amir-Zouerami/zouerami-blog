@@ -112,13 +112,21 @@ function UserProfile() {
                 <div className="py-5 text-center text-white">
                   <p className="mb-10">شما وارد حساب کاربری خود نشده اید!</p>
                   <Link
-                    href={'/sign-up' + `?next=${pathName}`}
+                    href={
+                      pathName !== '/sign-up' && pathName !== '/sign-in'
+                        ? `/sign-up?next=${pathName}`
+                        : '/sign-up'
+                    }
                     className="ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                   >
                     ثبت نام
                   </Link>
                   <Link
-                    href={'/sign-in' + `?next=${pathName}`}
+                    href={
+                      pathName !== '/sign-up' && pathName !== '/sign-in'
+                        ? `/sign-in?next=${pathName}`
+                        : '/sign-in'
+                    }
                     className="rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
                   >
                     ورود
