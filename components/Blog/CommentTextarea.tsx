@@ -6,7 +6,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import markdown from '@/icons/markdown.svg';
-// import code from '@/icons/code.svg';
 import Link from 'next/link';
 import Pocketbase from 'pocketbase';
 import toast, { Toaster } from 'react-hot-toast';
@@ -47,12 +46,6 @@ function CommentTextarea({ postId }: { postId: string }) {
               پیش نمایش دیدگاه
             </button>
           </div>
-          {/* TODO: Maybe Allow For Code? */}
-          {/* <div>
-            <button className="hover:opacity-[.7]">
-              <Image src={code} width={20} alt="insert code block" />
-            </button>
-          </div> */}
         </div>
 
         <div className="w-full">

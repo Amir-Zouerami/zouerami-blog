@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/fa';
 
-// TODO: Persian Numbers Are Not Supported?! --> https://github.com/iamkun/dayjs/issues/1706
+// FIXME: Persian Numbers Are Not Supported?! --> https://github.com/iamkun/dayjs/issues/1706
 
 // import 'dayjs/plugin/localeData';
 import relativeTime from 'dayjs/plugin/relativeTime';

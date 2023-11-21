@@ -17,6 +17,7 @@ function BlogPostHeader({
   return (
     <div className="mt-20">
       <h1 className="pr-3 text-3xl font-black">{title}</h1>
+      <span className="!transition-all hover:!text-teal-400"></span>
 
       <div className="my-10 flex flex-col items-center justify-between lg:mx-40 lg:flex-row">
         <div className="">
