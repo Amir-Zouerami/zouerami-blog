@@ -23,6 +23,9 @@ importers:
       bright:
         specifier: ^0.8.4
         version: 0.8.4(react@18.2.0)
+      canvas-confetti:
+        specifier: ^1.9.1
+        version: 1.9.1
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -78,6 +81,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@3.3.3)
+      '@types/canvas-confetti':
+        specifier: ^1.6.3
+        version: 1.6.3
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -318,6 +324,10 @@ packages:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.3.3
+    dev: true
+
+  /@types/canvas-confetti@1.6.3:
+    resolution: {integrity: sha512-yKVMDzWJ6g0s8TDI3VERfLMCOh0oHqZUnfK+o3VVjR2mFsLynUgb2lR+3IRaEJMza3BKbV9pkoirmM23YhKozA==}
     dev: true
 
   /@types/debug@4.1.12:
@@ -688,6 +698,10 @@ packages:
 
   /caniuse-lite@1.0.30001561:
     resolution: {integrity: sha512-NTt0DNoKe958Q0BE0j0c1V9jbUzhBxHIEJy7asmGrpE0yG63KTV7PLHPnK2E1O9RsQrQ081I3NLuXGS6zht3cw==}
+    dev: false
+
+  /canvas-confetti@1.9.1:
+    resolution: {integrity: sha512-jieDCn9OnPgFu5q+rbOGUmIGOjzgOnecW1/6KH07kAFAMwOczcTc4clde9pdyUPIAd/2wxZ8C5u7mBAcOpGK8Q==}
     dev: false
 
   /ccount@2.0.1:
