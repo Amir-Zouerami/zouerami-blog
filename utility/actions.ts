@@ -42,7 +42,7 @@ export const registerUser = async (formData: FormData) => {
       httpOnly: false,
     });
 
-    cookies().set('pb_auth', authCookie, { sameSite: 'lax', secure: true });
+    cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
 
     if (pb.authStore.model) {
       const userVerified = pb.authStore.model.verified;
@@ -101,11 +101,15 @@ export const loginUser = async (formData: FormData) => {
       .authWithPassword(validation.data.identifier, validation.data.password);
 
     const authCookie = pb.authStore.exportToCookie({
-      sameSite: 'Lax',
+      sameSite: 'Strict',
       httpOnly: false,
     });
-    cookies().set('just_authed', 'true', { maxAge: 5 });
-    cookies().set('pb_auth', authCookie, { sameSite: 'lax', secure: true });
+    cookies().set('just_authed', 'true', {
+      sameSite: 'strict',
+      secure: true,
+      maxAge: 5,
+    });
+    cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
 
     return { code: 200, authCookie: authCookie };
   } catch (error) {
