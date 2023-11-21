@@ -1,4 +1,7 @@
-export const fetchCache = 'default-no-store';
+// TODO: CLEAN UP
+// export const dynamic = 'force-dynamic';
+// export const fetchCache = 'default-no-store';
+export const revalidate = 1800;
 
 import Image from 'next/image';
 import BlogPostHeader from '@/components/Blog/BlogPostHeader';
@@ -7,20 +10,21 @@ import CoulumnHelperDesktop from '@/components/Blog/CoulumnHelperDesktop';
 import CoulumnHelperMobile from '@/components/Blog/CoulumnHelperMobile';
 import Comments from '@/components/Blog/Comments';
 import { BlogPostData } from '@/utility/types';
-import { notFound } from 'next/navigation';
 import { createFileURL } from '@/utility/utils';
 import Pocketbase from 'pocketbase';
+import { Metadata } from 'next';
+import { cache } from 'react';
 
 interface SingleBlogPostParam {
   params: { slug: string };
 }
 
-async function page({ params }: SingleBlogPostParam) {
+const getPosts = cache(async (postSlug: string) => {
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+  // pb.autoCancellation(false);
   let post: BlogPostData;
 
   try {
-    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
-
     await pb.admins.authWithPassword(
       process.env.PB_ADMIN_EM as string,
       process.env.PB_ADMIN_PS as string
@@ -29,16 +33,36 @@ async function page({ params }: SingleBlogPostParam) {
     post = await pb
       .collection('posts')
       .getFirstListItem<BlogPostData>(
-        pb.filter('slug = {:slug}', { slug: params.slug }),
+        pb.filter('slug = {:slug}', { slug: postSlug }),
         {
           expand: 'post_categories, comments, comments.user_id',
           skipTotal: true,
         }
       );
+
+    return post;
   } catch (error) {
-    console.log('No Such Post', error);
-    return notFound();
+    console.log('cached getPosts func failed', error);
+    throw new Error('cached getPosts func failed');
   }
+});
+
+export async function generateMetadata({
+  params,
+}: SingleBlogPostParam): Promise<Metadata> {
+  let post: BlogPostData = await getPosts(params.slug);
+
+  return {
+    title: post.title,
+    // openGraph: {
+    //   images: ['/some-specific-page-image.jpg', ...previousImages],
+    // },
+  };
+}
+
+async function page({ params }: SingleBlogPostParam) {
+  let post: BlogPostData = await getPosts(params.slug);
+  console.log('INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
 
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">
