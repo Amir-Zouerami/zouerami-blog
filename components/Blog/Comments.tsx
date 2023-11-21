@@ -11,8 +11,6 @@ import { Comment, CommentsAPIData } from '@/utility/types';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import loading from '@/icons/loading.svg';
-import { notFound } from 'next/navigation';
-
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
 function Comments({ slug, postId }: { slug: string; postId: string }) {
@@ -27,16 +25,9 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
 
   useEffect(() => {
     if (pb.authStore.isValid) {
-      pb.collection('users')
-        .authRefresh()
-        .then(() => {
-          setAuthed(pb.authStore.isValid);
-        })
-        .catch(e => {
-          console.log('AUTHENTICATION ERROR - BLOG COMMENTS');
-          return notFound();
-        });
+      setAuthed(pb.authStore.isValid);
     } else {
+      pb.authStore.clear();
       setAuthed(false);
     }
   }, []);
@@ -68,8 +59,8 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
         }}
       ></div>
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 mx-auto max-h-[70vh] md:max-w-[95%] overflow-auto
-        rounded-t-3xl bg-[#293036] py-4 lg:max-w-[1000px]"
+        className="fixed bottom-0 left-0 right-0 z-50 mx-auto max-h-[70vh] overflow-auto rounded-t-3xl
+        bg-[#293036] py-4 md:max-w-[95%] lg:max-w-[1000px]"
       >
         <div className="relative flex flex-col items-center justify-center overflow-y-auto">
           <span
