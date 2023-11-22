@@ -5,8 +5,11 @@ export async function GET(request: NextRequest) {
   const path = request.nextUrl.searchParams.get('path');
 
   if (path) {
-    revalidatePath(path);
-    return Response.json({ revalidated: true, now: Date.now() });
+    revalidatePath(path, 'page');
+    return Response.json({
+      revalidated: true,
+      now: new Date().toLocaleString('fa'),
+    });
   }
 
   return Response.json({
