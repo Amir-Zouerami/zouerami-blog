@@ -36,6 +36,7 @@ next-env.d.ts
 
 # Testing
 app/test
+test
 
 # Pocketbase
 pb/pb_hooks/pb_migrations
