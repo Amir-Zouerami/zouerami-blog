@@ -20,14 +20,16 @@ interface SingleBlogPostParam {
 }
 
 const getPosts = cache(async (postSlug: string) => {
-  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
-  // pb.autoCancellation(false);
   let post: BlogPostData;
 
   try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    pb.autoCancellation(false);
+
     await pb.admins.authWithPassword(
       process.env.PB_ADMIN_EM as string,
       process.env.PB_ADMIN_PS as string
+      // { next: { revalidate: 3600 } }
     );
 
     post = await pb
@@ -37,6 +39,7 @@ const getPosts = cache(async (postSlug: string) => {
         {
           expand: 'post_categories, comments, comments.user_id',
           skipTotal: true,
+          // next: { revalidate: 3600 },
         }
       );
 
@@ -60,9 +63,33 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  let allPosts: BlogPostData[];
+
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+
+    allPosts = await pb.collection('posts').getFullList<BlogPostData>({
+      filter: 'published = true',
+      cache: 'no-store',
+    });
+
+    return allPosts.map(post => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.log('generateStaticParams func failed', error);
+    throw new Error('cached getPosts func failed');
+  }
+}
+
 async function page({ params }: SingleBlogPostParam) {
-  let post: BlogPostData = await getPosts(params.slug);
-  console.log('INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
+  const { slug } = params;
+  let post: BlogPostData = await getPosts(slug);
 
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">
