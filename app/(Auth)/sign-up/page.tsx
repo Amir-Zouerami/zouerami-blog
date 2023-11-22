@@ -1,9 +1,4 @@
 // 'use client';
-
-export const fetchCache = 'default-no-store';
-
-import authImage from '@/public/auth-image-big.webp';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import SignupForm from '@/components/Auth/SignupForm';
@@ -14,6 +9,7 @@ import GoogleoAuthButton from '@/components/Auth/GoogleoAuthButton';
 import GithuboAuthButton from '@/components/Auth/GithuboAuthButton';
 import { cookies } from 'next/headers';
 import AlreadyLoggedinDialogue from '@/components/Auth/AlreadyLoggedinDialogue';
+import authImage from '@/public/auth-form-cover.webp';
 
 export const metadata: Metadata = {
   title: 'ساخت حساب کاربری',

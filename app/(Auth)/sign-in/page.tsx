@@ -1,5 +1,3 @@
-export const fetchCache = 'default-no-store';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
@@ -7,7 +5,7 @@ import Pocketbase from 'pocketbase';
 import SigninForm from '@/components/Auth/SigninForm';
 import { cookies } from 'next/headers';
 
-import authImage from '@/public/auth-image-big.webp';
+import authImage from '@/public/auth-form-cover.webp';
 import AlreadyLoggedinDialogue from '@/components/Auth/AlreadyLoggedinDialogue';
 import GoogleoAuthButton from '@/components/Auth/GoogleoAuthButton';
 import GithuboAuthButton from '@/components/Auth/GithuboAuthButton';
