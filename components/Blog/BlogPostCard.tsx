@@ -10,6 +10,7 @@ import report from '@/icons/report.svg';
 import fire from '@/icons/fire.svg';
 import calender from '@/icons/calender.svg';
 import { ToFaNumbers, createFileURL, truncateSentence } from '@/utility/utils';
+import ReadMore from './ReadMore';
 
 export interface BlogPostCardData {
   id: string;
@@ -73,13 +74,8 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
         </div>
 
         <div className="flex items-center justify-between px-5">
-          <Link
-            href={'http://localhost:3000/blog/' + post.slug}
-            className="inline-block rounded-t-2xl bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] px-5 py-4 font-black
-            text-white hover:opacity-[0.6] dark:from-[#D93965] dark:to-[#EE8C68]"
-          >
-            مطالعه مقاله
-          </Link>
+          <ReadMore slug={post.slug} />
+
           <div title="تاریخ آخرین ویرایش این مقاله">
             <Image
               src={calender}
