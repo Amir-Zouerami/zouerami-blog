@@ -61,8 +61,9 @@ const nextConfig = {
     ];
   },
   // experimental: {
-  //   serverActions: true,
-  //   serverActionsBodySizeLimit: '3mb',
+  //   serverActions: {
+  //     bodySizeLimit: '50mb',
+  //   },
   // },
 };
 
