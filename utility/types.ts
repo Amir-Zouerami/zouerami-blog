@@ -210,6 +210,25 @@ export interface CommentsAPIData {
 }
 
 /**
+ * USER ACTIVITY
+ */
+export interface userActivity {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  bookmarked: boolean;
+  liked: boolean;
+  post_id: string;
+  user_id: string;
+  createdAt: string;
+  UpdatedAt: string;
+  expand?: {
+    post_id?: BlogPostData;
+    user_id?: User;
+  };
+}
+
+/**
  * Search Parameters
  */
 export interface searchParams {
