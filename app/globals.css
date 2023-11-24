@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 html {
   direction: rtl;
@@ -64,6 +65,16 @@ blockquote p {
 
 /* ------------------ SVG COLOR CHANGE ------------------ */
 
+.svg-liked {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(79%) saturate(5829%)
+    hue-rotate(333deg) brightness(86%) contrast(101%);
+}
+
+.svg-bookmarked {
+  filter: brightness(0) saturate(100%) invert(94%) sepia(78%) saturate(1495%)
+    hue-rotate(316deg) brightness(103%) contrast(98%);
+}
+
 .svg-red:hover,
 .svg-red:active {
   filter: brightness(0) saturate(100%) invert(47%) sepia(79%) saturate(5829%)
@@ -104,35 +115,81 @@ svg-orange:active {
     hue-rotate(102deg) brightness(98%) contrast(86%);
 }
 
+.clicked:active {
+  transform: scale(0.8);
+}
+
 /* ------------------ COLUMN HELPER ------------------ */
 
-.columnHelper {
-  overflow: hidden;
-  width: 60px;
-  transition: all 0.5s;
-  white-space: nowrap;
+@responsive {
+  .desktopColumnHelper {
+    overflow: hidden;
+    width: 60px;
+    transition: all 0.5s;
+    white-space: nowrap;
+  }
+
+  .desktopColumnHelper:hover .desktopColumnSpan {
+    animation: desktopColumnHelperAnimation forwards 0.5s;
+  }
+
+  .desktopColumnHelper:hover {
+    width: 250px;
+  }
+
+  .desktopColumnSpan {
+    display: inline-block;
+    transform: translateX(-200%);
+  }
+
+  /* --- mobile --- */
+
+  .columnHelper {
+    overflow: hidden;
+    width: 300px;
+    transition: all 0.5s;
+    white-space: nowrap;
+  }
+
+  .columnHelper:hover .columnSpan {
+    animation: columnHelperAnimation forwards 0.5s;
+  }
+
+  /* .columnHelper:hover {
+    height: 250px;
+  } */
+
+  .columnSpan {
+    /* display: inline-block; */
+    display: none;
+    transform: translateY(50%);
+    /* writing-mode: vertical-rl; */
+  }
 }
 
-.columnSpan {
-  display: inline-block;
-  transform: translateX(-200%);
+/* WHEN MODAL OPEN DO NOT SCROLL */
+.shareArticleModalOpen {
+  overflow: hidden !important;
+  position: fixed !important;
 }
 
-.columnHelper:hover .columnSpan {
-  animation: columnHelperAnimation forwards 0.5s;
-}
-
-.columnHelper:hover {
-  width: 250px;
-}
-
-@keyframes columnHelperAnimation {
+@keyframes desktopColumnHelperAnimation {
   from {
     transform: translateX(-200%);
   }
 
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes columnHelperAnimation {
+  from {
+    transform: translateY(200%);
+  }
+
+  to {
+    transform: translateY(0);
   }
 }
 
