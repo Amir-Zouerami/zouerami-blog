@@ -15,13 +15,7 @@ import comment from '@/icons/comment.svg';
 import report from '@/icons/report.svg';
 import ShareOnSocialMedia from './ShareOnSocialMedia';
 
-function CoulumnHelper({
-  postId,
-  title,
-}: {
-  postId: string;
-  title: string;
-}) {
+function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
   const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
@@ -82,6 +76,7 @@ function CoulumnHelper({
                 if (!pb.authStore.isValid || !pb.authStore.model?.verified) {
                   return toast.error('باید ابتدا وارد حساب کاربری خود شوید.', {
                     position: 'top-center',
+                    id: 'SING_IN_FIRST',
                   });
                 }
 
@@ -333,7 +328,6 @@ function CoulumnHelper({
           </div>
         </div>
       </div>
-      {/* <Toaster /> */}
     </>
   );
 }
