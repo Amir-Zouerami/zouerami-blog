@@ -40,12 +40,13 @@ export default function Error({
         تلاش کنید و در صورت عدم موفقیت تا رفع مشکل منتظر بمانید.
       </p>
 
-      <button
+      {/* DOES NOT CONSTITUTE A FULL PAGE RELOAD THEREFORE USELESS IN TIMES OF ERROR */}
+      {/* <button
         onClick={() => reset()}
         className="rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-5 font-bold text-white hover:opacity-[.7]"
       >
         دوباره امتحان کنید
-      </button>
+      </button> */}
     </div>
   );
 }

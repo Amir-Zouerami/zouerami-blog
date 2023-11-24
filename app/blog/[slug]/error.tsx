@@ -2,10 +2,9 @@
 
 import Error404 from '@/icons/Error404';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+// USING A 404 INSTEAD OF 500 IS INTENTIONAL
 
 function NotFound() {
-  const router = useRouter();
   return (
     <div className="mx-auto mt-24 flex max-w-[800px] flex-col items-center justify-center">
       <h2 className="mb-10 text-4xl font-black">
@@ -30,14 +29,15 @@ function NotFound() {
         صورت استمرار خطا، مشکل خود را به مدیریت سایت اطلاع دهید.
       </p>
 
-      <button
+      {/* DOES NOT CONSTITUTE A FULL PAGE RELOAD THEREFORE USELESS IN TIMES OF ERROR */}
+      {/* <button
         className="mt-5 rounded-lg bg-teal-600 p-4 font-bold"
         onClick={() => {
           router.refresh();
         }}
       >
         تلاش مجدد
-      </button>
+      </button> */}
     </div>
   );
 }
