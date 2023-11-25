@@ -6,6 +6,7 @@ interface ProfileMenuLinkProps {
   icon: StaticImport;
   title: string;
   subtitle: string;
+  href: string;
   onClick?: () => void;
 }
 
@@ -13,11 +14,12 @@ function ProfileMenuLink({
   icon,
   title,
   subtitle,
+  href,
   onClick,
 }: ProfileMenuLinkProps) {
   return (
     <div onClick={onClick}>
-      <Link href={'#'} className="flex py-5 hover:opacity-[0.7]">
+      <Link href={href} className="flex py-5 hover:opacity-[0.7]">
         <Image
           src={icon}
           style={{ width: '35px', height: '35px' }}
