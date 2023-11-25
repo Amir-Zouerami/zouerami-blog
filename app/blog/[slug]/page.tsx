@@ -6,14 +6,14 @@ export const revalidate = 1800;
 import Image from 'next/image';
 import BlogPostHeader from '@/components/Blog/BlogPostHeader';
 import BlogPostContent from '@/components/Blog/BlogPostContent';
-import CoulumnHelperDesktop from '@/components/Blog/CoulumnHelperDesktop';
-import CoulumnHelperMobile from '@/components/Blog/CoulumnHelperMobile';
+import CoulumnHelper from '@/components/Blog/CoulumnHelper';
 import Comments from '@/components/Blog/Comments';
 import { BlogPostData } from '@/utility/types';
 import { createFileURL } from '@/utility/utils';
 import Pocketbase from 'pocketbase';
 import { Metadata } from 'next';
 import { cache } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 interface SingleBlogPostParam {
   params: { slug: string };
@@ -63,29 +63,29 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  let allPosts: BlogPostData[];
+// export async function generateStaticParams() {
+//   let allPosts: BlogPostData[];
 
-  try {
-    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
-    await pb.admins.authWithPassword(
-      process.env.PB_ADMIN_EM as string,
-      process.env.PB_ADMIN_PS as string
-    );
+//   try {
+//     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+//     await pb.admins.authWithPassword(
+//       process.env.PB_ADMIN_EM as string,
+//       process.env.PB_ADMIN_PS as string
+//     );
 
-    allPosts = await pb.collection('posts').getFullList<BlogPostData>({
-      filter: 'published = true',
-      cache: 'no-store',
-    });
+//     allPosts = await pb.collection('posts').getFullList<BlogPostData>({
+//       filter: 'published = true',
+//       cache: 'no-store',
+//     });
 
-    return allPosts.map(post => ({
-      slug: post.slug,
-    }));
-  } catch (error) {
-    console.log('generateStaticParams func failed', error);
-    throw new Error('cached getPosts func failed');
-  }
-}
+//     return allPosts.map(post => ({
+//       slug: post.slug,
+//     }));
+//   } catch (error) {
+//     console.log('generateStaticParams func failed', error);
+//     throw new Error('cached getPosts func failed');
+//   }
+// }
 
 async function page({ params }: SingleBlogPostParam) {
   const { slug } = params;
@@ -103,8 +103,7 @@ async function page({ params }: SingleBlogPostParam) {
         />
       </div>
 
-      <CoulumnHelperDesktop />
-      <CoulumnHelperMobile />
+      <CoulumnHelper postId={post.id} title={post.title} />
 
       <BlogPostHeader
         title={post.title}
@@ -123,6 +122,8 @@ async function page({ params }: SingleBlogPostParam) {
       />
 
       <Comments slug={post.slug} postId={post.id} />
+
+      <Toaster />
     </div>
   );
 }
