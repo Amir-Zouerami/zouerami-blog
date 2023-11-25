@@ -42,6 +42,14 @@ blockquote p {
   padding-bottom: 7px;
 }
 
+/* ------------------ USER PROFILE SETTINGS ------------------ */
+
+.profileActiveTab {
+  background-color: #d89c38;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
 /* ------------------ CIRCLES & LINES ------------------ */
 .circle {
   height: 20px;
