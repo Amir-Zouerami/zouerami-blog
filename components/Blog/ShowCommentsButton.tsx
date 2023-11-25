@@ -28,7 +28,7 @@ function BlogCommentsButton() {
   }, [setCommentsModal]);
 
   return (
-    <div className="mt-16 text-center">
+    <div className="mt-16 text-center" id="commentsModal">
       <Link
         href={'#'}
         scroll={false}

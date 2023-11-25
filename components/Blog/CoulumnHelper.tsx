@@ -14,10 +14,12 @@ import bookmark from '@/icons/bookmark.svg';
 import comment from '@/icons/comment.svg';
 import report from '@/icons/report.svg';
 import ShareOnSocialMedia from './ShareOnSocialMedia';
+import Report from './Report';
 
 function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
   const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [reportModalOpen, setReportModalOpen] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [userActivity, setuserActivity] = useState({
     id: '',
@@ -26,16 +28,16 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
     bookmarked: false,
   });
 
-  const closeModal = () => {
+  const closeShareModal = () => {
     setShareModalOpen(false);
   };
 
+  const closeReportModal = () => {
+    setReportModalOpen(false);
+  };
+
   useEffect(() => {
-    if (
-      pb.authStore.isValid &&
-      pb.authStore.model &&
-      pb.authStore.model.verified
-    ) {
+    if (pb.authStore.isValid) {
       pb.collection('user_activity')
         .getFirstListItem<userActivity>(
           pb.filter('post_id = {:postId}', { postId })
@@ -56,8 +58,17 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
     <>
       {shareModalOpen ? (
         <ShareOnSocialMedia
-          modalControl={{ shareModalOpen, closeModal }}
+          modalControl={{ shareModalOpen, closeModal: closeShareModal }}
           title={title}
+        />
+      ) : (
+        ''
+      )}
+
+      {reportModalOpen ? (
+        <Report
+          modalControl={{ reportModalOpen, closeModal: closeReportModal }}
+          postId={postId}
         />
       ) : (
         ''
@@ -73,7 +84,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               onClick={async e => {
                 e.preventDefault();
 
-                if (!pb.authStore.isValid || !pb.authStore.model?.verified) {
+                if (!pb.authStore.isValid) {
                   return toast.error('باید ابتدا وارد حساب کاربری خود شوید.', {
                     position: 'top-center',
                     id: 'SING_IN_FIRST',
@@ -104,7 +115,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                     const { id, liked, bookmarked } = await pb
                       .collection('user_activity')
                       .create<userActivity>({
-                        user_id: pb.authStore.model.id,
+                        user_id: pb.authStore.model?.id,
                         post_id: postId,
                         liked: true,
                         bookmarked: false,
@@ -202,9 +213,10 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               onClick={async e => {
                 e.preventDefault();
 
-                if (!pb.authStore.isValid || !pb.authStore.model?.verified) {
+                if (!pb.authStore.isValid) {
                   return toast.error('باید ابتدا وارد حساب کاربری خود شوید.', {
                     position: 'top-center',
+                    id: 'REPORT_LOGGED_IN_ACC_ERR',
                   });
                 }
 
@@ -232,7 +244,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                     const { id, liked, bookmarked } = await pb
                       .collection('user_activity')
                       .create<userActivity>({
-                        user_id: pb.authStore.model.id,
+                        user_id: pb.authStore.model?.id,
                         post_id: postId,
                         liked: false,
                         bookmarked: true,
@@ -314,7 +326,20 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
           </div>
 
           <div className="text-white hover:text-cyan-500">
-            <Link href={'#'}>
+            <Link
+              href={'#'}
+              onClick={e => {
+                e.preventDefault();
+                if (pb.authStore.isValid && pb.authStore.model?.verified) {
+                  setReportModalOpen(true);
+                } else {
+                  toast.error(
+                    'برای انجام این عملیات باید حسابتان تایید شده باشد.',
+                    { position: 'top-center', id: 'REPORT_VERIFIED_ACC_ERR' }
+                  );
+                }
+              }}
+            >
               <Image
                 src={report}
                 width={35}
