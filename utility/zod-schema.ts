@@ -35,10 +35,7 @@ const userIdentifierSchema = z.union([
     .email()
     .trim()
     .min(4, { message: 'ایمیل شما باید حداقل ۴ حرفی باشد.' })
-    .max(99, { message: 'ایمیل شما باید حداکثر ۹۹ حرفی باشد.' })
-    .regex(/^[a-zA-Z0-9_-!?|]+$/, {
-      message: 'در ایمیل خود از کاراکتر های غیر مجاز استفاده کرده اید.',
-    }),
+    .max(99, { message: 'ایمیل شما باید حداکثر ۹۹ حرفی باشد.' }),
   // z
   //   .string()
   //   .trim()
@@ -101,4 +98,23 @@ export const signupUserSchema = z.object({
   //     { message: 'شماره تلفن باید ۱۱ رقم باشد. به طور مثال ۰۹۱۵۰۰۰۰۰۰۰' }
   //   )
   //   .optional(),
+});
+
+// -------------- PROFILE EDIT --------------
+export const editProfileInfoSchema = z.object({
+  username: z
+    .string()
+    .trim()
+    .min(3, { message: 'نام کاربری باید حداقل ۳ حرفی باشد.' })
+    .max(50, { message: 'نام کاربری باید حداکثر ۵۰ حرفی باشد.' })
+    .regex(/^[a-zA-Z0-9_-]+$/, {
+      message:
+        'نام کاربری باید فقط شامل حروف انگلیسی، اعداد و علامت های - و ـ باشد.',
+    }),
+  email: z
+    .string()
+    .email()
+    .trim()
+    .min(4, { message: 'ایمیل شما باید حداقل ۴ حرفی باشد.' })
+    .max(99, { message: 'ایمیل شما باید حداکثر ۹۹ حرفی باشد.' }),
 });
