@@ -33,8 +33,12 @@ const userIdentifierSchema = z.union([
   z
     .string()
     .email()
+    .trim()
     .min(4, { message: 'ایمیل شما باید حداقل ۴ حرفی باشد.' })
-    .max(99, { message: 'ایمیل شما باید حداکثر ۹۹ حرفی باشد.' }),
+    .max(99, { message: 'ایمیل شما باید حداکثر ۹۹ حرفی باشد.' })
+    .regex(/^[a-zA-Z0-9_-!?|]+$/, {
+      message: 'در ایمیل خود از کاراکتر های غیر مجاز استفاده کرده اید.',
+    }),
   // z
   //   .string()
   //   .trim()
