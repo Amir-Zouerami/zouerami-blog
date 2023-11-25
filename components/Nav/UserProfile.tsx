@@ -8,7 +8,6 @@ import Pocketbase from 'pocketbase';
 import user from '@/icons/user.svg';
 import heart from '@/icons/heart.svg';
 import bookmark from '@/icons/bookmark.svg';
-import profile from '@/icons/profile.svg';
 import messages from '@/icons/messages.svg';
 import settings from '@/icons/settings.svg';
 import logout from '@/icons/logout.svg';
@@ -67,12 +66,14 @@ function UserProfile() {
                   <hr className="py-2" />
 
                   <ProfileMenuLink
+                    href="/user/liked-articles"
                     icon={heart}
                     title="مقالات مورد علاقه"
                     subtitle="مقالاتی که توسط شما لایک شده اند."
                   />
 
                   <ProfileMenuLink
+                    href="/user/bookmarked-articles"
                     icon={bookmark}
                     title="مقالات نشان شده"
                     subtitle="مقالاتی که برای مطالعه در آینده ذخیره کرده اید."
@@ -81,23 +82,21 @@ function UserProfile() {
                   <hr className="py-2" />
 
                   <ProfileMenuLink
-                    icon={profile}
-                    title="پروفایل شما"
-                    subtitle="نمایی کلی از پروفایل خود را مشاهده کنید."
-                  />
-                  <ProfileMenuLink
+                    href="/user/messages"
                     icon={messages}
                     title="پیام ها و اعلانات"
                     subtitle="پیام های خود را در این بخش مشاهده کنید."
                   />
 
                   <ProfileMenuLink
+                    href="/user/profile"
                     icon={settings}
                     title="تنظیمات حساب کاربری"
                     subtitle="اطلاعات حسابتان را در این بخش تغییر بدهید."
                   />
 
                   <ProfileMenuLink
+                    href="#"
                     icon={logout}
                     title="خروج از حساب کاربری"
                     subtitle="به صورت کامل از حساب کاربری خود خارج شوید."
