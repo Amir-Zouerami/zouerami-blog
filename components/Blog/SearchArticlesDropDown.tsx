@@ -30,7 +30,7 @@ function SearchArticlesDropDown() {
           </form>
 
           <button
-            className={`h-14 w-[15%] rounded-bl-2xl rounded-tl-2xl bg-[#2d4356] dark:bg-[#2a2c39] font-black text-teal-400 hover:opacity-[.7]`}
+            className={`h-14 w-[15%] rounded-bl-2xl rounded-tl-2xl bg-[#2d4356] dark:bg-[#2a2c39] font-black text-teal-400 reactiveButton`}
             onClick={() => {
               setArticleSearchModal(!articleSearchModal);
             }}

@@ -16,14 +16,14 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
         <p className="mb-5">زمان انتشار مقاله:</p>
         <button
           type="button"
-          className="rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           ۱۴۰۳/۳/۱۳
         </button>
         <span className="mx-10 font-black">تا</span>
         <button
           type="button"
-          className="rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           ۱۴۰۳/۵/۱۳
         </button>
@@ -33,7 +33,7 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
         <p className="mb-5">دسته بندی مقاله:</p>
         <button
           type="button"
-          className="rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           انتخاب دسته بندی ها
         </button>
@@ -44,14 +44,14 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
 
         <button
           type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           تک قسمتی
         </button>
 
         <button
           type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           چند قسمتی
         </button>
@@ -61,21 +61,21 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
         <p className="mb-5">سطح مقاله:</p>
         <button
           type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           مبتدی
         </button>
 
         <button
           type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           متوسط
         </button>
 
         <button
           type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 hover:opacity-[.7]"
+          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
         >
           پیشرفته
         </button>

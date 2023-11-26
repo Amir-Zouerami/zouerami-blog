@@ -24,7 +24,7 @@ function GithuboAuthButton({ githuboAuth, text }: GtihuboAuthButtonProps) {
         githuboAuth?.authUrl +
         encodeURIComponent('http://localhost:3000/oauth2-redirect')
       }
-      className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
+      className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 reactiveButton"
       onClick={() => {
         localStorage.setItem('oAuth_provider', JSON.stringify(githuboAuth));
       }}

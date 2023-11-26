@@ -42,7 +42,7 @@ export default function Error({
 
       <button
         onClick={() => reset()}
-        className="rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-5 font-bold text-white hover:opacity-[.7]"
+        className="rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-5 font-bold text-white reactiveButton"
       >
         دوباره امتحان کنید
       </button>

@@ -31,7 +31,7 @@ function CommentTextarea({ postId }: { postId: string }) {
               }}
               className={`rounded-2xl ${
                 activeTab === 'write' ? 'bg-[#e55287]' : null
-              } px-3 py-2 text-white hover:opacity-[.7]`}
+              } px-3 py-2 text-white reactiveButton`}
             >
               نوشتن دیدگاه
             </button>
@@ -41,7 +41,7 @@ function CommentTextarea({ postId }: { postId: string }) {
               }}
               className={`mr-3 rounded-2xl px-3 py-2 ${
                 activeTab === 'preview' ? 'bg-[#e55287]' : null
-              } text-white hover:opacity-[.7]`}
+              } text-white reactiveButton`}
             >
               پیش نمایش دیدگاه
             </button>
@@ -123,7 +123,7 @@ function CommentTextarea({ postId }: { postId: string }) {
               }}
               className={`${
                 isLoading ? 'hover:cursor-wait' : ''
-              } rounded-3xl bg-[darkcyan] px-5 py-2 text-white hover:opacity-[.7]`}
+              } rounded-3xl bg-[darkcyan] px-5 py-2 text-white reactiveButton`}
             >
               {isLoading ? (
                 <Image

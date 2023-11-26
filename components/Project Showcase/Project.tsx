@@ -50,7 +50,7 @@ function Project() {
             <Link
               href={'#'}
               className="inline-block w-full rounded-[10px] bg-[#1f2124] bg-gradient-to-l from-[#5D4954] to-[#DC8B83] px-4 py-3
-             text-white transition-all hover:opacity-[0.8] dark:from-[#a67fbe] dark:to-[#51b6af] lg:w-auto"
+             text-white transition-all reactiveButton dark:from-[#a67fbe] dark:to-[#51b6af] lg:w-auto"
             >
               <Image
                 src={GitHub}

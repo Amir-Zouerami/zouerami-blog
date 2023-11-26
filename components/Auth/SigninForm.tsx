@@ -128,7 +128,7 @@ function SigninForm() {
           type="submit"
           disabled={isLoading}
           form="sigIn-form"
-          className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white hover:opacity-[.7] disabled:cursor-not-allowed"
+          className="w-full rounded-xl bg-gradient-to-r from-[#D93965] to-[#EE8C68] p-4 text-xl font-black text-white reactiveButton disabled:cursor-not-allowed"
         >
           ورود به حساب کاربری
         </button>

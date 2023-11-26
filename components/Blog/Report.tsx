@@ -55,14 +55,14 @@ function Report({
           />
           <div className="flex flex-col gap-10 lg:flex-row">
             <button
-              className="rounded-3xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-5 py-3 hover:opacity-[.7]"
+              className="rounded-3xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-5 py-3 reactiveButton"
               onClick={() => modalControl.closeModal()}
             >
               بستن این صفحه
             </button>
 
             <button
-              className="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-3 hover:opacity-[.7]"
+              className="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-3 reactiveButton"
               onClick={async () => {
                 if (isReqSent)
                   return toast.error('لطفا تا پایان درخواست قبل صبر کنید.', {

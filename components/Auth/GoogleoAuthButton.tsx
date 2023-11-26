@@ -27,7 +27,7 @@ function GoogleoAuthButton({ googleoAuth, text }: GoogleoAuthButtonProps) {
       onClick={() => {
         localStorage.setItem('oAuth_provider', JSON.stringify(googleoAuth));
       }}
-      className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 hover:opacity-[.7]"
+      className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 reactiveButton"
     >
       <Image
         src={google}
