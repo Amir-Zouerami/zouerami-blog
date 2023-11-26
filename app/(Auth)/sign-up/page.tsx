@@ -1,4 +1,5 @@
-// 'use client';
+export const fetchCache = 'default-no-store'
+
 import Link from 'next/link';
 import Image from 'next/image';
 import SignupForm from '@/components/Auth/SignupForm';

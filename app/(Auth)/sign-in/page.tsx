@@ -1,3 +1,5 @@
+export const fetchCache = 'default-no-store'
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
