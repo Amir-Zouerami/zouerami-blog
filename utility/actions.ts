@@ -1,8 +1,18 @@
 'use server';
 
-import { signupUserSchema, loginUserSchema } from './zod-schema';
+import {
+  signupUserSchema,
+  loginUserSchema,
+  usernameType,
+  emailType,
+} from './zod-schema';
 import Pocketbase from 'pocketbase';
-import { AuthenticatedUser, PBSignupError } from './types';
+import {
+  AuthenticatedUser,
+  EditedUserProfile,
+  PBSignupError,
+  formdataFieldIsFile,
+} from './types';
 import { cookies } from 'next/headers';
 
 export const registerUser = async (formData: FormData) => {
@@ -25,13 +35,16 @@ export const registerUser = async (formData: FormData) => {
   try {
     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
-    await pb.collection('users').create<AuthenticatedUser>({
-      email: validation.data.email.toLocaleLowerCase(),
-      username: validation.data.username,
-      password: validation.data.password,
-      passwordConfirm: validation.data.password,
-      verified: false,
-    });
+    await pb.collection('users').create<AuthenticatedUser>(
+      {
+        email: validation.data.email.toLocaleLowerCase(),
+        username: validation.data.username,
+        password: validation.data.password,
+        passwordConfirm: validation.data.password,
+        verified: false,
+      },
+      { cache: 'no-store' }
+    );
 
     await pb
       .collection('users')
@@ -79,6 +92,8 @@ export const registerUser = async (formData: FormData) => {
   }
 };
 
+// ------------------- SIGNING IN USER ACCOUNT ---------------------
+
 export const loginUser = async (formData: FormData) => {
   const validation = loginUserSchema.safeParse({
     identifier: formData.get('identifier'),
@@ -98,7 +113,9 @@ export const loginUser = async (formData: FormData) => {
 
     await pb
       .collection('users')
-      .authWithPassword(validation.data.identifier, validation.data.password);
+      .authWithPassword(validation.data.identifier, validation.data.password, {
+        cache: 'no-store',
+      });
 
     const authCookie = pb.authStore.exportToCookie({
       sameSite: 'Strict',
@@ -115,4 +132,65 @@ export const loginUser = async (formData: FormData) => {
   } catch (error) {
     return { code: 'ERROR' };
   }
+};
+
+// ------------------- EDIT USER PROFILE ---------------------
+
+export const editProfileInfo = async (
+  formData: FormData,
+  authCookie: string
+) => {
+  const email = formData.get('email');
+  const avatar = formData.get('user_avatar');
+  let serverResponse;
+
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+  pb.authStore.loadFromCookie(authCookie);
+
+  const validatedUsername = usernameType.safeParse(formData.get('username'));
+  if (
+    !pb.authStore.isValid ||
+    !pb.authStore.model ||
+    !validatedUsername.success
+  ) {
+    return { ok: false, level: 'NONE' };
+  }
+
+  const updatedUser: EditedUserProfile = {
+    username: validatedUsername.data,
+  };
+
+  if (formdataFieldIsFile(avatar) && avatar.size !== 0) {
+    const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
+
+    if (!allowedTypes.includes(avatar.type))
+      return { ok: false, level: 'AVATAR' };
+
+      console.log(avatar);
+      
+
+    updatedUser.avatar = avatar ?? null;
+  }
+
+  try {
+    await pb.collection('users').update(pb.authStore.model.id, updatedUser);
+    serverResponse = { ok: true, level: 'FIRST' };
+  } catch (error) {
+    serverResponse = { ok: false, level: 'FIRST' };
+  }
+
+  if (pb.authStore.model.email === email) return serverResponse;
+
+  const validatedEmail = emailType.safeParse(email);
+
+  if (!validatedEmail.success) return { ok: false, level: 'EMAIL_VALIDATION' };
+
+  try {
+    await pb.collection('users').requestEmailChange(validatedEmail.data);
+    serverResponse = { ok: true, level: 'SECOND' };
+  } catch (error) {
+    serverResponse = { ok: false, level: 'SECOND' };
+  }
+
+  return serverResponse;
 };
