@@ -85,7 +85,7 @@ function ShareOnSocialMedia({
           <div className="flex gap-10">
             <Link
               href={`https://t.me/share/url?url=${shareUrl}&text=${shareTitle}`}
-              className="flex flex-col items-center hover:opacity-[.7]"
+              className="flex flex-col items-center reactiveButton"
             >
               <Image
                 className="inline-block"
@@ -96,7 +96,7 @@ function ShareOnSocialMedia({
             </Link>
             <Link
               href={`whatsapp://send/?text=${shareTitle}%20${shareUrl}`}
-              className="flex flex-col items-center hover:opacity-[.7]"
+              className="flex flex-col items-center reactiveButton"
             >
               <Image
                 className="inline-block"
@@ -107,7 +107,7 @@ function ShareOnSocialMedia({
             </Link>
             <Link
               href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
-              className="flex flex-col items-center hover:opacity-[.7]"
+              className="flex flex-col items-center reactiveButton"
             >
               <Image
                 className="inline-block"
@@ -118,7 +118,7 @@ function ShareOnSocialMedia({
             </Link>
             <Link
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
-              className="flex flex-col items-center hover:opacity-[.7]"
+              className="flex flex-col items-center reactiveButton"
             >
               <Image
                 className="inline-block"

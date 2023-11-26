@@ -13,13 +13,13 @@ export const getCookie = (name: string): string | null => {
 };
 
 export const deleteCookie = (name: string): void => {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;`;
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Strict;`;
 };
 
 export const addCookie = (newCookie: string) => {
   const currentCookies = document.cookie;
 
   document.cookie = currentCookies
-    ? `${currentCookies}; ${newCookie} SameSite=Lax; Secure;`
+    ? `${currentCookies}; ${newCookie} SameSite=Strict; Secure;`
     : newCookie;
 };
