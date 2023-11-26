@@ -36,28 +36,12 @@ export interface AuthenticatedUser {
   avatar?: string;
 }
 
-/**
- * General Shape For Postgresql Errors -- NOT ACCURATE AT ALL LMAO
- */
-export interface PGError {
-  length: number;
-  name: string;
-  severity: string;
-  code: string;
-  constraint: string;
-  detail?: string;
-  schema?: string;
-  table?: string;
-  file?: string;
-  line?: string;
-  routine?: string;
-  [key: string]: any;
-}
-
-type PGErrorConstraint = Partial<PGError> & { constraint: string };
-
-export const isPGConstraintError = (e: anyObj): e is PGErrorConstraint => {
-  return typeof e === 'object' && 'constraint' in e;
+export const formdataFieldIsFile = (value: any): value is File => {
+  if (typeof value === 'object' && value !== null && 'size' in value) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 /**
@@ -243,4 +227,13 @@ export interface PaginationProps {
   // perPage: number;
   // totalItems: number;
   totalPages: number;
+}
+
+/**
+ * User Profile Info Edit Section
+ */
+export interface EditedUserProfile {
+  username: string | null;
+  email?: string;
+  avatar?: File;
 }
