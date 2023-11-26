@@ -20,6 +20,20 @@ function UserProfile() {
   const router = useRouter();
   const pathName = usePathname();
 
+  let signinHref: string;
+  let signupHref: string;
+
+  const protectedRoute = pathName.startsWith('/user/');
+  const authRoute = pathName.startsWith('/sign-');
+
+  if (authRoute) {
+    signinHref = '/sign-in';
+    signupHref = '/sign-up';
+  } else {
+    signinHref = `/sign-in?next=${pathName}`;
+    signupHref = `/sign-up?next=${pathName}`;
+  }
+
   const [userModal, setUserModal] = useState(false);
   const [authed, setAuthed] = useState(pb.authStore.isValid);
 
@@ -96,13 +110,16 @@ function UserProfile() {
                   />
 
                   <ProfileMenuLink
-                    href="#"
+                    href=""
                     icon={logout}
                     title="خروج از حساب کاربری"
                     subtitle="به صورت کامل از حساب کاربری خود خارج شوید."
                     onClick={() => {
                       pb.authStore.clear();
                       deleteCookie('pb_auth');
+
+                      if (protectedRoute) return router.push('/sign-in');
+
                       router.refresh();
                     }}
                   />
@@ -111,22 +128,14 @@ function UserProfile() {
                 <div className="py-5 text-center text-white">
                   <p className="mb-10">شما وارد حساب کاربری خود نشده اید!</p>
                   <Link
-                    href={
-                      pathName !== '/sign-up' && pathName !== '/sign-in'
-                        ? `/sign-up?next=${pathName}`
-                        : '/sign-up'
-                    }
-                    className="ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
+                    href={signupHref}
+                    className="reactiveButton ml-5 rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3"
                   >
                     ثبت نام
                   </Link>
                   <Link
-                    href={
-                      pathName !== '/sign-up' && pathName !== '/sign-in'
-                        ? `/sign-in?next=${pathName}`
-                        : '/sign-in'
-                    }
-                    className="rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3 hover:opacity-[.7]"
+                    href={signinHref}
+                    className="reactiveButton rounded-lg bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] p-3"
                   >
                     ورود
                   </Link>
