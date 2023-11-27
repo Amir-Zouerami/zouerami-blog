@@ -213,6 +213,23 @@ export interface userActivity {
 }
 
 /**
+ * NEWSLETTER
+ */
+export interface Newsletter {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  user: string;
+  advertisement: boolean;
+  messages: boolean;
+  createdAt: string;
+  UpdatedAt: string;
+  expand?: {
+    user_id?: User;
+  };
+}
+
+/**
  * Search Parameters
  */
 export interface searchParams {

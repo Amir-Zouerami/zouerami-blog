@@ -166,9 +166,6 @@ export const editProfileInfo = async (
     if (!allowedTypes.includes(avatar.type))
       return { ok: false, level: 'AVATAR' };
 
-      console.log(avatar);
-      
-
     updatedUser.avatar = avatar ?? null;
   }
 
@@ -193,4 +190,43 @@ export const editProfileInfo = async (
   }
 
   return serverResponse;
+};
+
+// ------------------- EDIT USER NEWSLETTER ---------------------
+
+export const editNewsletterInfo = async (
+  formData: FormData,
+  authCookie: string,
+  updated: boolean,
+  id: string
+) => {
+  const advertisement = formData.get('advertisement');
+  const messages = formData.get('messages');
+
+  if (!updated) return { ok: false, level: 'NO_CHANGE' };
+
+  const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+  pb.authStore.loadFromCookie(authCookie);
+
+  const newData = {
+    user: pb.authStore.model?.id,
+    advertisement: advertisement ? true : false,
+    messages: messages ? true : false,
+  };
+
+  if (id !== '') {
+    try {
+      await pb.collection('newsletter').update(id, newData);
+      return { ok: true, level: 'UPDATE' };
+    } catch (error) {
+      return { ok: false, level: 'UPDATE' };
+    }
+  }
+
+  try {
+    pb.collection('newsletter').create(newData);
+    return { ok: true, level: 'CREATE' };
+  } catch (error) {
+    return { ok: false, level: 'CREATE' };
+  }
 };
