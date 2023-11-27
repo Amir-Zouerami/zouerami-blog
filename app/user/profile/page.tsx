@@ -6,11 +6,11 @@ import { useLayoutEffect, useState } from 'react';
 import Pocketbase from 'pocketbase';
 import { User } from '@/utility/types';
 import loading from '@/icons/loading.svg';
-import { notFound, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { editProfileInfo } from '@/utility/actions';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import UserSecurity from '@/components/userProfile/UserSecurity';
+import UserNotification from '@/components/userProfile/UserNotification';
 
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
@@ -51,12 +51,12 @@ function Page() {
     <div className="mx-auto mt-20 flex items-center justify-center lg:max-w-[1000px]">
       <div className="rounded-3xl bg-[#cbdad5] p-5 dark:bg-[#19222b] lg:w-[700px]">
         <div className="mb-16 flex flex-col justify-between px-5 pt-10">
-          <h1 className="py-5 text-3xl font-bold text-[#5b5b5b] dark:text-white">
+          <h1 className="py-4 text-3xl font-bold text-[#5b5b5b] dark:text-white">
             تنظیمات حساب کاربری
           </h1>
-          <p className="text-[#5b5b5b] dark:text-white">
-            جهت هرگونه ویرایش اطلاعات حساس، حتما باید رمز عبور خود را ارائه
-            نمایید.
+          <p className="text-justify leading-9 text-[#5b5b5b] dark:text-white">
+            در این صفحه به تمامی تنظیمات و اطلاعات حساب کاربری خود دسترسی داشته
+            و می توانید آن ها را ویرایش کنید.
           </p>
         </div>
 
@@ -116,14 +116,14 @@ function Page() {
                   width={50}
                   alt="تا بارگذاری صفحه منتظر باشید..."
                 />
-                <span className="">لطفا تا بارگذاری صفحه منتظر باشید...</span>
+                <span>لطفا تا بارگذاری صفحه منتظر باشید...</span>
               </div>
             ) : activeTab === 'USER_INFO' ? (
               <UserProfileInfo />
             ) : activeTab === 'USER_PRIVACY' ? (
               <UserSecurity />
             ) : activeTab === 'USER_NOTIFICATIONS' ? (
-              'NOTIFICATION'
+              <UserNotification />
             ) : (
               ''
             )}
@@ -134,13 +134,13 @@ function Page() {
           <button
             type="submit"
             form="editUserProfileForm"
-            className="rounded-2xl bg-[#ea777b] p-5 font-bold text-white dark:bg-[#d89c38] max-lg:ml-3 lg:ml-10"
+            className="reactiveButton rounded-2xl bg-[#ea777b] p-5 font-bold text-white dark:bg-[#d89c38] max-lg:ml-3 lg:ml-10"
           >
             ذخیره تنظیمات
           </button>
           <Link
             href={'/'}
-            className="rounded-2xl bg-[#5b5b5b] p-5 font-bold text-white dark:bg-[#3289b3]"
+            className="reactiveButton rounded-2xl bg-[#5b5b5b] p-5 font-bold text-white dark:bg-[#3289b3]"
           >
             برگشت به صفحه ی اصلی
           </Link>
