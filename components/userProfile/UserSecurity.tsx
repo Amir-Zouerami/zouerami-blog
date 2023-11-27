@@ -5,6 +5,7 @@ import Pocketbase from 'pocketbase';
 import { useEffect, useState } from 'react';
 
 import loading from '@/icons/loading.svg';
+import toast from 'react-hot-toast';
 
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
@@ -36,7 +37,9 @@ function UserSecurity() {
         ) : (
           <>
             <div className="max-lg:flex max-lg:flex-col max-lg:gap-5">
-              <span className="font-bold">روش/روش‌های استفاده شده برای ثبت نام: </span>
+              <span className="font-bold">
+                روش/روش‌های استفاده شده برای ثبت نام:{' '}
+              </span>
               {(() => {
                 if (OAuthMethods.length === 0)
                   return (
@@ -101,47 +104,39 @@ function UserSecurity() {
             )}
 
             <div>
-              <form
-                id="editUserProfileForm"
-                action={async (rawFormData: FormData) => {
-                  console.log('ARRAY ', Array.from(rawFormData.entries()));
-                  console.log('LENGTH ', [...rawFormData.entries()].length);
-                }}
-              >
-                <div className="flex flex-col gap-5">
-                  <p className="text-lg">تغییر رمز عبور</p>
-
-                  <div>
-                    <label
-                      className="inline-block max-lg:mb-3 lg:ml-3"
-                      htmlFor="currentPassword"
-                    >
-                      رمز عبور فعلی:{' '}
-                    </label>
-                    <input
-                      className="w-[300px] rounded-3xl bg-[#cbdad5] p-3 text-black outline-none dark:bg-[#2f353c] dark:text-white max-lg:w-full"
-                      type="password"
-                      name="currentPassword"
-                      id="currentPassword"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      className="inline-block max-lg:mb-3 lg:ml-3"
-                      htmlFor="newPassword"
-                    >
-                      رمز عبور جدید:{' '}
-                    </label>
-                    <input
-                      className="w-[300px] rounded-3xl bg-[#cbdad5] p-3 text-black outline-none dark:bg-[#2f353c] dark:text-white max-lg:w-full"
-                      type="password"
-                      name="newPassword"
-                      id="newPassword"
-                    />
-                  </div>
-                </div>
-              </form>
+              <div>
+                <p className="mb-5 text-lg">تغییر رمز عبور</p>
+                <button
+                  className={`reactiveButton rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5
+                    font-bold text-white hover:cursor-pointer`}
+                  onClick={e => {
+                    if (pb.authStore.model && pb.authStore.isValid) {
+                      pb.collection('users')
+                        .requestPasswordReset(pb.authStore.model.email)
+                        .then(() => {
+                          return toast.success(
+                            'ایمیل حاوی لینک تغییر رمز عبور برایتان ارسال شد.',
+                            { id: 'SUCCESS_PASSWORD_RESET' }
+                          );
+                        })
+                        .catch(() => {
+                          return toast.error('درخواست شما با خطا مواجه شد!', {
+                            id: 'ERROR_PASSWORD_RESET',
+                          });
+                        });
+                    } else {
+                      return toast.error(
+                        'باید ابتدا وارد حساب کاربری خود شوید.',
+                        {
+                          id: 'ERROR_PASSWORD_RESET',
+                        }
+                      );
+                    }
+                  }}
+                >
+                  ارسال ایمیل تغییر رمز
+                </button>
+              </div>
             </div>
 
             <div>
@@ -159,8 +154,30 @@ function UserSecurity() {
                     ? 'حساب شما قبلا فعال شده است'
                     : 'برای ارسال ایمیل کلیک کنید'
                 }`}
-                onClick={e => {
-                  console.log(e);
+                onClick={async e => {
+                  if (pb.authStore.model && !pb.authStore.model.verified) {
+                    try {
+                      const res = await pb
+                        .collection('users')
+                        .requestVerification(pb.authStore.model.email);
+
+                      console.log('RESULT', res);
+
+                      return toast.success(
+                        'ایمیل فعال سازی برای شما ارسال شد.',
+                        {
+                          id: 'SUCCESS_EMAIL_CONFIRMATION_SENT',
+                        }
+                      );
+                    } catch (error) {
+                      return toast.error(
+                        'متاسفانه درخواست شما با خطا مواجه شد.',
+                        {
+                          id: 'ERROR_EMAIL_CONFIRMATION_SENT',
+                        }
+                      );
+                    }
+                  }
                 }}
               >
                 ارسال ایمیل فعال سازی
