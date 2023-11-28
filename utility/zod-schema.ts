@@ -84,7 +84,6 @@ export const signupUserSchema = z.object({
     .max(99, { message: 'ایمیل شما باید حداکثر ۹۹ حرفی باشد.' }),
   password: z
     .string()
-    .trim()
     .min(8, { message: 'رمز عبور باید حداقل ۸ حرفی باشد.' })
     .max(50, { message: 'رمز عبور باید حداکثر ۵۰ حرفی باشد.' }),
   // phone_number: z
