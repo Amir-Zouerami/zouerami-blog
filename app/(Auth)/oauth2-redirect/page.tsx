@@ -8,6 +8,7 @@ import { addCookie } from '@/utility/cookie';
 import Image from 'next/image';
 import loading from '@/icons/loading.svg';
 import checkmark from '@/icons/checkmark.svg';
+import Confetti from 'react-confetti';
 
 import toast, { Toaster } from 'react-hot-toast';
 import { toastOptions } from '@/utility/toast';
@@ -64,14 +65,6 @@ function Page() {
               : authData.meta.name.replace(/\s/g, '') +
                 Math.floor(1000 + Math.random() * 9000).toString();
 
-          console.log('META USERNAME: ', authData.meta.username);
-          console.log(
-            'META USERNAME 2: ',
-            authData.meta.name.replace(/\s/g, '') +
-              Math.floor(1000 + Math.random() * 9000).toString()
-          );
-          console.log('ALL IN ONE: ', username);
-
           await pb
             .collection('users')
             .update(authData.record.id, {
@@ -114,6 +107,7 @@ function Page() {
           </div>
         ) : (
           <>
+            <Confetti numberOfPieces={400} recycle={false} />
             <div className="flex items-center justify-center">
               <Image
                 src={checkmark}
