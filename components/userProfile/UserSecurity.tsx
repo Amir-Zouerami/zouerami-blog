@@ -161,8 +161,6 @@ function UserSecurity() {
                         .collection('users')
                         .requestVerification(pb.authStore.model.email);
 
-                      console.log('RESULT', res);
-
                       return toast.success(
                         'ایمیل فعال سازی برای شما ارسال شد.',
                         {
