@@ -61,11 +61,11 @@ function ProfileMotherComponent() {
         </div>
 
         <div>
-          <div className="pb-4">
+          <div className="flex max-lg:flex-col">
             <Link
               className={`${
                 activeTab === 'USER_INFO'
-                  ? 'profileActiveTab dark:profileActiveTabDark'
+                  ? 'profileActiveTab dark:profileActiveTabDark max-lg:order-3'
                   : 'text-[#5b5b5b] dark:text-white'
               } p-5 text-lg font-bold`}
               href={''}
@@ -79,7 +79,7 @@ function ProfileMotherComponent() {
             <Link
               className={`${
                 activeTab === 'USER_PRIVACY'
-                  ? 'profileActiveTab dark:profileActiveTabDark'
+                  ? 'profileActiveTab dark:profileActiveTabDark max-lg:order-3'
                   : 'text-[#5b5b5b] dark:text-white'
               } p-5 text-lg font-bold`}
               href={''}
@@ -88,12 +88,12 @@ function ProfileMotherComponent() {
                 setactiveTab('USER_PRIVACY');
               }}
             >
-              امنیت{' '}
+              امنیت و احراز هویت{' '}
             </Link>
             <Link
               className={`${
                 activeTab === 'USER_NOTIFICATIONS'
-                  ? 'profileActiveTab dark:profileActiveTabDark'
+                  ? 'profileActiveTab dark:profileActiveTabDark max-lg:order-3'
                   : 'text-[#5b5b5b] dark:text-white'
               } p-5 text-lg font-bold`}
               href={''}
@@ -102,12 +102,12 @@ function ProfileMotherComponent() {
                 setactiveTab('USER_NOTIFICATIONS');
               }}
             >
-              اطلاع رسانی{' '}
+              خبرنامه و اطلاع رسانی{' '}
             </Link>
           </div>
           <div
-            className="rounded-b-3xl rounded-tl-3xl border-[3px] border-dashed border-black bg-[#89a7b1]
-          px-5 py-10 dark:border-solid dark:border-[#d89c38] dark:bg-[#0f141a] lg:w-[800px]"
+            className="rounded-b-3xl border-[3px] border-dashed border-black bg-[#89a7b1] px-5
+          py-10 dark:border-solid dark:border-[#d89c38] dark:bg-[#0f141a] lg:w-[800px] lg:rounded-tl-3xl"
           >
             {!userData ? (
               <div className="flex items-center gap-5">
