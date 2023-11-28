@@ -65,7 +65,7 @@ function EmailChange({ token }: { token: string }) {
                 },
                 { id: 'EMAIL_CHANGED_SUCCESSFULLY' }
               )
-              .then(async data => {
+              .then(data => {
                 if (data) {
                   const newEmail = getTokenPayload(token).newEmail;
 
@@ -82,12 +82,19 @@ function EmailChange({ token }: { token: string }) {
                         return router.push('/user/profile');
                       }, 1000);
                     })
-                    .catch(() => router.push('/sign-in'));
+                    .catch(() =>
+                      toast.error('درخواست شما با خطا مواجه شد!', {
+                        id: 'GENERAL_ERROR',
+                      })
+                    );
                 }
               })
               .catch(_err => {
-                pb.authStore.clear();
-                return router.push('/sign-in');
+                // pb.authStore.clear();
+                // return router.push('/sign-in');
+                return toast.error('درخواست شما با خطا مواجه شد!', {
+                  id: 'GENERAL_ERROR',
+                });
               });
           }}
         >

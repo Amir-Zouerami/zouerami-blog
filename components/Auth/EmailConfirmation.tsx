@@ -59,7 +59,11 @@ function EmailConfirmation({ token }: { token: string }) {
                     return router.replace('/user/profile');
                   }, 500);
                 })
-                .catch(err => {});
+                .catch(err =>
+                  toast.error('درخواست شما با خطا مواجه شد!', {
+                    id: 'GENERAL_ERROR',
+                  })
+                );
             }}
           >
             تایید ایمیل
