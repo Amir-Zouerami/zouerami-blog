@@ -2,25 +2,16 @@
 export const fetchCache = 'default-no-store';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import Pocketbase, { getTokenPayload } from 'pocketbase';
 import toast, { Toaster } from 'react-hot-toast';
 import { deleteCookie } from '@/utility/cookie';
 
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
-function EmailChange() {
-  const [token, setToken] = useState('');
-  const searchParams = useSearchParams();
+function EmailChange({ token }: { token: string }) {
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useLayoutEffect(() => {
-    const token = searchParams.get('token');
-    if (token) setToken(token);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
