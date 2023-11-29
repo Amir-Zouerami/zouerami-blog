@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import { userActivity } from '@/utility/types';
 import toast from 'react-hot-toast';
+import ShareOnSocialMedia from './ShareOnSocialMedia';
+import Report from './Report';
 
 import heart from '@/icons/heart.svg';
 import share from '@/icons/share.svg';
 import bookmark from '@/icons/bookmark.svg';
 import comment from '@/icons/comment.svg';
 import report from '@/icons/report.svg';
-import ShareOnSocialMedia from './ShareOnSocialMedia';
-import Report from './Report';
 
 function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
   const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
@@ -49,7 +49,8 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
             liked: data.liked,
             bookmarked: data.bookmarked,
           }));
-        });
+        })
+        .catch(() => {})
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
