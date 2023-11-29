@@ -194,6 +194,14 @@ export interface CommentsAPIData {
 }
 
 /**
+ * posts Fetched From API
+ */
+export interface BlogPostAPIData {
+  ok: boolean;
+  data: { items: BlogPostData[] };
+}
+
+/**
  * USER ACTIVITY
  */
 export interface userActivity {

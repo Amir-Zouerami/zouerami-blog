@@ -1,19 +1,39 @@
 'use client';
 
+export const revalidate = 1800;
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { debounce } from '@/utility/utils';
 
 import search from '@/icons/search.svg';
+import { BlogPostAPIData, BlogPostData } from '@/utility/types';
 
 function SearchLink() {
   const [searchModal, setSearchModal] = useState(false);
-  const [searchText, setsearchText] = useState('');
+  const [allPosts, setAllPosts] = useState<
+    undefined | BlogPostData[] | false
+  >();
 
-  const debouncedSearchHandler = debounce((userSearchText: string) => {
-    setsearchText(userSearchText);
-  }, 300);
+  const debouncedSearchHandler = debounce(async (userSearchText: string) => {
+    try {
+      const apiResponse = await fetch('http://localhost:3000/api/get-posts', {
+        method: 'POST',
+        body: JSON.stringify({ title: userSearchText }),
+      });
+
+      const res: BlogPostAPIData = await apiResponse.json();
+
+      if (res.ok && res.data.items.length > 0) {
+        setAllPosts(res.data.items);
+      } else {
+        setAllPosts(false);
+      }
+    } catch (error) {
+      setAllPosts(false);
+    }
+  }, 500);
 
   const callBack = (e: KeyboardEvent) => {
     if (e.key === 'Escape') setSearchModal(false);
@@ -43,8 +63,6 @@ function SearchLink() {
       >
         <div className="flex h-full flex-col items-center justify-center">
           <div className="relative flex">
-            {/* TODO: DO WE WANT THE FORM TO BE SUBMITTABLE? (DEDICATED SEARCH PAGE?) */}
-            {/* <form action="" className="z-10"> */}
             <input
               onChange={e => {
                 debouncedSearchHandler(e.target.value);
@@ -55,57 +73,33 @@ function SearchLink() {
               id="search"
               placeholder="مطلب مورد نظرتان را جست و جو کنید..."
             />
-            {/* <input type="submit" hidden /> */}
-            {/* </form> */}
-
-            {/* <button className="absolute left-3 top-3 h-[30px] w-[30px] rounded-full bg-red-500 hover:cursor-pointer">
-              x
-            </button> */}
           </div>
 
           <div
             className={`${
-              searchText ? 'block' : 'hidden'
+              allPosts === undefined ? 'hidden' : 'block'
             } -mt-2 max-h-[350px] w-[300px] overflow-y-auto overscroll-none
-            rounded-bl-2xl rounded-br-2xl bg-white dark:bg-[#2b2a33] py-5 lg:w-[600px]`}
+            rounded-bl-2xl rounded-br-2xl bg-white py-5 dark:bg-[#2b2a33] lg:w-[600px]`}
           >
-            <Link
-              className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
-              href={'#'}
-            >
-              <p className="text-lg font-bold">{searchText}</p>
-              <p className="text-justify leading-7">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-              </p>
-            </Link>
-            <Link
-              className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
-              href={'#'}
-            >
-              <p className="text-lg font-bold">نتیجه ی دوم</p>
-              <p className="text-justify leading-7">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-              </p>
-            </Link>
-
-            <Link
-              className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
-              href={'#'}
-            >
-              <p className="text-lg font-bold">نتیجه ی دوم</p>
-              <p className="text-justify leading-7">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-                استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-                در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-              </p>
-            </Link>
+            {typeof allPosts === 'object' && allPosts.length > 0 ? (
+              allPosts.map(post => (
+                <Link
+                  key={post.id}
+                  className="my-3 inline-block px-3 py-2 hover:bg-gray-300 dark:hover:bg-slate-700"
+                  href={`/blog/${post.slug}`}
+                  onClick={() => setSearchModal(false)}
+                >
+                  <p className="text-lg font-bold">{post.title}</p>
+                  <p className="text-justify leading-7">{post.summary}</p>
+                </Link>
+              ))
+            ) : allPosts === false ? (
+              <div className="my-3 inline-block px-3 py-2 text-center">
+                <p>هیچ مطلبی پیدا نشد ...</p>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </div>
