@@ -1,16 +1,11 @@
 import dayjs from '@/utility/dayjs';
 
 import Image from 'next/image';
-import Link from 'next/link';
-
-import heart from '@/icons/heart.svg';
-import bookmark from '@/icons/bookmark.svg';
-import share from '@/icons/share.svg';
-import report from '@/icons/report.svg';
 import fire from '@/icons/fire.svg';
 import calender from '@/icons/calender.svg';
 import { ToFaNumbers, createFileURL, truncateSentence } from '@/utility/utils';
 import ReadMore from './ReadMore';
+import PostCardActions from './PostCardActions';
 
 export interface BlogPostCardData {
   id: string;
@@ -27,40 +22,8 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
   return (
     <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
       {/* TODO: How About a BG of #e1eae8 */}
-      <div className="col-span-12 my-auto hidden justify-center gap-10 px-5 lg:col-span-1  lg:mx-auto lg:flex lg:flex-col lg:px-0">
-        <Link href={'#'} className="svg-red mx-1">
-          <Image
-            src={heart}
-            width={35}
-            alt="like the post"
-            className="svg-current-color invert dark:invert-0"
-          />
-        </Link>
-        <Link href={'#'} className="svg-yellow mx-1">
-          <Image
-            src={bookmark}
-            width={35}
-            alt="bookmark the post"
-            className="svg-current-color invert dark:invert-0"
-          />
-        </Link>
-        <Link href={'#'} className="svg-blue mx-1">
-          <Image
-            src={share}
-            width={35}
-            alt="share the post"
-            className="svg-current-color invert dark:invert-0"
-          />
-        </Link>
-        <Link href={'#'} className="svg-orange mx-1">
-          <Image
-            src={report}
-            width={35}
-            alt="report the post"
-            className="svg-current-color invert dark:invert-0"
-          />
-        </Link>
-      </div>
+
+      <PostCardActions postId={post.id} title={post.title} slug={post.slug} />
 
       <div className="col-span-11 lg:col-span-6">
         <div className="pr-5 lg:p-0">
@@ -72,7 +35,6 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
             {truncateSentence(post.summary, 100)}
           </p>
         </div>
-
         <div className="flex items-center justify-between px-5">
           <ReadMore slug={post.slug} />
 
