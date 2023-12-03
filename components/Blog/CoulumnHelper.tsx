@@ -14,7 +14,7 @@ import heart from '@/icons/heart.svg';
 import share from '@/icons/share.svg';
 import bookmark from '@/icons/bookmark.svg';
 import comment from '@/icons/comment.svg';
-import report from '@/icons/report.svg';
+import bugReport from '@/icons/bug-report.svg';
 
 function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
   const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
@@ -336,7 +336,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               }}
             >
               <Image
-                src={report}
+                src={bugReport}
                 width={35}
                 alt="گزارش خطا در مقاله"
                 className="inline-block"
