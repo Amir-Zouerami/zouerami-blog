@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Pocketbase from 'pocketbase';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
-import { userActivity } from '@/utility/types';
+import { userInteraction } from '@/utility/types';
 import toast from 'react-hot-toast';
 import ShareOnSocialMedia from './ShareOnSocialMedia';
 import Report from './Report';
@@ -39,7 +39,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
   useEffect(() => {
     if (pb.authStore.isValid) {
       pb.collection('user_interaction')
-        .getFirstListItem<userActivity>(
+        .getFirstListItem<userInteraction>(
           pb.filter('post_id = {:postId}', { postId })
         )
         .then(data => {
@@ -96,7 +96,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                   try {
                     const { liked } = await pb
                       .collection('user_interaction')
-                      .update<userActivity>(userActivity.id, {
+                      .update<userInteraction>(userActivity.id, {
                         liked: !userActivity.liked,
                       });
 
@@ -113,7 +113,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                   try {
                     const { id, liked, bookmarked } = await pb
                       .collection('user_interaction')
-                      .create<userActivity>({
+                      .create<userInteraction>({
                         user_id: pb.authStore.model?.id,
                         post_id: postId,
                         liked: true,
@@ -137,7 +137,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                   try {
                     const { liked } = await pb
                       .collection('user_interaction')
-                      .update<userActivity>(userActivity.id, {
+                      .update<userInteraction>(userActivity.id, {
                         liked: !userActivity.liked,
                       });
 
@@ -220,7 +220,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                   try {
                     const { bookmarked } = await pb
                       .collection('user_interaction')
-                      .update<userActivity>(userActivity.id, {
+                      .update<userInteraction>(userActivity.id, {
                         bookmarked: !userActivity.bookmarked,
                       });
 
@@ -237,7 +237,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                   try {
                     const { id, liked, bookmarked } = await pb
                       .collection('user_interaction')
-                      .create<userActivity>({
+                      .create<userInteraction>({
                         user_id: pb.authStore.model?.id,
                         post_id: postId,
                         liked: false,
@@ -261,7 +261,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                   try {
                     const { bookmarked } = await pb
                       .collection('user_interaction')
-                      .update<userActivity>(userActivity.id, {
+                      .update<userInteraction>(userActivity.id, {
                         bookmarked: !userActivity.bookmarked,
                       });
 

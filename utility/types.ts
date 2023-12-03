@@ -204,7 +204,7 @@ export interface BlogPostAPIData {
 /**
  * USER ACTIVITY
  */
-export interface userActivity {
+export interface userInteraction {
   id: string;
   collectionId: string;
   collectionName: string;
