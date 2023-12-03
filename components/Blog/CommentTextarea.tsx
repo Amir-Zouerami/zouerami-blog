@@ -31,7 +31,7 @@ function CommentTextarea({ postId }: { postId: string }) {
               }}
               className={`rounded-2xl ${
                 activeTab === 'write' ? 'bg-[#e55287]' : null
-              } px-3 py-2 text-white reactiveButton`}
+              } reactiveButton px-3 py-2 text-white`}
             >
               نوشتن دیدگاه
             </button>
@@ -41,7 +41,7 @@ function CommentTextarea({ postId }: { postId: string }) {
               }}
               className={`mr-3 rounded-2xl px-3 py-2 ${
                 activeTab === 'preview' ? 'bg-[#e55287]' : null
-              } text-white reactiveButton`}
+              } reactiveButton text-white`}
             >
               پیش نمایش دیدگاه
             </button>
@@ -51,6 +51,7 @@ function CommentTextarea({ postId }: { postId: string }) {
         <div className="w-full">
           {activeTab === 'write' ? (
             <textarea
+              id="markdown-preview"
               className="mb-5 h-[300px] max-h-[500px] w-full rounded-t-xl bg-[#363943] p-3 leading-8  outline-none lg:h-[200px]"
               placeholder="نظر خود را در این بخش بنویسید (برخی از دستورات مارک داون محدود شده اند) ..."
               onChange={e => {
@@ -123,7 +124,7 @@ function CommentTextarea({ postId }: { postId: string }) {
               }}
               className={`${
                 isLoading ? 'hover:cursor-wait' : ''
-              } rounded-3xl bg-[darkcyan] px-5 py-2 text-white reactiveButton`}
+              } reactiveButton rounded-3xl bg-[darkcyan] px-5 py-2 text-white`}
             >
               {isLoading ? (
                 <Image
