@@ -81,13 +81,13 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
         >
           <div className="text-white hover:text-cyan-500">
             <Link
-              href={'#'}
+              href={''}
+              title="اضافه کردن به مقالات مورد علاقه"
               onClick={async e => {
                 e.preventDefault();
 
                 if (!pb.authStore.isValid) {
                   return toast.error('باید ابتدا وارد حساب کاربری خود شوید.', {
-                    position: 'top-center',
                     id: 'SING_IN_FIRST',
                   });
                 }
@@ -105,9 +105,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                       liked,
                     }));
                   } catch (error) {
-                    return toast.error('درخواست شما با خطا مواجه شد.', {
-                      position: 'top-center',
-                    });
+                    return toast.error('درخواست شما با خطا مواجه شد.', {});
                   }
                 }
 
@@ -131,9 +129,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
 
                     setShowConfetti(() => true);
                   } catch (error) {
-                    return toast.error('درخواست شما با خطا مواجه شد.', {
-                      position: 'top-center',
-                    });
+                    return toast.error('درخواست شما با خطا مواجه شد.', {});
                   }
                 }
 
@@ -152,9 +148,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
 
                     setShowConfetti(() => true);
                   } catch (error) {
-                    return toast.error('درخواست شما با خطا مواجه شد.', {
-                      position: 'top-center',
-                    });
+                    return toast.error('درخواست شما با خطا مواجه شد.', {});
                   }
                 }
               }}
@@ -162,7 +156,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               <Image
                 src={heart}
                 width={35}
-                alt="sample"
+                alt="اضافه کردن به مقالات مورد علاقه"
                 className={`${
                   userActivity.liked ? 'svg-liked' : ''
                 } inline-block`}
@@ -190,7 +184,8 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
 
           <div className="text-white hover:text-cyan-500">
             <Link
-              href={'#'}
+              href={''}
+              title="اشتراک گذاری مقاله"
               onClick={e => {
                 e.preventDefault();
                 setShareModalOpen(!shareModalOpen);
@@ -199,7 +194,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               <Image
                 src={share}
                 width={35}
-                alt="sample"
+                alt="اشتراک گذاری مقاله"
                 className="inline-block"
               />
               <span className="max-md:columnSpan desktopColumnSpan mr-2 max-md:hidden">
@@ -211,12 +206,12 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
           <div className="text-white hover:text-cyan-500">
             <Link
               href={'#'}
+              title="نشان کردن مقاله"
               onClick={async e => {
                 e.preventDefault();
 
                 if (!pb.authStore.isValid) {
                   return toast.error('باید ابتدا وارد حساب کاربری خود شوید.', {
-                    position: 'top-center',
                     id: 'REPORT_LOGGED_IN_ACC_ERR',
                   });
                 }
@@ -234,9 +229,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                       bookmarked,
                     }));
                   } catch (error) {
-                    return toast.error('درخواست شما با خطا مواجه شد.', {
-                      position: 'top-center',
-                    });
+                    return toast.error('درخواست شما با خطا مواجه شد.', {});
                   }
                 }
 
@@ -260,9 +253,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
 
                     setShowConfetti(() => true);
                   } catch (error) {
-                    return toast.error('درخواست شما با خطا مواجه شد.', {
-                      position: 'top-center',
-                    });
+                    return toast.error('درخواست شما با خطا مواجه شد.', {});
                   }
                 }
 
@@ -281,9 +272,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
 
                     setShowConfetti(() => true);
                   } catch (error) {
-                    return toast.error('درخواست شما با خطا مواجه شد.', {
-                      position: 'top-center',
-                    });
+                    return toast.error('درخواست شما با خطا مواجه شد.', {});
                   }
                 }
               }}
@@ -291,7 +280,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               <Image
                 src={bookmark}
                 width={35}
-                alt="sample"
+                alt="نشان کردن مقاله"
                 className={`${
                   userActivity.bookmarked ? 'svg-bookmarked' : ''
                 } inline-block`}
@@ -313,11 +302,15 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               });
             }}
           >
-            <a href={'#'} onClick={e => e.preventDefault()}>
+            <a
+              href={''}
+              title="رفتن به قسمت کامنت ها"
+              onClick={e => e.preventDefault()}
+            >
               <Image
                 src={comment}
                 width={35}
-                alt="sample"
+                alt="رفتن به قسمت کامنت ها"
                 className="inline-block"
               />
               <span className="max-md:columnSpan desktopColumnSpan mr-2 max-md:hidden">
@@ -328,7 +321,8 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
 
           <div className="text-white hover:text-cyan-500">
             <Link
-              href={'#'}
+              href={''}
+              title="گزارش خطا در مقاله"
               onClick={e => {
                 e.preventDefault();
                 if (pb.authStore.isValid && pb.authStore.model?.verified) {
@@ -336,7 +330,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
                 } else {
                   toast.error(
                     'برای انجام این عملیات باید حسابتان تایید شده باشد.',
-                    { position: 'top-center', id: 'REPORT_VERIFIED_ACC_ERR' }
+                    { id: 'REPORT_VERIFIED_ACC_ERR' }
                   );
                 }
               }}
@@ -344,7 +338,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
               <Image
                 src={report}
                 width={35}
-                alt="sample"
+                alt="گزارش خطا در مقاله"
                 className="inline-block"
               />
               <span className="max-md:columnSpan desktopColumnSpan mr-2 max-md:hidden">
