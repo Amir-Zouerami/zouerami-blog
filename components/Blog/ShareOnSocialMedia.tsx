@@ -15,12 +15,14 @@ import { useEffect } from 'react';
 function ShareOnSocialMedia({
   modalControl,
   title,
+  slug,
 }: {
   modalControl: { shareModalOpen: boolean; closeModal: () => void };
   title: string;
+  slug?: string;
 }) {
   const pathname = usePathname();
-  const shareUrl = encodeURI(`localhost:3000` + pathname);
+  const shareUrl = encodeURI(`localhost:3000` + (slug ?? pathname));
   const shareTitle = encodeURIComponent(title);
 
   useEffect(() => {
@@ -58,7 +60,7 @@ function ShareOnSocialMedia({
               dir="ltr"
               className="w-[200px] rounded-2xl bg-[#000000] px-5 py-3 outline-none lg:w-[500px]"
               readOnly
-              value={`localhost:3000` + pathname}
+              value={`localhost:3000` + (slug ?? pathname)}
             />
             <span>
               <Image
@@ -85,7 +87,7 @@ function ShareOnSocialMedia({
           <div className="flex gap-10">
             <Link
               href={`https://t.me/share/url?url=${shareUrl}&text=${shareTitle}`}
-              className="flex flex-col items-center reactiveButton"
+              className="reactiveButton flex flex-col items-center"
             >
               <Image
                 className="inline-block"
@@ -96,7 +98,7 @@ function ShareOnSocialMedia({
             </Link>
             <Link
               href={`whatsapp://send/?text=${shareTitle}%20${shareUrl}`}
-              className="flex flex-col items-center reactiveButton"
+              className="reactiveButton flex flex-col items-center"
             >
               <Image
                 className="inline-block"
@@ -107,7 +109,7 @@ function ShareOnSocialMedia({
             </Link>
             <Link
               href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
-              className="flex flex-col items-center reactiveButton"
+              className="reactiveButton flex flex-col items-center"
             >
               <Image
                 className="inline-block"
@@ -118,7 +120,7 @@ function ShareOnSocialMedia({
             </Link>
             <Link
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
-              className="flex flex-col items-center reactiveButton"
+              className="reactiveButton flex flex-col items-center"
             >
               <Image
                 className="inline-block"
@@ -129,7 +131,7 @@ function ShareOnSocialMedia({
             </Link>
           </div>
           <button
-            className="rounded-3xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-5 py-3"
+            className="reactiveButton rounded-3xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-5 py-3"
             onClick={modalControl.closeModal}
           >
             بستن این صفحه
