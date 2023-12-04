@@ -297,6 +297,16 @@ svg-orange:active {
   left: 300px;
 }
 
+/* ------------------ FIXING MARKDOWN TASK LISTS IN COMMENTS ------------------ */
+
+.contains-task-list li {
+  list-style: none;
+}
+
+.contains-task-list li input[type='checkbox'] {
+  vertical-align: middle;
+}
+
 /* ------------------ NO SCROLLBAR ------------------ */
 /* TODO: DOES NOT WORK (DISABLES SCROLLING ALTOGETHER*/
 /* .noscrollbar { */
