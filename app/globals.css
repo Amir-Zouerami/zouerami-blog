@@ -139,6 +139,16 @@ svg-orange:active {
     hue-rotate(200deg) brightness(86%) contrast(103%);
 }
 
+.svg-current-yellow {
+  filter: brightness(0) saturate(100%) invert(94%) sepia(78%) saturate(1495%)
+    hue-rotate(316deg) brightness(103%) contrast(98%);
+}
+
+.svg-current-red {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(79%) saturate(5829%)
+    hue-rotate(333deg) brightness(86%) contrast(101%);
+}
+
 .svg-current-color {
   filter: brightness(0) saturate(100%) invert(54%) sepia(8%) saturate(991%)
     hue-rotate(102deg) brightness(98%) contrast(86%);

@@ -194,6 +194,15 @@ export interface CommentsAPIData {
 }
 
 /**
+ * Comments Fetched From API
+ */
+export interface UserInteractionsAPIData {
+  ok: boolean;
+  totalPages: number;
+  data: { items: userInteraction[] };
+}
+
+/**
  * posts Fetched From API
  */
 export interface BlogPostAPIData {
