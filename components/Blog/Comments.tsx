@@ -151,7 +151,7 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
                   onClick={() => {
                     setPage(prev => prev + 1);
                   }}
-                  className="my-5 rounded-xl bg-[#4c585b] p-5 font-bold text-white"
+                  className="reactiveButton my-5 rounded-xl bg-[#4c585b] p-5 font-bold text-white"
                 >
                   بارگذاری کامنت های بیشتر
                 </button>
