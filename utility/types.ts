@@ -247,6 +247,23 @@ export interface Newsletter {
 }
 
 /**
+ * NOTIFICATIONS
+ */
+export interface NOTIFICATIONS {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  message: boolean;
+  receiver: 'GLOBAL' | 'USER_SPECIFIC';
+  user_id: string;
+  created: string;
+  updated: string;
+  expand?: {
+    user_id?: User;
+  };
+}
+
+/**
  * Search Parameters
  */
 export interface searchParams {
