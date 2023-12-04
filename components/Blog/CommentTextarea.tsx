@@ -11,14 +11,12 @@ import Pocketbase from 'pocketbase';
 import toast, { Toaster } from 'react-hot-toast';
 import { toastOptions } from '@/utility/toast';
 import loading from '@/icons/loading.svg';
-import { useRouter } from 'next/navigation';
 
 function CommentTextarea({ postId }: { postId: string }) {
   const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
   const [activeTab, setActiveTab] = useState<'write' | 'preview'>('write');
   const [commentContent, setCommentContent] = useState(``);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   return (
     <div className="w-full p-5">
@@ -62,7 +60,7 @@ function CommentTextarea({ postId }: { postId: string }) {
           ) : (
             <div
               id="rendered-markdown"
-              className="prose mb-5 h-[200px] min-w-full overflow-y-auto px-5 dark:prose-invert"
+              className="prose mb-5 h-[200px] min-w-full overflow-y-auto px-5 dark:prose-invert prose-table:text-center"
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
