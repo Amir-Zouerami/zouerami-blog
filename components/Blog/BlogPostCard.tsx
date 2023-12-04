@@ -18,7 +18,13 @@ export interface BlogPostCardData {
   viewcount: number;
 }
 
-function BlogPostCard({ post }: { post: BlogPostCardData }) {
+function BlogPostCard({
+  post,
+  priority,
+}: {
+  post: BlogPostCardData;
+  priority?: boolean;
+}) {
   return (
     <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
       {/* TODO: How About a BG of #e1eae8 */}
@@ -66,6 +72,7 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
           src={createFileURL(post.id, post.collectionId, post.cover)}
           width={400}
           height={400}
+          priority={priority ?? false}
           alt="sample post cover"
           className="h-full w-full rounded-t-2xl object-cover lg:rounded-l-2xl"
         />
