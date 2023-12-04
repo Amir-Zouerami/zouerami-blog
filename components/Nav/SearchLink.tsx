@@ -17,6 +17,8 @@ function SearchLink() {
   >();
 
   const debouncedSearchHandler = debounce(async (userSearchText: string) => {
+    if (userSearchText === '') return setAllPosts(false);
+
     try {
       const apiResponse = await fetch('http://localhost:3000/api/get-posts', {
         method: 'POST',
