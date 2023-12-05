@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 1800;
 
 import { NextRequest, NextResponse } from 'next/server';
 import { Comment } from '@/utility/types';
@@ -23,7 +23,7 @@ export const POST = async (request: NextRequest) => {
       cache: 'no-store',
     });
 
-    if (comments) {
+    if (comments.items.length > 0) {
       return NextResponse.json({
         ok: true,
         totalPages: comments.totalPages,
