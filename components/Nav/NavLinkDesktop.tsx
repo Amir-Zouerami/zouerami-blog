@@ -1,6 +1,5 @@
 'use client';
 
-import { log } from 'console';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
