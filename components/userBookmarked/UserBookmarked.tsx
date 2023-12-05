@@ -35,7 +35,6 @@ function UserBookmarked() {
           if (page >= userInteractionData.totalPages) setEnd(true);
 
           setLoading(false);
-          console.log(userInteractionData);
         })
         .catch(err => console.log(err));
     } else {
