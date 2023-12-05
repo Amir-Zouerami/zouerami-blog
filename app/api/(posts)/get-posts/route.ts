@@ -1,3 +1,5 @@
+export const revalidate = 1800;
+
 import { NextRequest, NextResponse } from 'next/server';
 import { BlogPostData } from '@/utility/types';
 import Pocketbase from 'pocketbase';
@@ -19,7 +21,7 @@ export const POST = async (request: NextRequest) => {
       fields: 'id, slug, title, summary',
     });
 
-    if (posts) {
+    if (posts.items.length > 0) {
       return NextResponse.json({
         ok: true,
         data: posts,
