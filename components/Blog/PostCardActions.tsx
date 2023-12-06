@@ -68,6 +68,7 @@ function PostCardActions({
       {showConfetti ? (
         <Confetti
           recycle={false}
+          height={3000}
           onConfettiComplete={() => {
             setShowConfetti(false);
           }}
