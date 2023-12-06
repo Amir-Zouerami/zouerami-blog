@@ -317,20 +317,6 @@ svg-orange:active {
   vertical-align: middle;
 }
 
-/* ------------------ NO SCROLLBAR ------------------ */
-/* TODO: DOES NOT WORK (DISABLES SCROLLING ALTOGETHER*/
-/* .noscrollbar { */
-/* Internet Explorer 10+ */
-/* -ms-overflow-style: none; */
-/* Firefox */
-/* scrollbar-width: none; */
-
-/* Safari and Chrome */
-/* &::-webkit-scrollbar { */
-/* display: none; */
-/* } */
-/* } */
-
 /* ------------------ SVG CUSTOM COLORING USING TAILWIND `dark:` MODIFIER --> https://stackoverflow.com/a/69602689/13218429 ------------------ */
 
 .dark {

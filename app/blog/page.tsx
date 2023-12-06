@@ -1,6 +1,4 @@
-// TODO: ONLY FOR DEVELOPMENT
-// export const revalidate = 1800;
-export const fetchCache = 'default-no-store';
+export const revalidate = 1800;
 
 import { Metadata } from 'next';
 import { BlogPostData } from '@/utility/types';

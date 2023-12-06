@@ -64,7 +64,7 @@ function SingleComment({
         </div>
       </div>
 
-      {/* TODO: MAYBE RESPONDING TO COMMENTS ...? */}
+      {/* MAYBE RESPONDING TO COMMENTS IN THE FUTURE ...? */}
       {/* <div className="mt-5">
         <button
           onClick={() => {

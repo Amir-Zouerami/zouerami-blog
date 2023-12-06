@@ -17,7 +17,6 @@ function BlogPostStructure({
   );
 
   useEffect(() => {
-    // TODO: Hover Not Working!
     const rootDiv = document.createElement('div');
     rootDiv.innerHTML = article_headlines;
 
