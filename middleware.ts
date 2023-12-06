@@ -14,27 +14,28 @@ export function middleware(request: NextRequest) {
   /**
    * RATE LIMITS THE API REQS - USES IP ADDRESS
    */
-  if (pathName.startsWith('/api/')) {
-    if (!request.ip) {
-      return NextResponse.json(
-        { ok: false, error: 'ACCESS_DENIED: NO IP ADDRESS' },
-        { status: 403 }
-      );
-    }
+  // TODO: UNCOMMENT THIS IN PRODUCTION
+  // if (pathName.startsWith('/api/')) {
+  //   if (!request.ip) {
+  //     return NextResponse.json(
+  //       { ok: false, error: 'ACCESS_DENIED: NO IP ADDRESS' },
+  //       { status: 403 }
+  //     );
+  //   }
 
-    const maxReq = 5;
-    const key = request.ip;
-    const hits = store.increment(key);
+  //   const maxReq = 5;
+  //   const key = request.ip;
+  //   const hits = store.increment(key);
 
-    if (hits > maxReq) {
-      return NextResponse.json(
-        { ok: false, error: 'TOO_MANY_REQUESTS' },
-        { status: 429, headers: [['Retry-After', '10']] }
-      );
-    } else {
-      return NextResponse.next();
-    }
-  }
+  //   if (hits > maxReq) {
+  //     return NextResponse.json(
+  //       { ok: false, error: 'TOO_MANY_REQUESTS' },
+  //       { status: 429, headers: [['Retry-After', '10']] }
+  //     );
+  //   } else {
+  //     return NextResponse.next();
+  //   }
+  // }
   // JUST AN EXAMPLE FOR LATER USE
   // return NextResponse.json(
   //   { ok: false, error: 'TOO_MANY_REQUESTS' },
