@@ -3,8 +3,6 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import Pocketbase from 'pocketbase';
 
-// TODO: CHECK AUTH IF USER OWNS THIS SHIT!?
-
 export const POST = async (request: NextRequest) => {
   try {
     const { userId, page } = await request.json();
