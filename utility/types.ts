@@ -264,6 +264,24 @@ export interface NOTIFICATIONS {
 }
 
 /**
+ * PROJECTS
+ */
+export interface PROJECT {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  title: string;
+  summary: string;
+  cover: string;
+  alt: string;
+  technical_documentation: string;
+  demo: string | undefined;
+  github: string | undefined;
+  created: string;
+  updated: string;
+}
+
+/**
  * Search Parameters
  */
 export interface searchParams {

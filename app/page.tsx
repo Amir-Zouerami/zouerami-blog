@@ -6,16 +6,30 @@ import NewsLetter from '@/components/NewsLetter/NewsLetter';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import Pocketbase from 'pocketbase';
 
 import arrow from '@/icons/arrow.svg';
 import suitMe from '@/public/suitMe.png';
+import { PROJECT } from '@/utility/types';
 
 export const metadata: Metadata = {
   title: 'امیر زوارمی برنامه نویس و طراح وب',
   description: "Amir Zouerami's blog, a web developer & web designer",
 };
 
-export default function Home() {
+export default async function Home() {
+  let projects;
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    projects = await pb
+      .collection('projects')
+      .getFullList<PROJECT>({ filter: 'featured = true' });
+  } catch (error) {}
+
+  // if (projects && projects.length > 0) {
+  //   throw new Error('NO FEATURED projects!');
+  // }
+
   return (
     <>
       <section className="md:mb-50 fadeInDown mx-auto mb-24 grid max-w-[1200px] grid-cols-1 items-center justify-items-center md:gap-10 lg:grid-cols-12 2xl:mt-16">
@@ -44,9 +58,15 @@ export default function Home() {
           پــــروژه هــای مــــن
         </p>
 
-        <Project />
-        <Project />
-        <Project />
+        {projects === undefined ? (
+          <div className="my-20 text-center text-lg font-bold">
+            <p>متاسفانه خطایی در دریافت داده ها رخ داده است.</p>
+          </div>
+        ) : (
+          projects.map(project => (
+            <Project key={project.id} project={project} />
+          ))
+        )}
 
         <div className="btn-container overflow-hidden rounded-lg text-center">
           <div className="arrow-container bg-[#396b5e] bg-gradient-to-l dark:bg-[#61a290]">
