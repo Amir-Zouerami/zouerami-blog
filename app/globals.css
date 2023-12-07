@@ -482,6 +482,24 @@ svg-orange:active {
   }
 }
 
+/* CURSOR EFFECT */
+
+.blinking-cursor {
+  animation: blink-animation 1s infinite; /* Adjust animation duration as needed */
+}
+
+@keyframes blink-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* ------------------ PAGE ERROR 500 & 400 HERE ------------------ */
 
 @keyframes blink-fancy {
