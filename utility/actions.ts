@@ -9,6 +9,7 @@ import {
 import Pocketbase from 'pocketbase';
 import {
   AuthenticatedUser,
+  BlogPostData,
   EditedUserProfile,
   PBSignupError,
   formdataFieldIsFile,
@@ -228,5 +229,53 @@ export const editNewsletterInfo = async (
     return { ok: true, level: 'CREATE' };
   } catch (error) {
     return { ok: false, level: 'CREATE' };
+  }
+};
+
+// ------------------- ADVANCED BLOG SEARCH ---------------------
+export const searchBlogs = async (rawFormData: FormData) => {
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    const searchString = rawFormData.get('searchString');
+    if (searchString === '') return { ok: false, data: 'SEARCH_FIELD_EMPTY' };
+    const articleCategory = rawFormData.get('article_category');
+    const articleDifficulty = rawFormData.get('article_difficulty');
+    const translatedDifficulty =
+      articleDifficulty === 'NOVICE'
+        ? 'مبتدی'
+        : articleDifficulty === 'INTERMEDIATE'
+        ? 'متوسط'
+        : articleDifficulty === 'ADVANCED'
+        ? 'پیشرفته'
+        : '';
+
+    let userSearch = 'title ~ {:searchString}';
+    if (articleCategory !== '')
+      userSearch += ' && post_categories.category ?= {:articleCategory}';
+    if (articleDifficulty !== '')
+      userSearch += ' && skill_level = {:articleDifficulty}';
+
+    const filterString = pb.filter(userSearch, {
+      searchString,
+      articleCategory: articleCategory ?? null,
+      articleDifficulty: translatedDifficulty ?? null,
+    });
+
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+
+    const posts = await pb.collection('posts').getList<BlogPostData>(1, 10, {
+      filter: filterString,
+      expand: 'post_categories',
+      fields:
+        'id, title, slug, summary, cover, collectionId, viewcount, updated, skill_level, expand',
+      skipTotal: true,
+    });
+
+    return { ok: true, data: posts.items };
+  } catch (error) {
+    return { ok: false, data: 'UNKNOWN_ERROR' };
   }
 };

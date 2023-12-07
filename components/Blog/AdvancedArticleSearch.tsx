@@ -1,84 +1,68 @@
-import React from 'react';
+'use client';
+
+import { PostCategory } from '@/utility/types';
+import Pocketbase from 'pocketbase';
+import { useEffect, useState } from 'react';
+
+const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
 function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
-  {
-    /* TODO: ADVANCED SEARCH NOT COMPLETED */
-  }
+  const [categories, setCategories] = useState<PostCategory[]>([]);
+
+  useEffect(() => {
+    pb.collection('categories')
+      .getFullList<PostCategory>()
+      .then(categoryArray => {
+        setCategories(() => categoryArray);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div
       className={`${
         modalState ? 'block' : 'hidden'
-      } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-scroll rounded-b-lg
-      bg-gradient-to-r from-[#2c343e] to-[#4a5561] p-5 text-center text-white hover:cursor-not-allowed lg:max-h-max`}
+      } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-auto rounded-b-lg
+      bg-gradient-to-r from-[#2c343e] to-[#4a5561] p-5 text-center text-white lg:max-h-max`}
     >
-      <div className="mb-10 flex flex-col gap-3 lg:block">
-        <p className="mb-5">زمان انتشار مقاله:</p>
-        <button
-          type="button"
-          className="rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
-        >
-          ۱۴۰۳/۳/۱۳
-        </button>
-        <span className="mx-10 font-black">تا</span>
-        <button
-          type="button"
-          className="rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
-        >
-          ۱۴۰۳/۵/۱۳
-        </button>
-      </div>
-
-      <div className="mb-10 ">
-        <p className="mb-5">دسته بندی مقاله:</p>
-        <button
-          type="button"
-          className="rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
-        >
-          انتخاب دسته بندی ها
-        </button>
-      </div>
-
       <div className="mb-10">
-        <p className="mb-5">نوع مقاله:</p>
-
-        <button
-          type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
+        <p className="mb-5">دسته بندی مقاله:</p>
+        <select
+          className={`${
+            categories.length <= 0 ? 'hover:cursor-not-allowed' : ''
+          } rounded-xl bg-[#252836] px-5 py-3 font-bold text-white`}
+          name="article_category"
+          id="article_category"
+          defaultValue={''}
+          disabled={categories.length <= 0 ? true : false}
         >
-          تک قسمتی
-        </button>
-
-        <button
-          type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
-        >
-          چند قسمتی
-        </button>
+          <option value={''}>دسته بندی مقاله را انتخاب کنید</option>
+          {categories.length > 0 ? (
+            categories.map(category => (
+              <option key={category.id} value={category.category}>
+                {category.category}
+              </option>
+            ))
+          ) : (
+            <option value={''}>دسته‌بندی‌ها غیرفعال هستند.</option>
+          )}
+        </select>
       </div>
 
-      <div className="flex flex-col gap-3 lg:block">
+      <div className="flex flex-col items-center gap-3 pb-5 lg:block">
         <p className="mb-5">سطح مقاله:</p>
-        <button
-          type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
-        >
-          مبتدی
-        </button>
 
-        <button
-          type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
+        <select
+          className="rounded-xl bg-[#252836] px-5 py-3 font-bold text-white"
+          name="article_difficulty"
+          id="article_difficulty"
+          defaultValue={''}
         >
-          متوسط
-        </button>
-
-        <button
-          type="button"
-          className="mx-3 rounded-xl bg-[#252836] px-5 py-3 reactiveButton"
-        >
-          پیشرفته
-        </button>
+          <option value={''}>سطح مقاله را انتخاب کنید</option>
+          <option value={'NOVICE'}>مبتدی</option>
+          <option value={'INTERMEDIATE'}>متوسط</option>
+          <option value={'ADVANCED'}>پیشرفته</option>
+        </select>
       </div>
     </div>
   );
