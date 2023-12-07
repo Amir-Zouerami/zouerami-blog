@@ -107,6 +107,7 @@ export interface BlogPostData {
   post_categories: string[];
   skill_level: 'مبتدی' | 'متوسط' | 'پیشرفته';
   cover: string;
+  cover_alt: string;
   article_headlines: string;
   summary: string;
   content: string;

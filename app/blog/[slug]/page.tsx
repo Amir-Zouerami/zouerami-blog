@@ -1,6 +1,3 @@
-// TODO: CLEAN UP
-// export const dynamic = 'force-dynamic';
-// export const fetchCache = 'default-no-store';
 export const revalidate = 1800;
 
 import Image from 'next/image';
@@ -29,7 +26,6 @@ const getPosts = cache(async (postSlug: string) => {
     await pb.admins.authWithPassword(
       process.env.PB_ADMIN_EM as string,
       process.env.PB_ADMIN_PS as string
-      // { next: { revalidate: 3600 } }
     );
 
     post = await pb
@@ -37,9 +33,8 @@ const getPosts = cache(async (postSlug: string) => {
       .getFirstListItem<BlogPostData>(
         pb.filter('slug = {:slug}', { slug: postSlug }),
         {
-          expand: 'post_categories, comments, comments.user_id',
+          expand: 'post_categories',
           skipTotal: true,
-          // next: { revalidate: 3600 },
         }
       );
 
@@ -57,6 +52,7 @@ export async function generateMetadata({
 
   return {
     title: post.title,
+    // TODO: GENERATE METADATA ?
     // openGraph: {
     //   images: ['/some-specific-page-image.jpg', ...previousImages],
     // },
@@ -98,7 +94,7 @@ async function page({ params }: SingleBlogPostParam) {
           src={createFileURL(post.id, post.collectionId, post.cover)}
           width={900}
           height={450}
-          alt="blog post cover"
+          alt={post.cover_alt}
           className="h-full w-full rounded-3xl object-cover"
         />
       </div>
