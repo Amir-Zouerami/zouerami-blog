@@ -97,22 +97,22 @@ function SearchArticlesDropDown() {
 
       {posts.length > 0 ? (
         <div
-          className="fixed bottom-0 left-0 right-0 top-0 z-20 flex min-h-[100vh] min-w-[100vw] flex-col
-        items-center overflow-y-auto overscroll-none bg-[#293036] bg-opacity-[0.8] p-5"
+          className="fixed bottom-0 left-0 right-0 top-0 z-20 flex flex-col
+        items-center overflow-y-auto overscroll-none bg-[#293036] bg-opacity-[0.95] p-5 dark:bg-opacity-[0.8]"
         >
-          <p className="mb-10 mt-5 text-lg font-bold">
+          <p className="mb-10 mt-5 text-lg font-bold text-white">
             حداکثر نتایج نشان داده شده{' '}
             <span className="text-red-500">۱۰ عدد</span> است.
           </p>
 
           <button
-            className="mb-10 rounded-xl bg-red-400 px-3 py-2 font-bold"
+            className="mb-10 rounded-xl bg-red-400 px-3 py-2 font-bold text-white"
             onClick={() => setPosts([])}
           >
             X بستن صفحه
           </button>
 
-          <div className="flex max-h-96 flex-col lg:flex-row lg:flex-wrap">
+          <div className="flex max-h-96 flex-col text-white lg:flex-row lg:flex-wrap">
             {posts.map(post => (
               <div
                 key={post.id}
@@ -121,7 +121,18 @@ function SearchArticlesDropDown() {
                 <p className="text-lg font-semibold">{post.title}</p>
                 <div className="flex flex-col gap-5 lg:flex-row">
                   <p className="mr-5 inline-block">
-                    سطح مقاله: {post.skill_level}
+                    سطح مقاله:{' '}
+                    <span
+                      className={
+                        post.skill_level === 'مبتدی'
+                          ? 'text-green-500'
+                          : post.skill_level === 'متوسط'
+                          ? 'text-yellow-500'
+                          : 'text-red-500'
+                      }
+                    >
+                      {post.skill_level}
+                    </span>
                   </p>
                   <p className="mr-5 inline-block">
                     دسته بندی:{' '}
