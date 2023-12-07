@@ -8,15 +8,15 @@ import { createFileURL, truncateSentence } from '@/utility/utils';
 
 function Project({ project }: { project: PROJECT }) {
   return (
-    <div className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 dark:bg-[#424551] lg:flex-row">
-      <div className="flex w-full rounded-3xl lg:max-w-[400px]">
+    <div className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 dark:bg-[#424551] lg:h-[300px] lg:flex-row">
+      <div className="flex h-full w-full rounded-3xl lg:w-[500px]">
         <Image
           src={createFileURL(project.id, project.collectionId, project.cover)}
           width={0}
           height={0}
           sizes="100vw"
           alt={project.alt}
-          className="w-full rounded-3xl"
+          className="h-full w-full rounded-3xl object-cover"
         />
       </div>
 
@@ -31,7 +31,7 @@ function Project({ project }: { project: PROJECT }) {
         <div className="mt-5 text-center">
           <div className="flex flex-wrap items-center justify-between gap-5 lg:justify-end">
             <Link
-              href={project.technical_documentation}
+              href={`http://localhost:3000/portfolio/${project.slug}`}
               className="reactiveButton inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all
               dark:bg-[#e25687] lg:flex-none"
             >
@@ -48,8 +48,9 @@ function Project({ project }: { project: PROJECT }) {
 
             <Link
               href={project.github}
-              className="reactiveButton inline-block w-full rounded-[10px] bg-[#1f2124] bg-gradient-to-l from-[#5D4954] to-[#DC8B83] px-4
-             py-3 text-white transition-all dark:from-[#a67fbe] dark:to-[#51b6af] lg:w-auto"
+              target="_blank"
+              className="reactiveButton textproject.technical_documentation-white inline-block w-full rounded-[10px] bg-[#1f2124] bg-gradient-to-l from-[#5D4954] to-[#DC8B83]
+             px-4 py-3 transition-all dark:from-[#a67fbe] dark:to-[#51b6af] lg:w-auto"
             >
               <Image
                 src={GitHub}
