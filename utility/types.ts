@@ -277,7 +277,7 @@ export interface PROJECT {
   alt: string;
   technical_documentation: string;
   demo: string | undefined;
-  github: string | undefined;
+  github: string;
   created: string;
   updated: string;
 }

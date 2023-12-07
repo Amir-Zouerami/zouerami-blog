@@ -38,7 +38,7 @@ function Project({ project }: { project: PROJECT }) {
             </Link>
 
             <Link
-              href={project.demo ?? ''}
+              href={project.demo ?? project.github}
               className="reactiveButton inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all
               dark:bg-[#e25687] lg:flex-none"
             >
@@ -46,7 +46,7 @@ function Project({ project }: { project: PROJECT }) {
             </Link>
 
             <Link
-              href={project.github ?? ''}
+              href={project.github}
               className="reactiveButton inline-block w-full rounded-[10px] bg-[#1f2124] bg-gradient-to-l from-[#5D4954] to-[#DC8B83] px-4
              py-3 text-white transition-all dark:from-[#a67fbe] dark:to-[#51b6af] lg:w-auto"
             >
