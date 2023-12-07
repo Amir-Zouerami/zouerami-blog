@@ -14,7 +14,7 @@ function Event({
         <span dangerouslySetInnerHTML={{ __html: title }}></span>
       </div>
       <p
-        className="text-justify leading-relaxed text-gray-400"
+        className="text-justify leading-relaxed dark:text-gray-400"
         dangerouslySetInnerHTML={{ __html: text }}
       ></p>
     </div>
