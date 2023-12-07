@@ -9,13 +9,14 @@ import { createFileURL, truncateSentence } from '@/utility/utils';
 function Project({ project }: { project: PROJECT }) {
   return (
     <div className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 dark:bg-[#424551] lg:flex-row">
-      <div className="flex rounded-3xl lg:max-w-[400px]">
+      <div className="flex w-full rounded-3xl lg:max-w-[400px]">
         <Image
           src={createFileURL(project.id, project.collectionId, project.cover)}
-          width={400}
-          height={300}
+          width={0}
+          height={0}
+          sizes="100vw"
           alt={project.alt}
-          className="rounded-3xl object-cover"
+          className="w-full rounded-3xl"
         />
       </div>
 

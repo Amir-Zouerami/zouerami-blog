@@ -31,7 +31,7 @@ function Card() {
 
       <div className="my-14 text-center">
         <Link
-          className=" reactiveButton rounded-md bg-[#1f2124] px-10 py-5 font-bold text-white dark:bg-[#e25687]"
+          className=" reactiveButton inline-block max-w-full rounded-md bg-[#1f2124] px-10 py-5 font-bold text-white dark:bg-[#e25687]"
           href={'#'}
         >
           مشاهده اخبار بیشتر
