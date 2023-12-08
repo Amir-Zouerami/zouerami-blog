@@ -96,7 +96,7 @@ function UserProfile() {
                   <hr className="py-2" />
 
                   <ProfileMenuLink
-                    href="/user/messages"
+                    href="/user/notifications"
                     icon={messages}
                     title="پیام ها و اعلانات"
                     subtitle="پیام های خود را در این بخش مشاهده کنید."
