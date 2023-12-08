@@ -4,6 +4,11 @@ import { ThemeProviders } from './themeProvider';
 import Navbar from '@/components/Nav/Navbar';
 import Footer from '@/components/Footer/Footer';
 import { JotaiProviders } from './jotaiProvider';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('http://localhost:3000'),
+};
 
 export default function RootLayout({
   children,
