@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   title: 'مقالات برنامه نویسی امیر زوارمی',
   description:
     'web development & programming articles published by Amir Zouerami',
+  openGraph: {
+    title: 'مقالات برنامه نویسی امیر زوارمی',
+    description: 'مجموعه ای از مقالات برنامه برنامه نویسی و دنیای تکنولوژی',
+    images: ['/social-preview-for-blog.webp'],
+    url: '/blog',
+    type: 'website',
+    locale: 'fa_IR',
+  },
 };
 
 async function page({

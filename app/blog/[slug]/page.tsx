@@ -52,10 +52,17 @@ export async function generateMetadata({
 
   return {
     title: post.title,
-    // TODO: GENERATE METADATA ?
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      images: [createFileURL(post.id, post.collectionId, post.cover)],
+      url: `/blog/${post.slug}`,
+      type: 'article',
+      locale: 'fa_IR',
+      authors: 'امیر زوارمی',
+      publishedTime: `${post.updated}`,
+    },
   };
 }
 
