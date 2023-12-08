@@ -13,9 +13,20 @@ function BlogHeading({
   href: string;
 }) {
   return (
-    <a href={href} id={`${id ?? null}`}>
-      <Image width={20} src={link} alt="" className="ml-2 inline-block" />
-      <h2 className="my-10 inline-block text-3xl font-black">{children}</h2>
+    <a className="flex" href={href} id={`${id ?? null}`}>
+      <Image
+        // This abomination of a code is because of next.js. @see: https://stackoverflow.com/a/73618982/13218429
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: '20px', height: 'auto' }}
+        src={link}
+        alt=""
+        className="ml-2 inline-block"
+      />
+      <h2 className="my-10 inline-block text-2xl font-black md:text-3xl">
+        {children}
+      </h2>
     </a>
   );
 }
