@@ -92,8 +92,12 @@ async function page({ params }: SingleBlogPostParam) {
       <div className="relative mx-auto max-w-[900px]">
         <Image
           src={createFileURL(post.id, post.collectionId, post.cover)}
-          width={900}
-          height={450}
+          // This abomination of a code is because of next.js. @see: https://stackoverflow.com/a/73618982/13218429
+          width={0}
+          height={0}
+          sizes="100vw"
+          // this prevents layout shift (knowing image size in advance)
+          style={{ width: '900', height: '450' }}
           alt={post.cover_alt}
           className="h-full w-full rounded-3xl object-cover"
         />
