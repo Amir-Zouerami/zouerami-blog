@@ -45,10 +45,15 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.summary,
-    // TODO: GENERATE METADATA ?
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      images: [createFileURL(project.id, project.collectionId, project.cover)],
+      url: `/portfolio/${project.slug}`,
+      type: 'article',
+      locale: 'fa_IR',
+      authors: 'امیر زوارمی',
+    },
   };
 }
 
