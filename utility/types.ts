@@ -272,11 +272,12 @@ export interface PROJECT {
   collectionId: string;
   collectionName: string;
   title: string;
+  slug: string;
   summary: string;
   cover: string;
   alt: string;
-  technical_documentation: string;
-  demo: string | undefined;
+  content: string;
+  demo?: string;
   github: string;
   created: string;
   updated: string;
