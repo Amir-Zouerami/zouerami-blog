@@ -76,7 +76,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
       )}
       <div className="flex items-center justify-center">
         <div
-          className="md:desktopColumnHelper max-md:columnHelper fixed bottom-3 flex justify-center gap-8 rounded-3xl
+          className="md:desktopColumnHelper max-md:columnHelper fixed bottom-3 z-[20] flex justify-center gap-8 rounded-3xl
         bg-[#1E1F25] p-5 font-bold max-md:flex-row md:flex-col lg:bottom-auto lg:right-10 lg:top-[50%]"
         >
           <div className="text-white hover:text-cyan-500">
