@@ -1,7 +1,7 @@
 export const revalidate = 1800;
 
 import { Metadata } from 'next';
-import { BlogPostData } from '@/utility/types';
+import { BlogPostData, PROJECT } from '@/utility/types';
 
 import Pagination from '@/components/pagination/Pagination';
 import ArticleSearchSection from '@/components/Blog/ArticleSearchSection';
@@ -21,6 +21,23 @@ export const metadata: Metadata = {
     locale: 'fa_IR',
   },
 };
+
+// export async function generateStaticParams() {
+//   let allProjects: PROJECT[];
+
+//   try {
+//     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+
+//     allProjects = await pb.collection('projects').getFullList<PROJECT>();
+
+//     return allProjects.map(project => ({
+//       slug: project.slug,
+//     }));
+//   } catch (error) {
+//     console.log('generateStaticParams for projects failed', error);
+//     throw new Error('generateStaticParams for projects failed');
+//   }
+// }
 
 async function page({
   searchParams,
