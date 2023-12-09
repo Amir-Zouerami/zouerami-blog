@@ -21,12 +21,12 @@ function Attention({ children, type }: AttentionProps) {
       <div className="mb-5 flex items-center justify-center lg:m-0">
         <Image
           src={type === 'ALERT' ? danger : pen}
-          width={90}
+          width={72}
           alt={type === 'ALERT' ? 'warning' : 'important note'}
           className="lg:w-72"
         />
 
-        <p className="text-5xl text-white font-black lg:hidden">
+        <p className="text-4xl font-black text-white lg:hidden lg:text-5xl">
           {type === 'ALERT' ? 'هشـــدار!' : 'نکــــــته!'}
         </p>
       </div>
