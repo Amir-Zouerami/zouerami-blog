@@ -16,7 +16,7 @@ interface SingleBlogPostParam {
   params: { slug: string };
 }
 
-const getPosts = cache(async (postSlug: string) => {
+const getPost = cache(async (postSlug: string) => {
   let post: BlogPostData;
 
   try {
@@ -45,10 +45,23 @@ const getPosts = cache(async (postSlug: string) => {
   }
 });
 
+const incCounter = async (postId: string) => {
+  try {
+    const response = await fetch('http://localhost:3000/api/incCounter', {
+      method: 'POST',
+      body: JSON.stringify({ postId }),
+    });
+    const json = await response.json();
+    return json.newView;
+  } catch (error) {
+    console.log('ERROR INCREMENTING THE VIEW COUNT FOR POST: ', error);
+  }
+};
+
 export async function generateMetadata({
   params,
 }: SingleBlogPostParam): Promise<Metadata> {
-  let post: BlogPostData = await getPosts(params.slug);
+  let post: BlogPostData = await getPost(params.slug);
 
   return {
     title: post.title,
@@ -92,7 +105,8 @@ export async function generateMetadata({
 
 async function page({ params }: SingleBlogPostParam) {
   const { slug } = params;
-  let post: BlogPostData = await getPosts(slug);
+  let post: BlogPostData = await getPost(slug);
+  const freshViews = await incCounter(post.id);
 
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">
@@ -115,7 +129,7 @@ async function page({ params }: SingleBlogPostParam) {
       <BlogPostHeader
         title={post.title}
         article_version={post.article_version}
-        viewcount={post.viewcount}
+        viewcount={freshViews}
         categories={post.expand.post_categories}
         skill_level={post.skill_level}
         updated={post.updated}
