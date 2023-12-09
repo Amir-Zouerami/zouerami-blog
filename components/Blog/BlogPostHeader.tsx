@@ -16,7 +16,9 @@ function BlogPostHeader({
 }: BlogPostHeaderProps) {
   return (
     <div className="mt-20">
-      <h1 className="pr-3 text-3xl font-black">{title}</h1>
+      <h1 className="pr-3 text-3xl font-black leading-9 lg:text-4xl">
+        {title}
+      </h1>
       <span className="!transition-all hover:!text-teal-400"></span>
 
       <div className="my-10 flex flex-col items-center justify-between lg:mx-40 lg:flex-row">
@@ -46,7 +48,7 @@ function BlogPostHeader({
                 key={postCategory.id}
                 href={`/blog?category=${postCategory.category}`}
               >
-                <span className="mx-1 rounded-lg bg-slate-600 px-2 py-1 text-white transition-all hover:bg-orange-400">
+                <span className="mx-1 rounded-lg bg-[#e25687] px-2 py-1 text-white transition-all hover:bg-orange-400 dark:bg-slate-600">
                   {postCategory.category}
                 </span>
               </Link>

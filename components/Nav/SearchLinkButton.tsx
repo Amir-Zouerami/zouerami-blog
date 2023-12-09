@@ -10,7 +10,7 @@ import { debounce } from '@/utility/utils';
 import search from '@/icons/search.svg';
 import { BlogPostAPIData, BlogPostData } from '@/utility/types';
 
-function SearchLink() {
+function SearchLinkButton() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [searchModal, setSearchModal] = useState(false);
   const [allPosts, setAllPosts] = useState<
@@ -128,4 +128,4 @@ function SearchLink() {
   );
 }
 
-export default SearchLink;
+export default SearchLinkButton;

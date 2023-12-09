@@ -12,7 +12,7 @@ function NavMenu() {
   const [modal, setModal] = useState(false);
 
   return (
-    <div className="relative p-4 lg:hidden">
+    <div className="p-4 lg:hidden">
       <Link
         href={'#'}
         className=""
@@ -44,7 +44,11 @@ function NavMenu() {
             setModal(!modal);
           }}
         >
-          <div className="absolute top-5 min-w-[93vw] rounded-lg bg-slate-700 text-center text-white dark:bg-slate-600">
+          <div
+            className="absolute top-5 min-w-[93vw] rounded-lg bg-white p-5 text-center opacity-[0.95] shadow-2xl
+          dark:bg-slate-600 dark:bg-gradient-to-r dark:from-[#293036] dark:to-[#424b56] dark:text-white dark:opacity-[1]
+          dark:shadow-none"
+          >
             <ul className="flex flex-col gap-7 px-5 py-10">
               <NavLinkMobile href="/">صفحه اصلی</NavLinkMobile>
               <NavLinkMobile href="/blog">بلاگ</NavLinkMobile>

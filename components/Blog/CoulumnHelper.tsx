@@ -77,9 +77,9 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
       <div className="flex items-center justify-center">
         <div
           className="md:desktopColumnHelper max-md:columnHelper fixed bottom-3 z-[20] flex justify-center gap-8 rounded-3xl
-        bg-[#1E1F25] p-5 font-bold max-md:flex-row md:flex-col lg:bottom-auto lg:right-10 lg:top-[50%]"
+        bg-[#2f4f4f] p-5 font-bold dark:bg-[#1E1F25] max-md:flex-row md:flex-col lg:bottom-auto lg:right-10 lg:top-[50%]"
         >
-          <div className="text-white hover:text-cyan-500">
+          <div className="text-white hover:text-gray-300 dark:hover:text-cyan-500">
             <Link
               href={''}
               title="اضافه کردن به مقالات مورد علاقه"
@@ -182,7 +182,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
             ''
           )}
 
-          <div className="text-white hover:text-cyan-500">
+          <div className="text-white hover:text-gray-300 dark:hover:text-cyan-500">
             <Link
               href={''}
               title="اشتراک گذاری مقاله"
@@ -203,7 +203,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
             </Link>
           </div>
 
-          <div className="text-white hover:text-cyan-500">
+          <div className="text-white hover:text-gray-300 dark:hover:text-cyan-500">
             <Link
               href={'#'}
               title="نشان کردن مقاله"
@@ -294,7 +294,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
           </div>
 
           <div
-            className="text-white hover:text-cyan-500"
+            className="text-white hover:text-gray-300 dark:hover:text-cyan-500"
             onClick={() => {
               window.scrollTo({
                 top: document.getElementById('commentsModal')!.offsetTop - 300,
@@ -319,7 +319,7 @@ function CoulumnHelper({ postId, title }: { postId: string; title: string }) {
             </a>
           </div>
 
-          <div className="text-white hover:text-cyan-500">
+          <div className="text-white hover:text-gray-300 dark:hover:text-cyan-500">
             <Link
               href={''}
               title="گزارش خطا در مقاله"

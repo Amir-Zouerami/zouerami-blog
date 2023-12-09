@@ -31,15 +31,15 @@ function BlogPostStructure({
         onClick={() => {
           setStructureModal(!structureModal);
         }}
-        className="mb-3 rounded-xl bg-[#3b404b] p-5"
+        className="mb-3 rounded-xl bg-[#b2c6cc] p-5 dark:bg-[#3b404b]"
       >
         <Image
           src={fingerTap}
           width={25}
           alt="see article headlines and structure"
-          className="inline text-white"
+          className="svg-current-gray inline text-white dark:filter-none"
         />
-        <span className="text-white"> ساختار و سرتیتر های مقاله: </span>
+        <span className="dark:text-white"> ساختار و سرتیتر های مقاله: </span>
       </p>
 
       {structureModal && (

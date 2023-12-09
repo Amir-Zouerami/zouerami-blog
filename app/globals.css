@@ -149,6 +149,16 @@ svg-orange:active {
     hue-rotate(333deg) brightness(86%) contrast(101%);
 }
 
+.svg-current-black {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(4%) saturate(2%)
+    hue-rotate(83deg) brightness(99%) contrast(100%);
+}
+
+.svg-current-gray {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(2%) saturate(10%)
+    hue-rotate(314deg) brightness(98%) contrast(95%);
+}
+
 .svg-current-color {
   filter: brightness(0) saturate(100%) invert(54%) sepia(8%) saturate(991%)
     hue-rotate(102deg) brightness(98%) contrast(86%);
@@ -239,7 +249,7 @@ svg-orange:active {
 }
 
 .activeDesktop {
-  @apply rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white hover:opacity-[0.8] dark:bg-[#e25687];
+  @apply rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-black hover:opacity-[0.8] dark:bg-[#e25687] dark:text-white;
 }
 
 /* ------------------ Prevent sticky hover effect after a touch (mobile devices) ------------------ */

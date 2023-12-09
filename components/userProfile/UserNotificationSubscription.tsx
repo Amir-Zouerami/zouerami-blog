@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
-function UserNotification() {
+function UserNotificationSubscription() {
   const [notification, setNotification] = useState({
     id: '',
     advertisement: false,
@@ -153,4 +153,4 @@ function UserNotification() {
   );
 }
 
-export default UserNotification;
+export default UserNotificationSubscription;

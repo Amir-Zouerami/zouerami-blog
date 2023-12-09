@@ -26,9 +26,10 @@ function BlogPostCard({
   priority?: boolean;
 }) {
   return (
-    <div className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] dark:bg-gradient-to-r dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white lg:max-w-[1000px] lg:grid-cols-12">
-      {/* TODO: How About a BG of #e1eae8 */}
-
+    <div
+      className="mx-auto mb-16 grid max-w-[97%] rounded-2xl bg-[#f1f5f9] shadow-2xl shadow-gray-400 dark:bg-gradient-to-r
+    dark:from-[#4C4F61] dark:to-[#4C4F61] dark:text-white dark:shadow-none lg:max-w-[1000px] lg:grid-cols-12"
+    >
       <PostCardActions postId={post.id} title={post.title} slug={post.slug} />
 
       <div className="col-span-11 lg:col-span-6">

@@ -1,6 +1,5 @@
 'use client';
 
-import { log } from 'console';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -19,7 +18,7 @@ function NavLink({ children, href }: NavLink) {
         href={href}
         className={`${
           pathName === href ? 'activeMobile' : ''
-        } mr-0 rounded-[10px] px-4 py-2 font-semibold reactiveButton`}
+        } reactiveButton mr-0 rounded-[10px] px-4 py-2 font-semibold`}
       >
         {children}
       </Link>

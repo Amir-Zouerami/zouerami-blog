@@ -24,10 +24,13 @@ function ProfileMenuLink({
           src={icon}
           style={{ width: '35px', height: '35px' }}
           alt="see your liked articles"
+          className="svg-current-gray dark:filter-none"
         />
         <div className="mr-3">
-          <p className="font-bold text-white">{title}</p>
-          <p className="py-1 text-sm text-gray-400">{subtitle}</p>
+          <p className="font-bold text-[#464646] dark:text-white">{title}</p>
+          <p className="py-1 text-sm text-[#4a4a4a] dark:text-gray-400">
+            {subtitle}
+          </p>
         </div>
       </Link>
     </div>

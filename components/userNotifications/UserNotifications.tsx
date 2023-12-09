@@ -61,7 +61,7 @@ function UserNotifications() {
                     <p className="py-2">
                       {new Date(notif.created).toLocaleDateString('fa')}
                     </p>
-                    <p className="text-justify">{notif.message}</p>
+                    <p className="px-2 text-justify">{notif.message}</p>
                   </div>
                 );
               }

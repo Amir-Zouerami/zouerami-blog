@@ -18,7 +18,7 @@ function ArticleSearchSection() {
               src={pen}
               width={25}
               alt="sort by release date (new)"
-              className="ml-2 inline-block"
+              className="svg-current-gray ml-2 inline-block dark:filter-none"
             />
 
             <span>آخرین ویرایش</span>
@@ -28,7 +28,7 @@ function ArticleSearchSection() {
               src={newBadge}
               width={25}
               alt="sort by most comments"
-              className="ml-2 inline-block"
+              className="svg-current-gray ml-2 inline-block dark:filter-none"
             />
 
             <span>آخرین انتشار</span>
@@ -40,7 +40,7 @@ function ArticleSearchSection() {
                 src={fire}
                 width={25}
                 alt="sort by highest view count"
-                className="ml-2 inline-block"
+                className="svg-current-gray ml-2 inline-block dark:filter-none"
               />
               <span className="lg:hidden">بیشترین تعداد بازدید</span>
               <span className="hidden lg:inline">بازدید ها</span>

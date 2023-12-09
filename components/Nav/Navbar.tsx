@@ -1,10 +1,11 @@
-import DarkMode from './DarkMode';
+import DarkModeButton from './DarkModeButton';
 
 import NavMenuMobile from './NavMenu';
 import NavLinkDesktop from './NavLinkDesktop';
-import SearchLink from './SearchLink';
-import UserProfile from './UserProfile';
+import SearchLinkButton from './SearchLinkButton';
+import UserProfileButton from './UserProfileButton';
 import Notify from './Notify';
+import UserProfileMenu from './UserProfileMenu';
 
 function Navbar() {
   return (
@@ -12,7 +13,8 @@ function Navbar() {
       <Notify />
 
       <nav className="sticky top-0 z-10 mx-auto max-w-[1200px] rounded-b-2xl bg-white dark:bg-[#31333c] lg:pt-5">
-        <div>
+        <div className="relative w-full">
+          <UserProfileMenu />
           <div className="flex items-center justify-between lg:mr-5">
             <NavMenuMobile />
 
@@ -25,9 +27,9 @@ function Navbar() {
             </ul>
 
             <div className="fix-hover flex gap-2 p-5 lg:gap-4">
-              <SearchLink />
-              <UserProfile />
-              <DarkMode />
+              <SearchLinkButton />
+              <UserProfileButton />
+              <DarkModeButton />
             </div>
           </div>
         </div>

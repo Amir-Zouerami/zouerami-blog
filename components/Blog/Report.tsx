@@ -33,14 +33,14 @@ function Report({
     <div
       className={`${
         modalControl.reportModalOpen ? 'shareArticleModalOpen' : ''
-      } absolute right-0 top-0 z-[99] flex h-[100%] w-[100%] items-center justify-center bg-[#293036] opacity-[.9]`}
+      } absolute right-0 top-0 z-[99] flex h-[100%] w-[100%] items-center justify-center bg-[#0b0b0b]/80`}
     >
       <div>
-        <h3 className="mb-10 px-5 text-center text-2xl font-black lg:text-3xl">
+        <h3 className="mb-10 px-5 text-center text-2xl font-black text-white lg:text-3xl">
           گزارش اشتباهات مقاله / مشکلات صفحه
         </h3>
 
-        <div className="flex flex-col items-center justify-center gap-10 text-lg lg:w-[900px]">
+        <div className="flex flex-col items-center justify-center gap-10 text-lg text-white lg:w-[900px]">
           <p className="text-sm">
             این درخواست برای هر پست فقط یک بار قابل ثبت بوده و امکان ویرایش
             ندارد. در نوشتار خود دقت داشته باشید.
@@ -55,14 +55,14 @@ function Report({
           />
           <div className="flex flex-col gap-10 lg:flex-row">
             <button
-              className="rounded-3xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-5 py-3 reactiveButton"
+              className="reactiveButton rounded-3xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% px-5 py-3"
               onClick={() => modalControl.closeModal()}
             >
               بستن این صفحه
             </button>
 
             <button
-              className="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-3 reactiveButton"
+              className="reactiveButton rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-5 py-3"
               onClick={async () => {
                 if (isReqSent)
                   return toast.error('لطفا تا پایان درخواست قبل صبر کنید.', {

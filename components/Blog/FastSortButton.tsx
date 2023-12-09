@@ -16,9 +16,9 @@ function FastSortButton({
     <Link
       href={sortIndex}
       className={`${
-        sortIndex === '?sort=views' ? 'w-full lg:mx-3 lg:w-auto' : ''
-      }  inline-block rounded-xl bg-gradient-to-r from-[#2c343e] to-[#4a5561] px-6 
-    py-3 text-white hover:opacity-[.6] dark:bg-[#4d5061] dark:from-[#4d5061] ${classes}`}
+        sortIndex === '?sort=views' && 'w-full lg:mx-3 lg:w-auto'
+      } reactiveButton inline-block rounded-xl  from-[#2c343e]  to-[#4a5561] px-6 py-3 text-[#505050] shadow-xl shadow-gray-300 
+     dark:bg-[#4d5061] dark:bg-gradient-to-r dark:from-[#4d5061] dark:text-white dark:shadow-none ${classes}`}
     >
       {children}
     </Link>

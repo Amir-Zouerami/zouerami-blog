@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
 import UserSecurity from '@/components/userProfile/UserSecurity';
-import UserNotification from '@/components/userProfile/UserNotification';
+import UserNotificationSubscription from '@/components/userProfile/UserNotificationSubscription';
 
 const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
@@ -123,7 +123,7 @@ function ProfileMotherComponent() {
             ) : activeTab === 'USER_PRIVACY' ? (
               <UserSecurity />
             ) : activeTab === 'USER_NOTIFICATIONS' ? (
-              <UserNotification />
+              <UserNotificationSubscription />
             ) : (
               ''
             )}

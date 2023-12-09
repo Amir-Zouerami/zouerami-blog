@@ -22,15 +22,17 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
     <div
       className={`${
         modalState ? 'block' : 'hidden'
-      } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-auto rounded-b-lg
-      bg-gradient-to-r from-[#2c343e] to-[#4a5561] p-5 text-center text-white lg:max-h-max`}
+      } absolute z-[1] mx-auto max-h-[400px] w-[100%] overflow-y-auto rounded-b-lg bg-white from-[#2c343e] to-[#4a5561]
+      p-5 text-center text-white opacity-[.9] shadow-2xl dark:bg-gradient-to-r dark:opacity-[1] lg:max-h-max`}
     >
       <div className="mb-10">
-        <p className="mb-5">دسته بندی مقاله:</p>
+        <p className="mb-5 font-semibold text-[#505050] dark:text-white">
+          دسته بندی مقاله:
+        </p>
         <select
           className={`${
             categories.length <= 0 ? 'hover:cursor-not-allowed' : ''
-          } rounded-xl bg-[#252836] px-5 py-3 font-bold text-white`}
+          } rounded-xl bg-[#252836] px-5 py-3 font-bold dark:text-white`}
           name="article_category"
           id="article_category"
           defaultValue={''}
@@ -50,7 +52,9 @@ function AdvancedArticleSearch({ modalState }: { modalState: boolean }) {
       </div>
 
       <div className="flex flex-col items-center gap-3 pb-5 lg:block">
-        <p className="mb-5">سطح مقاله:</p>
+        <p className="mb-5 font-semibold text-[#505050] dark:text-white">
+          سطح مقاله:
+        </p>
 
         <select
           className="rounded-xl bg-[#252836] px-5 py-3 font-bold text-white"

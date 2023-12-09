@@ -70,11 +70,13 @@ function SearchArticlesDropDown() {
             <input
               className={`${
                 articleSearchModal ? 'rounded-tr-2xl' : 'rounded-r-2xl'
-              } h-14 w-[100%] rounded-tr-2xl bg-gradient-to-r from-[#2c343e] to-[#4a5561]
-              px-3 text-white placeholder:text-white`}
+              } h-14 w-[100%] rounded-tr-2xl bg-[#f1f5f9] from-[#2c343e] to-[#4a5561] px-3 text-[#252836]
+              shadow-2xl shadow-gray-400 outline-none focus:shadow-blue-500 dark:bg-gradient-to-r dark:text-white
+              dark:shadow-none dark:placeholder:text-white`}
               placeholder="جست و جو در عنوان مقالات"
               name="searchString"
               value={searchString}
+              autoComplete="off"
               onChange={e => {
                 setSearchString(e.target.value);
               }}
@@ -84,8 +86,8 @@ function SearchArticlesDropDown() {
           </form>
 
           <button
-            className={`reactiveButton h-14 w-[15%] rounded-bl-2xl rounded-tl-2xl bg-[#2d4356]
-            font-black text-teal-400 dark:bg-[#2a2c39]`}
+            className={`reactiveButton h-14 w-[15%] rounded-bl-2xl rounded-tl-2xl bg-[#f1f5f9]
+            font-black text-blue-500  shadow-xl shadow-gray-400 dark:bg-[#2a2c39] dark:text-teal-400 dark:shadow-none`}
             onClick={() => {
               setArticleSearchModal(!articleSearchModal);
             }}

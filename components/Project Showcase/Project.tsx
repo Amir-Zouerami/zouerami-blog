@@ -8,7 +8,10 @@ import { createFileURL, truncateSentence } from '@/utility/utils';
 
 function Project({ project }: { project: PROJECT }) {
   return (
-    <div className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 dark:bg-[#424551] lg:h-[300px] lg:flex-row">
+    <div
+      className="mx-1 mb-20 flex flex-col items-center rounded-3xl bg-slate-100 shadow-2xl
+    shadow-gray-400 dark:bg-[#424551] dark:shadow-none lg:h-[300px] lg:flex-row"
+    >
       <div className="flex h-full w-full rounded-3xl lg:w-[500px]">
         <Image
           src={createFileURL(project.id, project.collectionId, project.cover)}
@@ -58,7 +61,7 @@ function Project({ project }: { project: PROJECT }) {
                 alt="Source code on GitHub"
                 className="inline invert"
               />
-              <span className=""> سورس کد</span>
+              <span className="text-white"> سورس کد</span>
             </Link>
           </div>
         </div>

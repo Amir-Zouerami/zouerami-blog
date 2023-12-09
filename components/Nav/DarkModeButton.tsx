@@ -10,7 +10,7 @@ import loading from '@/icons/loading.svg';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
-function DarkMode() {
+function DarkModeButton() {
   const { theme, setTheme } = useTheme();
 
   const [mounted, setMounted] = useState(false);
@@ -40,4 +40,4 @@ function DarkMode() {
   );
 }
 
-export default DarkMode;
+export default DarkModeButton;
