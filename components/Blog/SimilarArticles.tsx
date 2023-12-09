@@ -1,7 +1,6 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 1800;
 
 import Image from 'next/image';
-
 import Link from 'next/link';
 import Pocketbase from 'pocketbase';
 import { BlogPostData, PostCategory } from '@/utility/types';
@@ -20,7 +19,6 @@ async function SimilarArticles({ categories }: { categories: PostCategory[] }) {
     const { category } = categories[0];
 
     posts = await pb.collection('posts').getList<BlogPostData>(1, 2, {
-      cache: 'no-store',
       filter: pb.filter('post_categories.category ?= {:category}', {
         category,
       }),
