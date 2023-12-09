@@ -4,13 +4,14 @@ export const revalidate = 1800;
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { debounce } from '@/utility/utils';
 
 import search from '@/icons/search.svg';
 import { BlogPostAPIData, BlogPostData } from '@/utility/types';
 
 function SearchLink() {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [searchModal, setSearchModal] = useState(false);
   const [allPosts, setAllPosts] = useState<
     undefined | BlogPostData[] | false
@@ -42,12 +43,14 @@ function SearchLink() {
   };
 
   useEffect(() => {
+    if (searchModal && inputRef.current) {
+      inputRef.current.focus();
+    }
     document.addEventListener('keydown', callBack);
-
     return () => {
       document.removeEventListener('keydown', callBack);
     };
-  }, []);
+  }, [searchModal]);
 
   return (
     <>
@@ -64,11 +67,12 @@ function SearchLink() {
         }}
       >
         <div className="flex h-full flex-col items-center justify-center">
-          <div className="relative flex">
+          <div className="flex">
             <input
               onChange={e => {
                 debouncedSearchHandler(e.target.value);
               }}
+              ref={inputRef}
               className="w-[300px] rounded-xl px-5 py-5 font-bold lg:w-[600px]"
               type="text"
               name="search"
