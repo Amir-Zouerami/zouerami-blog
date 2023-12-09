@@ -1,3 +1,5 @@
+export const revalidate = 1800;
+
 import Card from '@/components/Card/Card';
 import Hero from '@/components/Hero/Hero';
 import Project from '@/components/Project Showcase/Project';
@@ -10,7 +12,7 @@ import Pocketbase from 'pocketbase';
 
 import arrow from '@/icons/arrow.svg';
 import suitMe from '@/public/suitMe.png';
-import { PROJECT } from '@/utility/types';
+import { BlogPostData, PROJECT } from '@/utility/types';
 
 export const metadata: Metadata = {
   title: 'امیر زوارمی برنامه نویس و طراح وب',
@@ -18,17 +20,26 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  let posts;
   let projects;
+
   try {
     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+
     projects = await pb
       .collection('projects')
       .getFullList<PROJECT>({ filter: 'featured = true' });
-  } catch (error) {}
 
-  // if (projects && projects.length > 0) {
-  //   throw new Error('NO FEATURED projects!');
-  // }
+    posts = await pb.collection('posts').getList<BlogPostData>(1, 2, {
+      filter: 'published = true',
+      sort: '-created',
+      skipTotal: true,
+    });
+  } catch (error) {}
 
   return (
     <>
@@ -70,12 +81,15 @@ export default async function Home() {
         )}
 
         <div className="btn-container max-w-full overflow-hidden rounded-lg text-center">
-          <div className="arrow-container bg-[#396b5e] bg-gradient-to-l dark:bg-[#61a290]">
-            <Image src={arrow} alt="arrow icon for 'portfolio' button" />
-          </div>
           <Link
-            href={'#'}
-            className="inline-block w-full rounded-lg bg-gradient-to-l from-[#333a47] to-[#2f7169] 
+            href={'/portfolio'}
+            className="arrow-container inline-block bg-[#396b5e] bg-gradient-to-l dark:bg-[#61a290]"
+          >
+            <Image src={arrow} alt="arrow icon for 'blog' button" />
+          </Link>
+          <Link
+            href={'/portfolio'}
+            className="LinkText inline-block w-full rounded-lg bg-gradient-to-l from-[#333a47] to-[#2f7169] 
             px-16 py-4 text-xl font-bold text-white dark:from-[#5ea38a] dark:to-[#beb262]"
           >
             لیست پروژه های دیگر
@@ -83,12 +97,37 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto my-16 grid max-w-[1000px] items-center justify-items-center lg:grid-cols-2">
-        <Card />
-        <Card />
+      <p className="mb-5 mt-32 text-center text-2xl font-bold text-slate-500 dark:text-[#acacac]">
+        آخرین مقالات منتشر شده
+      </p>
+
+      <section className="mx-auto mt-16 grid max-w-[1000px] items-center justify-items-center lg:grid-cols-2">
+        {posts === undefined ? (
+          <div className="my-20 text-center text-lg font-bold">
+            <p>متاسفانه خطایی در دریافت داده ها رخ داده است.</p>
+          </div>
+        ) : (
+          posts.items.map(post => <Card key={post.id} post={post} />)
+        )}
       </section>
 
-      <section className="mb-32 lg:my-40">
+      <div className="btn-container max-w-full overflow-hidden rounded-lg text-center">
+        <Link
+          href={'/blog'}
+          className="arrow-container inline-block bg-[#396b5e] bg-gradient-to-l dark:bg-[#61a290]"
+        >
+          <Image src={arrow} alt="arrow icon for 'blog' button" />
+        </Link>
+        <Link
+          href={'/blog'}
+          className="LinkText inline-block w-full rounded-lg bg-gradient-to-l from-[#333a47] to-[#2f7169] 
+            px-16 py-4 text-xl font-bold text-white dark:from-[#5ea38a] dark:to-[#beb262]"
+        >
+          مطالعه ی مقالات بیشتر
+        </Link>
+      </div>
+
+      <section className="mb-32 mt-32 lg:my-40">
         <NewsLetter />
       </section>
 

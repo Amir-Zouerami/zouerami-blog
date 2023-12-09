@@ -2,39 +2,37 @@ import Image from 'next/image';
 import newsRedis from '@/public/news-redis.jpg';
 import newsPostgres from '@/public/news-postgres.jpg';
 import Link from 'next/link';
+import { BlogPostData } from '@/utility/types';
+import { createFileURL, truncateSentence } from '@/utility/utils';
 
-function Card() {
+function Card({ post }: { post: BlogPostData }) {
   return (
-    // <div className="flex flex-col justify-center">
     <div className="p-5 xl:max-w-[80%]">
-      <p className="my-5 text-center text-2xl font-bold text-slate-500 dark:text-[#acacac]">
-        اخبار تکنولوژی
-      </p>
-
       <div className="min-w-52 mx-auto mb-5 overflow-hidden">
-        <Image src={newsPostgres} alt="news redis" className="rounded-2xl" />
+        <Image
+          src={createFileURL(post.id, post.collectionId, post.cover)}
+          alt={post.cover_alt}
+          width={0}
+          height={0}
+          sizes="100%"
+          className="w-full rounded-2xl"
+        />
       </div>
 
       <div className="my-8">
-        <h2 className="mb-3 text-xl font-bold leading-9">
-          ردیس حافظه ی خود را افزایش می دهد
-        </h2>
+        <h2 className="mb-3 text-xl font-bold leading-9">{post.title}</h2>
         <p className="text-justify leading-8 2xl:leading-10">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-          استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-          ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
-          کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی
-          در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می
-          طلبد.
+          {truncateSentence(post.summary, 63)}
         </p>
       </div>
 
       <div className="my-14 text-center">
         <Link
-          className=" reactiveButton inline-block max-w-full rounded-md bg-[#1f2124] px-10 py-5 font-bold text-white dark:bg-[#e25687]"
-          href={'#'}
+          className="reactiveButton inline-block max-w-full rounded-md bg-[#1f2124] px-10 py-5
+          font-bold text-white dark:bg-[#e25687]"
+          href={'http://localhost:3000/blog/' + post.slug}
         >
-          مشاهده اخبار بیشتر
+          مطالعه‌ی این مقاله
         </Link>
       </div>
     </div>
