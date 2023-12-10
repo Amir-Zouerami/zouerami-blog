@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PaginationProps } from '@/utility/types';
 
-function Pagination({ page, totalPages }: PaginationProps) {
+function Pagination({ page, totalPages, sort }: PaginationProps) {
   const renderPageNumbers = () => {
     const pageNumbers = [];
     const maxPagesDisplayed = 5;
@@ -17,7 +17,7 @@ function Pagination({ page, totalPages }: PaginationProps) {
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.unshift(
         <Link
-          href={i !== page ? `?page=${i}` : '#'}
+          href={i !== page ? `?page=${i}${sort ? `&${sort}` : ''}` : '#'}
           className={`${
             i === page ? 'pointer-events-none cursor-default' : ''
           }`}

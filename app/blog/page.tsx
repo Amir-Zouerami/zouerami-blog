@@ -46,22 +46,25 @@ async function page({
 }) {
   let posts;
   let currentPage = searchParams.page ? Number(searchParams.page) : 1;
+  let sortParam;
 
   try {
     let sortIndex;
-    // TODO: SECOND PAGE DOES NOT CONTAIN THE SORTING - PAGINATION TAKES OVER + CONSOLE.LOGS
 
     switch (searchParams.sort) {
       case 'views':
         sortIndex = '-views.views';
+        sortParam = 'sort=views';
         break;
 
       case 'lastUpdated':
         sortIndex = '-updated';
+        sortParam = 'sort=lastUpdated';
         break;
 
       case 'lastCreated':
         sortIndex = '+created';
+        sortParam = 'sort=lastCreated';
         break;
 
       default:
@@ -130,7 +133,11 @@ async function page({
       </div>
 
       <div>
-        <Pagination page={posts.page} totalPages={posts.totalPages} />
+        <Pagination
+          page={posts.page}
+          sort={sortParam}
+          totalPages={posts.totalPages}
+        />
       </div>
     </section>
   );

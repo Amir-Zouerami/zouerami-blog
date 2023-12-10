@@ -307,9 +307,8 @@ export interface searchParams {
  */
 export interface PaginationProps {
   page: number;
-  // perPage: number;
-  // totalItems: number;
   totalPages: number;
+  sort?: string;
 }
 
 /**
