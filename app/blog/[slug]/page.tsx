@@ -31,7 +31,7 @@ const getPost = cache(async (postSlug: string) => {
     post = await pb
       .collection('posts')
       .getFirstListItem<BlogPostData>(
-        pb.filter('slug = {:slug}', { slug: postSlug }),
+        pb.filter('slug = {:slug} && published = true', { slug: postSlug }),
         {
           expand: 'post_categories',
           skipTotal: true,
@@ -44,7 +44,7 @@ const getPost = cache(async (postSlug: string) => {
     throw new Error('cached getPosts func failed');
   }
 });
-
+// TODO: THIS UPDATES THE UPDATED COLUMN! NOW WHAT?
 const incCounter = async (postId: string) => {
   try {
     const response = await fetch('http://localhost:3000/api/incCounter', {
@@ -120,6 +120,7 @@ async function page({ params }: SingleBlogPostParam) {
           // this prevents layout shift (knowing image size in advance)
           style={{ width: '900', height: '450' }}
           alt={post.cover_alt}
+          priority
           className="h-full w-full rounded-3xl object-cover"
         />
       </div>
