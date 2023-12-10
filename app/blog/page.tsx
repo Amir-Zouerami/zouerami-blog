@@ -63,12 +63,12 @@ async function page({
         break;
 
       case 'lastCreated':
-        sortIndex = '+created';
+        sortIndex = '-created';
         sortParam = 'sort=lastCreated';
         break;
 
       default:
-        sortIndex = '+created';
+        sortIndex = '-created';
         break;
     }
 
@@ -98,7 +98,7 @@ async function page({
       sort: sortIndex,
       expand: 'views',
       fields:
-        'id, title, slug, summary, cover, collectionId, viewcount, updated, expand.views',
+        'id, title, slug, summary, cover, collectionId, viewcount, created, expand.views',
       filter: pbFilter ?? 'published = true',
     });
   } catch (error) {
@@ -125,7 +125,7 @@ async function page({
               slug: post.slug,
               summary: post.summary,
               cover: post.cover,
-              updated: post.updated,
+              created: post.created,
               viewcount: post.expand.views.views,
             }}
           />

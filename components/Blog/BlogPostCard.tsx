@@ -14,7 +14,7 @@ export interface BlogPostCardData {
   cover: string;
   collectionId: string;
   summary: string;
-  updated: string;
+  created: string;
   viewcount: number;
 }
 
@@ -53,7 +53,7 @@ function BlogPostCard({
               className="inline invert dark:invert-0"
             />
             <span className="mr-1">
-              {ToFaNumbers(dayjs(post.updated).locale('fa').fromNow())}
+              {ToFaNumbers(dayjs(post.created).locale('fa').fromNow())}
             </span>
           </div>
           <div title="تعداد بازدید های این مقاله">
