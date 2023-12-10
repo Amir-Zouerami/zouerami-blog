@@ -45,7 +45,7 @@ function ShareOnSocialMedia({
     <div
       className={`${
         modalControl.shareModalOpen ? 'shareArticleModalOpen' : ''
-      } absolute right-0 top-0 z-[99] flex h-[100%] w-[100%] items-center justify-center bg-[#293036] opacity-[.9]`}
+      } absolute right-0 top-0 z-[99] flex h-[100%] w-[100%] items-center justify-center bg-[#0b0b0b]/80 text-white`}
     >
       <div>
         <h3 className="mb-10 px-5 text-center text-2xl font-black lg:text-3xl">
@@ -69,16 +69,22 @@ function ShareOnSocialMedia({
                 width={30}
                 alt="لینک مقاله را کپی کنید"
                 onClick={() => {
-                  const input = document.getElementById(
-                    'blogArticleShareLink'
-                  ) as HTMLInputElement;
+                  try {
+                    const input = document.getElementById(
+                      'blogArticleShareLink'
+                    ) as HTMLInputElement;
 
-                  navigator.clipboard.writeText(input.value);
+                    navigator.clipboard.writeText(input.value);
 
-                  toast.success('کپی شد!', {
-                    position: 'top-center',
-                    id: 'COPIED_TO_CLIPBOARD',
-                  });
+                    return toast.success('کپی شد!', {
+                      position: 'top-center',
+                      id: 'COPIED_TO_CLIPBOARD',
+                    });
+                  } catch (error) {
+                    return toast.error('خطا: لینک کپی نشد!', {
+                      id: 'COPY_URL_FAILED',
+                    });
+                  }
                 }}
               />
             </span>
