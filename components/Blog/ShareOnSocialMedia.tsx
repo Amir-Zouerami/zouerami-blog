@@ -22,7 +22,9 @@ function ShareOnSocialMedia({
   slug?: string;
 }) {
   const pathname = usePathname();
-  const shareUrl = encodeURI(`localhost:3000` + (slug ?? pathname));
+  const shareUrl = encodeURI(
+    `localhost:3000` + (slug ? `/blog/${slug}` : pathname)
+  );
   const shareTitle = encodeURIComponent(title);
 
   useEffect(() => {
@@ -60,7 +62,7 @@ function ShareOnSocialMedia({
               dir="ltr"
               className="w-[200px] rounded-2xl bg-[#000000] px-5 py-3 outline-none lg:w-[500px]"
               readOnly
-              value={`localhost:3000` + (slug ?? pathname)}
+              value={`localhost:3000` + (slug ? `/blog/${slug}` : pathname)}
             />
             <span>
               <Image
