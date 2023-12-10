@@ -71,8 +71,12 @@ async function page({ params }: SingleProjectParam) {
           height={0}
           sizes="100%"
           alt={project.title}
-          className="h-full w-full rounded-3xl"
+          className="mb-10 h-full w-full rounded-3xl"
         />
+      </div>
+
+      <div className="mx-10 mt-10 lg:mt-20">
+        <h1 className="text-4xl font-black lg:text-5xl">{project.title}</h1>
       </div>
 
       <div className="mx-auto max-w-[95%] text-justify leading-[3] 2xl:text-lg 2xl:leading-10">
