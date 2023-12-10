@@ -249,7 +249,7 @@ svg-orange:active {
 }
 
 .activeDesktop {
-  @apply rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-black hover:opacity-[0.8] dark:bg-[#e25687] dark:text-white;
+  @apply rounded-[10px] bg-[#1f2124] px-4 py-2 font-semibold text-white hover:opacity-[0.8] dark:bg-[#e25687] dark:text-white;
 }
 
 /* ------------------ Prevent sticky hover effect after a touch (mobile devices) ------------------ */
