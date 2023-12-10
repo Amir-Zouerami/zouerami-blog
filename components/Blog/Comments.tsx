@@ -38,15 +38,17 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
         cache: 'no-store',
         method: 'POST',
         body: JSON.stringify({ postId, page }),
-      }).then(async data => {
-        const CommentsData: CommentsAPIData = await data.json();
-        setCommentsArray(CommentsData.data.items);
-        setIsLoading(false);
+      })
+        .then(async data => {
+          const CommentsData: CommentsAPIData = await data.json();
+          setCommentsArray(CommentsData.data.items);
+          setIsLoading(false);
 
-        if (page >= CommentsData.totalPages) {
-          setEnd(() => true);
-        }
-      });
+          if (page >= CommentsData.totalPages) {
+            setEnd(() => true);
+          }
+        })
+        .catch(() => {});
     }
   }, [page, postId, commentsModal]);
 
