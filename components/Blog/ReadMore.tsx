@@ -19,7 +19,7 @@ function ReadMore({ slug }: { slug: string }) {
             <Image
               className="svg-white ml-2 inline-block"
               src={loading}
-              width={25}
+              width={20}
               alt="در حال باز کردن پست"
             />
             <span>لطفا صبر کنید</span>
