@@ -49,10 +49,11 @@ async function page({
 
   try {
     let sortIndex;
+    // TODO: SECOND PAGE DOES NOT CONTAIN THE SORTING - PAGINATION TAKES OVER + CONSOLE.LOGS
 
     switch (searchParams.sort) {
       case 'views':
-        sortIndex = '-viewcount';
+        sortIndex = '-views.views';
         break;
 
       case 'lastUpdated':
@@ -92,8 +93,9 @@ async function page({
 
     posts = await pb.collection('posts').getList<BlogPostData>(currentPage, 5, {
       sort: sortIndex,
+      expand: 'views',
       fields:
-        'id, title, slug, summary, cover, collectionId, viewcount, updated',
+        'id, title, slug, summary, cover, collectionId, viewcount, updated, expand.views',
       filter: pbFilter ?? 'published = true',
     });
   } catch (error) {
@@ -121,7 +123,7 @@ async function page({
               summary: post.summary,
               cover: post.cover,
               updated: post.updated,
-              viewcount: post.viewcount,
+              viewcount: post.expand.views.views,
             }}
           />
         ))}

@@ -33,26 +33,25 @@ const getPost = cache(async (postSlug: string) => {
       .getFirstListItem<BlogPostData>(
         pb.filter('slug = {:slug} && published = true', { slug: postSlug }),
         {
-          expand: 'post_categories',
+          expand: 'post_categories, views',
           skipTotal: true,
         }
       );
-
     return post;
   } catch (error) {
     console.log('cached getPosts func failed', error);
     throw new Error('cached getPosts func failed');
   }
 });
-// TODO: THIS UPDATES THE UPDATED COLUMN! NOW WHAT?
-const incCounter = async (postId: string) => {
+
+const incCounter = async (viewId: string) => {
   try {
     const response = await fetch('http://localhost:3000/api/incCounter', {
       method: 'POST',
-      body: JSON.stringify({ postId }),
+      body: JSON.stringify({ viewId }),
     });
     const json = await response.json();
-    return json.newView;
+    return json.freshView;
   } catch (error) {
     console.log('ERROR INCREMENTING THE VIEW COUNT FOR POST: ', error);
   }
@@ -106,7 +105,7 @@ export async function generateMetadata({
 async function page({ params }: SingleBlogPostParam) {
   const { slug } = params;
   let post: BlogPostData = await getPost(slug);
-  const freshViews = await incCounter(post.id);
+  const freshViews = await incCounter(post.expand.views.id);
 
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">

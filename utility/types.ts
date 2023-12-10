@@ -102,7 +102,6 @@ export interface BlogPostData {
   title: string;
   slug: string;
   article_version: number;
-  viewcount: number;
   comments: string[];
   post_categories: string[];
   skill_level: 'مبتدی' | 'متوسط' | 'پیشرفته';
@@ -114,7 +113,7 @@ export interface BlogPostData {
   collectionId: string;
   created: string;
   updated: string;
-  expand: Expand;
+  expand: POSTExpand;
 }
 
 /**
@@ -147,9 +146,22 @@ export interface BlogPostHeaderProps {
 /**
  * Pocketbase Post Expand Relation
  */
-interface Expand {
+interface POSTExpand {
   post_categories: PostCategory[];
   comments?: Comment[] | null;
+  views: POSTVIEWS;
+}
+
+/**
+ * Post Views
+ */
+export interface POSTVIEWS {
+  id: string;
+  views: number;
+  collectionId: string;
+  collectionName: string;
+  createdAt: string;
+  UpdatedAt: string;
 }
 
 /**
