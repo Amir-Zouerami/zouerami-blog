@@ -7,7 +7,6 @@ html {
   direction: rtl;
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
-  /* background-color: #31333c;  ALTERNATE COLOR: #0f172a AND #232630 AND #151515 */
 }
 
 ::selection {
@@ -18,7 +17,6 @@ html {
 .ltr {
   direction: ltr !important;
   line-height: 2;
-  /* font-size: 13px; */
 }
 
 pre,
@@ -30,8 +28,6 @@ blockquote {
   padding-right: 20px;
   background-color: rgba(128, 128, 128, 0.448);
   border-radius: 5px 0 0 5px;
-  /* padding-top: 0.2px;
-  padding-bottom: 0.2px; */
   padding-left: 0px;
   border-right: 3px solid white;
   border-left: none;
