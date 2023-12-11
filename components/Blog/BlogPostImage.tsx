@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import sampleImage from '@/public/sample-blog-image.jpg';
 
 function BlogPostImage({ href, caption }: { href: string; caption: string }) {
   return (
@@ -7,9 +6,10 @@ function BlogPostImage({ href, caption }: { href: string; caption: string }) {
       <Image
         src={href}
         alt={caption}
-        width={1200}
-        height={1200}
-        className="mx-auto max-w-full rounded-xl lg:max-w-[1000px]"
+        width={0}
+        height={0}
+        sizes="100%"
+        className="min-w-[600px] mx-auto w-auto rounded-xl"
       />
       <figcaption className="pt-3 text-sm text-slate-400 lg:text-base">
         {caption}
