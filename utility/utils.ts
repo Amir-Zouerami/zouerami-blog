@@ -49,7 +49,7 @@ export const formatHeadlines = (rootDiv: HTMLDivElement) => {
     const nestedList = li.querySelector('ul');
 
     if (anchorChild) {
-      anchorChild.classList.add('hover:text-teal-400');
+      anchorChild.classList.add('hover:font-bold');
       anchorChild.classList.add('transition-all');
     }
 

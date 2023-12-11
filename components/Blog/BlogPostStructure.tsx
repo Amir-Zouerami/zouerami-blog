@@ -26,7 +26,7 @@ function BlogPostStructure({
   }, [article_headlines]);
 
   return (
-    <div className="mx-2 max-w-[500px] cursor-pointer">
+    <div className="relative mx-2 max-w-[500px] cursor-pointer">
       <p
         onClick={() => {
           setStructureModal(!structureModal);
@@ -45,10 +45,12 @@ function BlogPostStructure({
       {structureModal && (
         <>
           <div
-            className="rounded-xl border p-5 hover:cursor-default"
+          // TODO: transition?
+            className="absolute w-full rounded-xl border bg-[#b2c6cc] p-5 hover:cursor-default dark:bg-[#31333c] max-md:leading-9"
             dangerouslySetInnerHTML={{
               __html: headlineContent ? headlineContent : 'در حال بارگذاری',
             }}
+            onClick={() => setStructureModal(false)}
           ></div>
         </>
       )}
