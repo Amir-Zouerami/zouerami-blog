@@ -16,14 +16,14 @@ function Attention({ children, type }: AttentionProps) {
         type === 'ALERT'
           ? 'from-[#EE8C68] to-[#D93965]'
           : 'from-[#A880C0] to-[#4CB8B2]'
-      } p-5 leading-10 lg:flex lg:max-w-[80%] xl:gap-3 2xl:leading-[3]`}
+      } items-center p-5 leading-10 lg:flex lg:max-w-[80%] xl:gap-3 2xl:leading-[3]`}
     >
       <div className="mb-5 flex items-center justify-center lg:m-0">
         <Image
           src={type === 'ALERT' ? danger : pen}
           width={72}
-          alt={type === 'ALERT' ? 'warning' : 'important note'}
-          className="lg:w-72"
+          alt={type === 'ALERT' ? 'هشدار' : 'نکته ی مهم'}
+          className={`${type === 'ALERT' ? 'lg:w-56' : 'lg:w-72'}`}
         />
 
         <p className="text-4xl font-black text-white lg:hidden lg:text-5xl">
