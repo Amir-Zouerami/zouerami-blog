@@ -6,7 +6,13 @@ import Pocketbase from 'pocketbase';
 import { BlogPostData, PostCategory } from '@/utility/types';
 import { createFileURL, truncateSentence } from '@/utility/utils';
 
-async function SimilarArticles({ categories }: { categories: PostCategory[] }) {
+async function SimilarArticles({
+  categories,
+  slug,
+}: {
+  categories: PostCategory[];
+  slug: string;
+}) {
   let posts;
 
   try {
@@ -19,9 +25,13 @@ async function SimilarArticles({ categories }: { categories: PostCategory[] }) {
     const { category } = categories[0];
 
     posts = await pb.collection('posts').getList<BlogPostData>(1, 2, {
-      filter: pb.filter('post_categories.category ?= {:category}', {
-        category,
-      }),
+      filter: pb.filter(
+        'post_categories.category ?= {:category} && slug != {:slug} && published = true',
+        {
+          category,
+          slug,
+        }
+      ),
     });
   } catch (error) {
     console.log(error);
@@ -46,7 +56,7 @@ async function SimilarArticles({ categories }: { categories: PostCategory[] }) {
             <div className="mt-5 text-center">
               <Link
                 href={'/blog/' + post.slug}
-                className="w-10 rounded-xl bg-gradient-to-r from-[#5AA68C] to-[#C0B35F] px-12 py-4 reactiveButton"
+                className="reactiveButton w-10 rounded-xl bg-gradient-to-r from-[#5AA68C] to-[#C0B35F] px-12 py-4"
               >
                 <span className="pr-2 font-bold text-white">مطالعه مقاله</span>
               </Link>

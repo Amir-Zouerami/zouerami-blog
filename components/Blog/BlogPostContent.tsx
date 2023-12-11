@@ -11,15 +11,17 @@ import { PostCategory } from '@/utility/types';
 function BlogPostContent({
   content,
   categories,
+  slug,
 }: {
   content: string;
   categories: PostCategory[];
+  slug: string;
 }) {
   const parsedHTML = parse(content, parseOptions);
 
   return (
     <>
-      <div className="mx-auto max-w-[95%] text-justify leading-[3]  2xl:text-lg 2xl:leading-10">
+      <div className="mx-auto max-w-[95%] text-justify leading-[3] 2xl:text-lg 2xl:leading-10">
         {parsedHTML}
       </div>
 
@@ -33,7 +35,7 @@ function BlogPostContent({
           شاید از این مقالات نیز خوشتان بیاید:
         </p>
 
-        <SimilarArticles categories={categories} />
+        <SimilarArticles categories={categories} slug={slug} />
       </div>
     </>
   );
