@@ -7,10 +7,12 @@ function BlogHeading({
   children,
   id,
   href,
+  as,
 }: {
   children: ReactNode;
   id?: string;
   href: string;
+  as: string;
 }) {
   return (
     <a className="flex" href={href} id={`${id ?? null}`}>
@@ -24,9 +26,15 @@ function BlogHeading({
         alt=""
         className="ml-2 inline-block"
       />
-      <h2 className="my-10 inline-block text-2xl font-black md:text-3xl">
-        {children}
-      </h2>
+      {as === 'h2' ? (
+        <h2 className="my-10 inline-block text-2xl font-black md:text-3xl">
+          {children}
+        </h2>
+      ) : (
+        <h3 className="my-10 inline-block text-2xl font-black md:text-3xl">
+          {children}
+        </h3>
+      )}
     </a>
   );
 }

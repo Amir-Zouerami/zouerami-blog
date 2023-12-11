@@ -3,6 +3,7 @@ import {
   DOMNode,
   Element,
   Text,
+  domToReact,
 } from 'html-react-parser';
 
 import BlogHeading from '@/components/Blog/BlogHeading';
@@ -37,6 +38,11 @@ const isH2Tag = (node: DOMNode): node is Element => {
   return node instanceof Element && node.type === 'tag' && node.name === 'h2';
 };
 
+// Check if the node is an <h3> tag
+const isH3Tag = (node: DOMNode): node is Element => {
+  return node instanceof Element && node.type === 'tag' && node.name === 'h3';
+};
+
 // Check if the node is a <code> tag
 const isCodeElement = (node: DOMNode): node is Element => {
   return node.type === 'tag' && node.name === 'code';
@@ -56,7 +62,7 @@ const isImageFigure = (node: DOMNode): node is Element => {
 export const parseOptions: HTMLReactParserOptions = {
   replace: node => {
     // ---------> REPLACE THE H2 TAG
-    if (isH2Tag(node)) {
+    if (isH2Tag(node) || isH3Tag(node)) {
       if (node.firstChild instanceof Element) {
         const { id, href } = node.firstChild.attribs;
         const anchorTag = node.firstChild.firstChild;
@@ -64,7 +70,7 @@ export const parseOptions: HTMLReactParserOptions = {
         if (anchorTag instanceof Text && anchorTag.data) {
           return (
             // Absolute God Awful Typing, compliment of the package author @see: https://github.com/remarkablemark/html-react-parser/issues/1126#issuecomment-1784188447
-            <BlogHeading id={id} href={href}>
+            <BlogHeading id={id} href={href} as={node.name}>
               {anchorTag.data}
             </BlogHeading>
           );
@@ -74,19 +80,29 @@ export const parseOptions: HTMLReactParserOptions = {
 
     // ---------> DETECT ALERT [BLOG_ALERT]
     if (isBlogAlertParagraph(node)) {
-      const pTagText = node.firstChild;
+      const pHasChildren = node.firstChild;
 
-      if (pTagText instanceof Text && pTagText.data) {
-        return <Attention type="ALERT">{pTagText.data}</Attention>;
+      if (pHasChildren) {
+        return (
+          <Attention type="ALERT">
+            {/* awful type assertion thanks to html-react-parser. @see: https://github.com/remarkablemark/html-react-parser/issues/1126#issuecomment-1784188447 */}
+            {domToReact(node.children as DOMNode[])}
+          </Attention>
+        );
       }
     }
 
     // ---------> DETECT NOTICE [BLOG_NOTICE]
     if (isBlogNoticeParagraph(node)) {
-      const pTagText = node.firstChild;
+      const pHasChildren = node.firstChild;
 
-      if (pTagText instanceof Text && pTagText.data) {
-        return <Attention type="NOTE">{pTagText.data}</Attention>;
+      if (pHasChildren) {
+        return (
+          <Attention type="NOTE">
+            {/* awful type assertion thanks to html-react-parser. @see: https://github.com/remarkablemark/html-react-parser/issues/1126#issuecomment-1784188447 */}
+            {domToReact(node.children as DOMNode[])}
+          </Attention>
+        );
       }
     }
 
@@ -95,7 +111,7 @@ export const parseOptions: HTMLReactParserOptions = {
       const code = node.firstChild;
       const { 'data-lang': lang, 'data-title': title } = node.attribs;
 
-      if (code instanceof Text && code.data) {
+      if (code instanceof Text && code.data && lang) {
         return (
           <div className="ltr mx-auto lg:max-w-[90%]">
             <Code lang={lang} title={title} theme={'one-dark-pro'}>
