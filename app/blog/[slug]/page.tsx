@@ -108,7 +108,7 @@ async function page({ params }: SingleBlogPostParam) {
   const freshViews = await incCounter(post.expand.views.id);
 
   return (
-    <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1200px]">
+    <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1100px]">
       <div className="relative mx-auto max-w-[900px]">
         <Image
           src={createFileURL(post.id, post.collectionId, post.cover)}
@@ -140,6 +140,7 @@ async function page({ params }: SingleBlogPostParam) {
       <BlogPostContent
         content={post.content}
         categories={post.expand.post_categories}
+        slug={post.slug}
       />
 
       <Comments slug={post.slug} postId={post.id} />
