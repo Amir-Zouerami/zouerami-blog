@@ -9,7 +9,7 @@ function BlogPostImage({ href, caption }: { href: string; caption: string }) {
         width={0}
         height={0}
         sizes="100%"
-        className="min-w-[600px] mx-auto w-auto rounded-xl"
+        className="mx-auto w-auto rounded-xl max-md:w-full md:min-w-[600px]"
       />
       <figcaption className="pt-3 text-sm text-slate-400 lg:text-base">
         {caption}
