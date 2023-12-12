@@ -54,11 +54,11 @@ export const formatHeadlines = (rootDiv: HTMLDivElement) => {
     }
 
     if (!nestedList) {
-      li.classList.add('py-4');
+      li.classList.add('lg:py-3', 'max-md:py-1');
     }
 
     if (nestedList) {
-      anchorChild?.classList.add('inline-block', 'py-4');
+      anchorChild?.classList.add('inline-block', 'lg:py-3', 'max-md:py-1');
       li.classList.add('pr-6');
     }
   });
