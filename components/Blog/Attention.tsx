@@ -23,6 +23,7 @@ function Attention({ children, type }: AttentionProps) {
           src={type === 'ALERT' ? danger : pen}
           width={72}
           alt={type === 'ALERT' ? 'هشدار' : 'نکته ی مهم'}
+          title={type === 'ALERT' ? 'هشدار' : 'نکته ی مهم'}
           className={`${type === 'ALERT' ? 'lg:w-56' : 'lg:w-72'}`}
         />
 
