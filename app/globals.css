@@ -19,9 +19,30 @@ html {
   line-height: 2;
 }
 
+pre {
+  border-radius: 5px;
+}
+
 pre,
 code {
   direction: ltr;
+}
+
+p a[target='_blank'] {
+  @apply break-all font-semibold text-cyan-400;
+}
+
+p a[target='_blank']::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 1px;
+  background-image: url('/external-link.svg');
+  background-size: cover;
+  vertical-align: middle;
+  filter: brightness(0) saturate(100%) invert(83%) sepia(10%) saturate(6921%)
+    hue-rotate(149deg) brightness(95%) contrast(98%);
 }
 
 blockquote {
