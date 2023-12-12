@@ -36,7 +36,7 @@ function BlogPostStructure({
         <Image
           src={fingerTap}
           width={25}
-          alt="see article headlines and structure"
+          alt="مشاهده ی عناوین مهم این مقاله"
           className="svg-current-gray inline text-white dark:filter-none"
         />
         <span className="dark:text-white"> ساختار و سرتیتر های مقاله: </span>
@@ -45,7 +45,6 @@ function BlogPostStructure({
       {structureModal && (
         <>
           <div
-          // TODO: transition?
             className="absolute w-full rounded-xl border bg-[#b2c6cc] p-5 hover:cursor-default dark:bg-[#31333c] max-md:leading-9"
             dangerouslySetInnerHTML={{
               __html: headlineContent ? headlineContent : 'در حال بارگذاری',
