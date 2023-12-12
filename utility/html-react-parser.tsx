@@ -33,6 +33,16 @@ const isBlogNoticeParagraph = (node: DOMNode): node is Element => {
   );
 };
 
+// Check if the node is an <ul> tag
+const isULTag = (node: DOMNode): node is Element => {
+  return node instanceof Element && node.type === 'tag' && node.name === 'ul';
+};
+
+// Check if the node is an <ol> tag
+const isOLTag = (node: DOMNode): node is Element => {
+  return node instanceof Element && node.type === 'tag' && node.name === 'ol';
+};
+
 // Check if the node is an <h2> tag
 const isH2Tag = (node: DOMNode): node is Element => {
   return node instanceof Element && node.type === 'tag' && node.name === 'h2';
@@ -75,6 +85,32 @@ export const parseOptions: HTMLReactParserOptions = {
             </BlogHeading>
           );
         }
+      }
+    }
+
+    // ---------> REPLACE THE <ol> TAGs
+    if (isOLTag(node)) {
+      const liTag = node.firstChild;
+
+      if (liTag) {
+        return (
+          <ol className="list-inside list-[persian] py-5 pr-5">
+            {domToReact(node.children as DOMNode[])}
+          </ol>
+        );
+      }
+    }
+
+    // ---------> REPLACE THE <ul> TAGs
+    if (isULTag(node)) {
+      const liTag = node.firstChild;
+
+      if (liTag) {
+        return (
+          <ul className="list-inside list-[persian] py-5 pr-5">
+            {domToReact(node.children as DOMNode[])}
+          </ul>
+        );
       }
     }
 
