@@ -43,6 +43,7 @@ function Project({ project }: { project: PROJECT }) {
 
             <Link
               href={project.demo ?? project.github}
+              target='_blank'
               className="reactiveButton inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all
               dark:bg-[#e25687] lg:flex-none"
             >
