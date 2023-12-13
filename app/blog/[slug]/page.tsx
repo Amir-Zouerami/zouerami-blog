@@ -16,7 +16,7 @@ interface SingleBlogPostParam {
   params: { slug: string };
 }
 
-const getPost = cache(async (postSlug: string) => {
+const getPost = async (postSlug: string) => {
   let post: BlogPostData;
 
   try {
@@ -39,10 +39,10 @@ const getPost = cache(async (postSlug: string) => {
       );
     return post;
   } catch (error) {
-    console.log('cached getPosts func failed', error);
-    throw new Error('cached getPosts func failed');
+    console.log('getPost func failed', error);
+    throw new Error('cached getPost func failed');
   }
-});
+};
 
 const incCounter = async (viewId: string) => {
   try {
