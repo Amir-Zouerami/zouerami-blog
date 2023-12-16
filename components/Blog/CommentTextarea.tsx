@@ -66,7 +66,14 @@ function CommentTextarea({ postId }: { postId: string }) {
                 remarkPlugins={[remarkGfm]}
                 disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
                 unwrapDisallowed={true}
-                linkTarget={'_blank'}
+                components={{a: ({ node, children, ...props }) => {
+                  if (!props.href?.startsWith('http://localhost:3000')){
+                    props.target = "_blank"
+                    props.rel = "noopener noreferrer"
+                  }
+
+                  return <a {...props}>{children}</a>
+                }}}
               >
                 {commentContent}
               </ReactMarkdown>

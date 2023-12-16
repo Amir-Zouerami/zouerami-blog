@@ -37,9 +37,10 @@ function SingleComment({
                 ? createFileURL(user.id, user.collectionId, user.avatar)
                 : userImage
             }
-            className={`rounded-full ${!user.avatar ? 'svg-white' : ''}`}
-            width={50}
-            height={50}
+            className={`rounded-full w-[50px] ${!user.avatar ? 'svg-white' : ''}`}
+            width={0}
+            height={0}
+            sizes='100vw'
             alt={user.username + ' profile photo'}
           />
         </div>
@@ -57,7 +58,14 @@ function SingleComment({
             remarkPlugins={[remarkGfm]}
             disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
             unwrapDisallowed={true}
-            linkTarget={'_blank'}
+            components={{a: ({ node, children, ...props }) => {
+              if (!props.href?.startsWith('http://localhost:3000')){
+                props.target = "_blank"
+                props.rel = "noopener noreferrer"
+              }
+
+              return <a {...props}>{children}</a>
+            }}}
           >
             {comment_content}
           </Markdown>
