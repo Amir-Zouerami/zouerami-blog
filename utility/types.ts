@@ -317,5 +317,5 @@ export interface PaginationProps {
 export interface EditedUserProfile {
   username: string | null;
   email?: string;
-  avatar?: File;
+  avatar?: File | Blob;
 }

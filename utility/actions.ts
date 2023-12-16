@@ -15,6 +15,7 @@ import {
   formdataFieldIsFile,
 } from './types';
 import { cookies } from 'next/headers';
+import sharp from 'sharp';
 
 export const registerUser = async (formData: FormData) => {
   // TODO: Throttle Requests Sent By User
@@ -167,14 +168,28 @@ export const editProfileInfo = async (
     if (!allowedTypes.includes(avatar.type))
       return { ok: false, level: 'AVATAR' };
 
-    updatedUser.avatar = avatar ?? null;
+    try {
+      const resizedAvatarBuffer = await sharp(await avatar.arrayBuffer())
+        .resize({ width: 512, height: 512, fit: 'cover' })
+        .toBuffer();
+
+      const resizedAvatarBlob = new Blob([resizedAvatarBuffer], {
+        type: avatar.type,
+      });
+      updatedUser.avatar = resizedAvatarBlob ?? null;
+    } catch (error) {
+      serverResponse = { ok: false, level: 'FIRST', error };
+      console.log('sharp resize failed: ', error);
+    }
   }
 
   try {
-    await pb.collection('users').update(pb.authStore.model.id, updatedUser);
-    serverResponse = { ok: true, level: 'FIRST' };
+    const res = await pb
+      .collection('users')
+      .update(pb.authStore.model.id, updatedUser);
+    serverResponse = { ok: true, level: 'FIRST', res };
   } catch (error) {
-    serverResponse = { ok: false, level: 'FIRST' };
+    serverResponse = { ok: false, level: 'FIRST', error };
   }
 
   if (pb.authStore.model.email === email) return serverResponse;
@@ -244,10 +259,10 @@ export const searchBlogs = async (rawFormData: FormData) => {
       articleDifficulty === 'NOVICE'
         ? 'مبتدی'
         : articleDifficulty === 'INTERMEDIATE'
-        ? 'متوسط'
-        : articleDifficulty === 'ADVANCED'
-        ? 'پیشرفته'
-        : '';
+          ? 'متوسط'
+          : articleDifficulty === 'ADVANCED'
+            ? 'پیشرفته'
+            : '';
 
     let userSearch = 'title ~ {:searchString}';
     if (articleCategory !== '')
