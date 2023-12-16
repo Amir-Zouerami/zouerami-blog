@@ -33,7 +33,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-headings">استفاده از سر تیتر</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-headings">
+          استفاده از سر تیتر
+        </BlogHeading>
         <p>
           استفاده از دستورات سرتیتر (تگ های <code>h1</code> تا <code>h6</code>)
           ممنوع می باشد بنابراین دستور{' '}
@@ -42,7 +44,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-bold">متن توپُر یا bold</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-bold">
+          متن توپُر یا bold
+        </BlogHeading>
         <p>
           برای توپُر کردن بخشی از متن خود باید آن را درون دستور ** قرار بدهید.
           به طور مثال **متن توپُر** به شکل{' '}
@@ -51,7 +55,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-italic">متن مُوَّرب یا italic</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-italic">
+          متن مُوَّرب یا italic
+        </BlogHeading>
         <p>
           برای مورب کردن بخشی از متن خود باید آن را درون دستور * قرار بدهید. به
           طور مثال *متن مورب* به شکل{' '}
@@ -60,7 +66,7 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-strikethrough">
+        <BlogHeading as="h2" href="#markdown-strikethrough">
           متن خط خورده یا Strikethrough
         </BlogHeading>
         <p>
@@ -78,7 +84,7 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-blockquote">
+        <BlogHeading as="h2" href="#markdown-blockquote">
           نقل قول یا blockquote
         </BlogHeading>
         <p>
@@ -96,7 +102,7 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-lists">
+        <BlogHeading as="h2" href="#markdown-lists">
           لیست های مرتب و غیر مرتب
         </BlogHeading>
         <p>
@@ -133,7 +139,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-code">کد یا code</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-code">
+          کد یا code
+        </BlogHeading>
         <p>
           برای نمایش کد در کامنت خود بهتر است از دستور ``` استفاده کنید. نام این
           علامت backtick است و شما باید تمام کد خود را درون آن قرار بدهید. به
@@ -147,7 +155,7 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-horizontal-rule">
+        <BlogHeading as="h2" href="#markdown-horizontal-rule">
           خط عمودی یا horizontal rule
         </BlogHeading>
         <p>
@@ -164,7 +172,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-links">لینک ها</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-links">
+          لینک ها
+        </BlogHeading>
         <p>
           برای نمایش یک لینک نیازی به استفاده از دستور قدیمی{' '}
           <span className="prose italic dark:prose-invert">
@@ -176,7 +186,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-tables">جدول ها</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-tables">
+          جدول ها
+        </BlogHeading>
         <p>برای نمایش جداول در کامنت های خود باید به شکل زیر عمل کنید:</p>
         <br />
         <p>| تیتر ۱ | تیتر ۲ |</p>
@@ -209,7 +221,7 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-task-lists">
+        <BlogHeading as="h2" href="#markdown-task-lists">
           لیست وظایف یا task list
         </BlogHeading>
         <p>
@@ -235,7 +247,9 @@ function Markdown() {
       </div>
 
       <div className="mb-10">
-        <BlogHeading href="#markdown-task-lists">جمع بندی</BlogHeading>
+        <BlogHeading as="h2" href="#markdown-task-lists">
+          جمع بندی
+        </BlogHeading>
 
         <p>
           امیدوارم با استفاده از این دستورات کامنت های خوانا و بهتری را به
