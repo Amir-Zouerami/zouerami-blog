@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 
+import { userInteraction } from '@/utility/types';
 import { NextRequest, NextResponse } from 'next/server';
 import Pocketbase from 'pocketbase';
 
@@ -15,11 +16,11 @@ export const POST = async (request: NextRequest) => {
 
     const interactions = await pb
       .collection('user_interaction')
-      .getList(page, 10, {
+      .getList<userInteraction>(page, 10, {
         filter: pb.filter('user_id = {:userId} && bookmarked = true', {
           userId,
         }),
-        expand: 'post_id',
+        expand: 'post_id, post_id.view',
       });
 
     if (interactions.items.length > 0) {
@@ -35,6 +36,6 @@ export const POST = async (request: NextRequest) => {
       });
     }
   } catch (error) {
-    () => console.log('ERRORRRRR in get bookmarked', error);
+    () => console.log('error in get-bookmarked', error);
   }
 };
