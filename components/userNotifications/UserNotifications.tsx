@@ -67,14 +67,14 @@ function UserNotifications() {
               }
             });
 
-            if (globalNotifs.length > 0) {
+            if (globalNotifs.length > 0 && globalNotifs[0] !== undefined) {
               return (
                 <div className="max-h-[500px] overflow-y-auto">
                   {globalNotifs}
                 </div>
               );
             } else {
-              return <p>هیچ اعلانی وجود ندارد.</p>;
+              return <p>هیچ اعلان عمومی وجود ندارد.</p>;
             }
           })()
         )}
@@ -98,7 +98,7 @@ function UserNotifications() {
               return <p>هیچ اعلانی وجود ندارد.</p>;
             }
 
-            let globalNotifs = notifs.map(notif => {
+            let userNotifs = notifs.map(notif => {
               if (notif.receiver === 'USER_SPECIFIC') {
                 return (
                   <div key={notif.id} className="px-3 py-5">
@@ -111,14 +111,14 @@ function UserNotifications() {
               }
             });
 
-            if (globalNotifs.length > 0) {
+            if (userNotifs.length > 0 && userNotifs[0] !== undefined) {
               return (
                 <div className="max-h-[500px] overflow-y-auto">
-                  {globalNotifs}
+                  {userNotifs}
                 </div>
               );
             } else {
-              return <p>هیچ اعلانی وجود ندارد.</p>;
+              return <p>هیچ اعلان شخصی وجود ندارد.</p>;
             }
           })()
         )}
