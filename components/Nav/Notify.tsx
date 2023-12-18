@@ -7,6 +7,8 @@ function Notify() {
 
   return (
     <>
+    {/* TODO: THIS IS A PLACEHOLDER FOR NOW -- NOT IMPLEMENTED YET!
+     */}
       {isNotifyOpen ? (
         <div className="mb-5 flex items-center justify-between rounded-b-3xl bg-gradient-to-r from-[#5AA68C] to-[#C0B35F] px-5 text-white">
           <p className="py-3 text-justify">
