@@ -50,7 +50,7 @@ function CommentTextarea({ postId }: { postId: string }) {
           {activeTab === 'write' ? (
             <textarea
               id="markdown-preview"
-              className="mb-5 h-[300px] max-h-[500px] w-full rounded-t-xl bg-[#363943] p-3 leading-8  outline-none lg:h-[200px]"
+              className="mb-5 h-[300px] max-h-[500px] w-full rounded-t-xl bg-[#363943] p-3 leading-8 text-white  outline-none lg:h-[200px]"
               placeholder="نظر خود را در این بخش بنویسید (برخی از دستورات مارک داون محدود شده اند) ..."
               onChange={e => {
                 setCommentContent(e.target.value);
@@ -60,20 +60,22 @@ function CommentTextarea({ postId }: { postId: string }) {
           ) : (
             <div
               id="rendered-markdown"
-              className="prose mb-5 h-[200px] min-w-full overflow-y-auto px-5 dark:prose-invert prose-table:text-center"
+              className="prose prose-invert mb-5 h-[200px] min-w-full overflow-y-auto px-5 prose-table:text-center"
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
                 unwrapDisallowed={true}
-                components={{a: ({ node, children, ...props }) => {
-                  if (!props.href?.startsWith('http://localhost:3000')){
-                    props.target = "_blank"
-                    props.rel = "noopener noreferrer"
-                  }
+                components={{
+                  a: ({ node, children, ...props }) => {
+                    if (!props.href?.startsWith('http://localhost:3000')) {
+                      props.target = '_blank';
+                      props.rel = 'noopener noreferrer';
+                    }
 
-                  return <a {...props}>{children}</a>
-                }}}
+                    return <a {...props}>{children}</a>;
+                  },
+                }}
               >
                 {commentContent}
               </ReactMarkdown>
