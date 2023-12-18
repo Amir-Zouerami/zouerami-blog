@@ -9,7 +9,6 @@ import { BlogPostData } from '@/utility/types';
 import { createFileURL } from '@/utility/utils';
 import Pocketbase from 'pocketbase';
 import { Metadata } from 'next';
-import { cache } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 interface SingleBlogPostParam {
@@ -33,7 +32,7 @@ const getPost = async (postSlug: string) => {
       .getFirstListItem<BlogPostData>(
         pb.filter('slug = {:slug} && published = true', { slug: postSlug }),
         {
-          expand: 'post_categories, views',
+          expand: 'post_categories, view',
           skipTotal: true,
         }
       );
@@ -41,19 +40,6 @@ const getPost = async (postSlug: string) => {
   } catch (error) {
     console.log('getPost func failed', error);
     throw new Error('cached getPost func failed');
-  }
-};
-
-const incCounter = async (viewId: string) => {
-  try {
-    const response = await fetch('http://localhost:3000/api/incCounter', {
-      method: 'POST',
-      body: JSON.stringify({ viewId }),
-    });
-    const json = await response.json();
-    return json.freshView;
-  } catch (error) {
-    console.log('ERROR INCREMENTING THE VIEW COUNT FOR POST: ', error);
   }
 };
 
@@ -78,34 +64,32 @@ export async function generateMetadata({
   };
 }
 
-// export async function generateStaticParams() {
-//   let allPosts: BlogPostData[];
+export async function generateStaticParams() {
+  let allPosts: BlogPostData[];
 
-//   try {
-//     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
-//     await pb.admins.authWithPassword(
-//       process.env.PB_ADMIN_EM as string,
-//       process.env.PB_ADMIN_PS as string
-//     );
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
 
-//     allPosts = await pb.collection('posts').getFullList<BlogPostData>({
-//       filter: 'published = true',
-//       cache: 'no-store',
-//     });
+    allPosts = await pb.collection('posts').getFullList<BlogPostData>({
+      filter: 'published = true',
+    });
 
-//     return allPosts.map(post => ({
-//       slug: post.slug,
-//     }));
-//   } catch (error) {
-//     console.log('generateStaticParams func failed', error);
-//     throw new Error('cached getPosts func failed');
-//   }
-// }
+    return allPosts.map(post => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.log('generateStaticParams func failed', error);
+    throw new Error('cached getPosts func failed');
+  }
+}
 
 async function page({ params }: SingleBlogPostParam) {
   const { slug } = params;
   let post: BlogPostData = await getPost(slug);
-  const freshViews = await incCounter(post.expand.views.id);
 
   return (
     <div className="mx-auto mt-20 max-w-[95%] lg:max-w-[1100px]">
@@ -129,7 +113,7 @@ async function page({ params }: SingleBlogPostParam) {
       <BlogPostHeader
         title={post.title}
         article_version={post.article_version}
-        viewcount={freshViews}
+        viewId={post.expand.view.id}
         categories={post.expand.post_categories}
         skill_level={post.skill_level}
         updated={post.updated}

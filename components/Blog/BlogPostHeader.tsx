@@ -3,12 +3,13 @@ import BlogPostStructure from './BlogPostStructure';
 import dayjs from '@/utility/dayjs';
 import { BlogPostHeaderProps } from '@/utility/types';
 import { ToFaNumbers } from '@/utility/utils';
+import BlogViews from './BlogViews';
 
-function BlogPostHeader({
+async function BlogPostHeader({
   title,
   article_version,
   skill_level,
-  viewcount,
+  viewId,
   created,
   updated,
   categories,
@@ -48,15 +49,14 @@ function BlogPostHeader({
                 key={postCategory.id}
                 href={`/blog?category=${postCategory.category}`}
               >
-                <span className="mx-1 rounded-lg bg-[#e25687] px-2 py-1 text-white transition-all hover:bg-orange-400 dark:bg-slate-600">
+                <span className="mx-1 rounded-lg bg-[#e25687] px-2 py-1 text-white transition-all hover:!bg-orange-400 dark:bg-slate-600">
                   {postCategory.category}
                 </span>
               </Link>
             ))}
           </p>
           <p className="py-3 lg:mx-3 lg:inline-block">
-            بازدید:{' '}
-            <span className="text-slate-400">{ToFaNumbers(viewcount)}</span>
+            بازدید: <BlogViews viewId={viewId} />
           </p>
         </div>
 

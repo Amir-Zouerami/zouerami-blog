@@ -2,6 +2,7 @@ import dayjs from '@/utility/dayjs';
 
 import Image from 'next/image';
 import fire from '@/icons/fire.svg';
+import view from '@/icons/view.svg';
 import calender from '@/icons/calender.svg';
 import { ToFaNumbers, createFileURL, truncateSentence } from '@/utility/utils';
 import ReadMore from './ReadMore';
@@ -39,13 +40,13 @@ function BlogPostCard({
           </h2>
 
           <p className="pb-5 pl-5 text-justify leading-8 text-[#5b5b5b] dark:text-white">
-            {truncateSentence(post.summary, 100)}
+            {truncateSentence(post.summary, 70)}
           </p>
         </div>
         <div className="flex items-center justify-between px-5">
           <ReadMore slug={post.slug} />
 
-          <div title="تاریخ آخرین ویرایش این مقاله">
+          <div title="تاریخ انتشار این مقاله">
             <Image
               src={calender}
               width={20}
@@ -59,10 +60,12 @@ function BlogPostCard({
           <div title="تعداد بازدید های این مقاله">
             <span className="mr-1">{post.viewcount}</span>
             <Image
-              src={fire}
+              src={post.viewcount > 99 ? fire : view}
               width={20}
               alt="view count icon"
-              className="verticalAlignSub inline invert dark:invert-0"
+              className={`${
+                post.viewcount > 99 ? 'svg-liked' : 'invert dark:invert-0'
+              } verticalAlignSub mr-1 inline`}
             />
           </div>
         </div>

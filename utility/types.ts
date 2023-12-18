@@ -140,7 +140,7 @@ export interface BlogPostHeaderProps {
   article_headlines: string;
   created: string;
   updated: string;
-  viewcount: number;
+  viewId: string;
 }
 
 /**
@@ -149,7 +149,7 @@ export interface BlogPostHeaderProps {
 interface POSTExpand {
   post_categories: PostCategory[];
   comments?: Comment[] | null;
-  views: POSTVIEWS;
+  view: POSTVIEWS;
 }
 
 /**
@@ -157,7 +157,7 @@ interface POSTExpand {
  */
 export interface POSTVIEWS {
   id: string;
-  views: number;
+  view: number;
   collectionId: string;
   collectionName: string;
   createdAt: string;

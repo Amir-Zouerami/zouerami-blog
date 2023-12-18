@@ -13,11 +13,11 @@ export const POST = async (request: NextRequest) => {
 
     const data = await pb
       .collection('post_views')
-      .update(viewId, { 'views+': 1 });
+      .update(viewId, { 'view+': 1 });
 
-    return NextResponse.json({ ok: true, freshView: data.views });
+    return NextResponse.json({ ok: true, freshView: data.view });
   } catch (error) {
-    console.log('ERROR INCREMENTING POST VIEW ROUTE');
-    return NextResponse.json({ ok: false });
+    console.log('ERROR INCREMENTING POST VIEW ROUTE', error);
+    return NextResponse.json({ ok: false, error });
   }
 };
