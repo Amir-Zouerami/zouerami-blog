@@ -1,4 +1,4 @@
-import UserMarkdown from '@/components/userBookmarked/UserBookmarked';
+import UserBookmarked from '@/components/userBookmarked/UserBookmarked';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import bookmark from '@/icons/bookmark.svg';
@@ -28,7 +28,7 @@ function page() {
         </p>
       </div>
 
-      <UserMarkdown />
+      <UserBookmarked />
     </div>
   );
 }
