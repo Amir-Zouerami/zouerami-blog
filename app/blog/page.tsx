@@ -1,7 +1,7 @@
 export const revalidate = 1800;
 
 import { Metadata } from 'next';
-import { BlogPostData, PROJECT } from '@/utility/types';
+import { BlogPostData } from '@/utility/types';
 
 import Pagination from '@/components/pagination/Pagination';
 import ArticleSearchSection from '@/components/Blog/ArticleSearchSection';
@@ -22,28 +22,26 @@ export const metadata: Metadata = {
   },
 };
 
-// export async function generateStaticParams() {
-//   let allProjects: PROJECT[];
+export async function generateStaticParams() {
+  let allPosts: BlogPostData[];
 
-//   try {
-//     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
 
-//     allProjects = await pb.collection('projects').getFullList<PROJECT>();
+    allPosts = await pb.collection('posts').getFullList<BlogPostData>();
 
-//     return allProjects.map(project => ({
-//       slug: project.slug,
-//     }));
-//   } catch (error) {
-//     console.log('generateStaticParams for projects failed', error);
-//     throw new Error('generateStaticParams for projects failed');
-//   }
-// }
+    return allPosts.map(post => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.log('generateStaticParams for posts failed', error);
+    throw new Error('generateStaticParams for posts failed');
+  }
+}
 
-async function page({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+const getPosts = async (searchParams: {
+  [key: string]: string | string[] | undefined;
+}) => {
   let posts;
   let currentPage = searchParams.page ? Number(searchParams.page) : 1;
   let sortParam;
@@ -53,8 +51,8 @@ async function page({
 
     switch (searchParams.sort) {
       case 'views':
-        sortIndex = '-views.views';
-        sortParam = 'sort=views';
+        sortIndex = '-view.view';
+        sortParam = 'sort=view';
         break;
 
       case 'lastUpdated':
@@ -96,15 +94,25 @@ async function page({
 
     posts = await pb.collection('posts').getList<BlogPostData>(currentPage, 5, {
       sort: sortIndex,
-      expand: 'views',
+      expand: 'view',
       fields:
-        'id, title, slug, summary, cover, collectionId, viewcount, created, expand.views',
+        'id, title, slug, summary, cover, collectionId, viewcount, created, expand.view',
       filter: pbFilter ?? 'published = true',
     });
+
+    return { posts, sortParam };
   } catch (error) {
     console.log('ERROR FETCHING POSTS');
     throw new Error(JSON.stringify(error));
   }
+};
+
+async function page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const { posts, sortParam } = await getPosts(searchParams);
 
   return (
     <section className="container mx-auto max-w-[1200px]">
@@ -115,7 +123,7 @@ async function page({
       <ArticleSearchSection />
 
       <div className="my-20">
-        {posts.items.map(post => (
+        {posts.items.map((post, index) => (
           <BlogPostCard
             key={post.id}
             post={{
@@ -126,8 +134,9 @@ async function page({
               summary: post.summary,
               cover: post.cover,
               created: post.created,
-              viewcount: post.expand.views.views,
+              viewcount: post.expand.view.view,
             }}
+            priority={index < 1 ? true : false}
           />
         ))}
       </div>

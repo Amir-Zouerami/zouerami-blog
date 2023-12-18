@@ -57,6 +57,30 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  let allProjects: PROJECT[];
+
+  try {
+    const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EM as string,
+      process.env.PB_ADMIN_PS as string
+    );
+
+    allProjects = await pb.collection('projects').getFullList<PROJECT>({
+      filter: 'featured = true',
+      cache: 'no-store',
+    });
+
+    return allProjects.map(project => ({
+      slug: project.slug,
+    }));
+  } catch (error) {
+    console.log('generateStaticParams func failed', error);
+    throw new Error('cached getPosts func failed');
+  }
+}
+
 async function page({ params }: SingleProjectParam) {
   const { slug } = params;
   let project: PROJECT = await getProject(slug);
