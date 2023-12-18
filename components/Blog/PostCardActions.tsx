@@ -58,7 +58,9 @@ function PostCardActions({
             bookmarked: data.bookmarked,
           }));
         })
-        .catch(() => {});
+        .catch(err => {
+          /* FAILS FOR POSTS WITH NO INTERACTION WHICH IS FINE */
+        });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -97,7 +99,7 @@ function PostCardActions({
       )}
 
       <div
-        className="col-span-12 my-auto hidden justify-center gap-10 px-5 lg:col-span-1
+        className="col-span-12 my-auto hidden justify-center gap-7 px-5 lg:col-span-1
       lg:mx-auto lg:flex lg:flex-col lg:px-0"
       >
         <Link
