@@ -49,11 +49,20 @@ function UserLiked() {
       <div>
         {postsArray.length > 0 ? (
           (() => {
-            const postCards = postsArray.map(post => {
+            const postCards = postsArray.map(interaction => {
               return (
                 <BlogPostCard
-                  key={post.id}
-                  post={post.expand!.post_id!}
+                  key={interaction.id}
+                  post={{
+                    id: interaction.post_id,
+                    collectionId: interaction.expand?.post_id?.collectionId!,
+                    title: interaction.expand?.post_id?.title!,
+                    slug: interaction.expand?.post_id?.slug!,
+                    summary: interaction.expand?.post_id?.summary!,
+                    cover: interaction.expand?.post_id?.cover!,
+                    created: interaction.expand?.post_id?.created!,
+                    viewcount: interaction.expand?.post_id?.expand.view.view!,
+                  }}
                   priority={true}
                 />
               );
