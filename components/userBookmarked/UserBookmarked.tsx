@@ -20,7 +20,7 @@ function UserBookmarked() {
 
   useEffect(() => {
     if (pb.authStore.isValid && pb.authStore.model) {
-      fetch('http://localhost:3000/api/get-bookmarked', {
+      fetch('https://zouerami.dev/api/get-bookmarked', {
         method: 'POST',
         body: JSON.stringify({ page: page, userId: pb.authStore.model.id }),
       })

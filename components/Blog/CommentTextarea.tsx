@@ -68,7 +68,7 @@ function CommentTextarea({ postId }: { postId: string }) {
                 unwrapDisallowed={true}
                 components={{
                   a: ({ node, children, ...props }) => {
-                    if (!props.href?.startsWith('http://localhost:3000')) {
+                    if (!props.href?.startsWith('https://zouerami.dev')) {
                       props.target = '_blank';
                       props.rel = 'noopener noreferrer';
                     }

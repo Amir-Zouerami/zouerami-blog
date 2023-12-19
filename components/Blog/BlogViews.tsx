@@ -5,7 +5,7 @@ import { ToFaNumbers } from '@/utility/utils';
 
 const incCounter = async (viewId: string) => {
   try {
-    const response = await fetch('http://localhost:3000/api/inc-counter', {
+    const response = await fetch('https://zouerami.dev/api/inc-counter', {
       method: 'POST',
       body: JSON.stringify({ viewId }),
     });
@@ -19,7 +19,7 @@ const incCounter = async (viewId: string) => {
 
 const getView = async (viewId: string) => {
   try {
-    const response = await fetch('http://localhost:3000/api/get-view', {
+    const response = await fetch('https://zouerami.dev/api/get-view', {
       method: 'POST',
       body: JSON.stringify({ viewId }),
     });

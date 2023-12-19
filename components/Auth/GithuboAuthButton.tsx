@@ -22,9 +22,9 @@ function GithuboAuthButton({ githuboAuth, text }: GtihuboAuthButtonProps) {
     <Link
       href={
         githuboAuth?.authUrl +
-        encodeURIComponent('http://localhost:3000/oauth2-redirect')
+        encodeURIComponent('https://zouerami.dev/oauth2-redirect')
       }
-      className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 reactiveButton"
+      className="reactiveButton w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4"
       onClick={() => {
         localStorage.setItem('oAuth_provider', JSON.stringify(githuboAuth));
       }}

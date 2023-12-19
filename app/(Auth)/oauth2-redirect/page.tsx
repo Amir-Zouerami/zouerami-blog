@@ -18,7 +18,7 @@ function Page() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const redirectURL = 'http://localhost:3000/oauth2-redirect';
+  const redirectURL = 'https://zouerami.dev/oauth2-redirect';
 
   useEffect(() => {
     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);

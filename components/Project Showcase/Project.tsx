@@ -34,7 +34,7 @@ function Project({ project }: { project: PROJECT }) {
         <div className="mt-5 text-center">
           <div className="flex flex-wrap items-center justify-between gap-5 lg:justify-end">
             <Link
-              href={`http://localhost:3000/portfolio/${project.slug}`}
+              href={`https://zouerami.dev/portfolio/${project.slug}`}
               className="reactiveButton inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all
               dark:bg-[#e25687] lg:flex-none"
             >
@@ -43,7 +43,7 @@ function Project({ project }: { project: PROJECT }) {
 
             <Link
               href={project.demo ?? project.github}
-              target='_blank'
+              target="_blank"
               className="reactiveButton inline-block flex-1 rounded-[10px] bg-[#1f2124] px-4 py-4 text-white transition-all
               dark:bg-[#e25687] lg:flex-none"
             >

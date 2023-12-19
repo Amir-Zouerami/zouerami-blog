@@ -10,7 +10,7 @@ function ReadMore({ slug }: { slug: string }) {
   return (
     <div onClick={() => setIsloading(true)}>
       <Link
-        href={'http://localhost:3000/blog/' + slug}
+        href={'https://zouerami.dev/blog/' + slug}
         className="inline-block rounded-t-2xl bg-gradient-to-r from-[#A880C0] to-[#4CB8B2] px-5 py-4 font-black
             text-white hover:opacity-[0.6] dark:from-[#D93965] dark:to-[#EE8C68]"
       >

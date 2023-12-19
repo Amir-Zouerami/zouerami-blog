@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import dayjs from '@/utility/dayjs';
 // import CommentTextarea from './CommentTextarea';
 
@@ -37,10 +37,12 @@ function SingleComment({
                 ? createFileURL(user.id, user.collectionId, user.avatar)
                 : userImage
             }
-            className={`rounded-full w-[50px] ${!user.avatar ? 'svg-white' : ''}`}
+            className={`w-[50px] rounded-full ${
+              !user.avatar ? 'svg-white' : ''
+            }`}
             width={0}
             height={0}
-            sizes='100vw'
+            sizes="100vw"
             alt={user.username + ' profile photo'}
           />
         </div>
@@ -58,14 +60,16 @@ function SingleComment({
             remarkPlugins={[remarkGfm]}
             disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
             unwrapDisallowed={true}
-            components={{a: ({ node, children, ...props }) => {
-              if (!props.href?.startsWith('http://localhost:3000')){
-                props.target = "_blank"
-                props.rel = "noopener noreferrer"
-              }
+            components={{
+              a: ({ node, children, ...props }) => {
+                if (!props.href?.startsWith('https://zouerami.dev')) {
+                  props.target = '_blank';
+                  props.rel = 'noopener noreferrer';
+                }
 
-              return <a {...props}>{children}</a>
-            }}}
+                return <a {...props}>{children}</a>;
+              },
+            }}
           >
             {comment_content}
           </Markdown>

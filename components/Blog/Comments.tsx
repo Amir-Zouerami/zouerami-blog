@@ -34,7 +34,7 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
 
   useEffect(() => {
     if (commentsModal) {
-      fetch('http://localhost:3000/api/get-comments', {
+      fetch('https://zouerami.dev/api/get-comments', {
         cache: 'no-store',
         method: 'POST',
         body: JSON.stringify({ postId, page }),

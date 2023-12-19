@@ -21,7 +21,7 @@ function SearchLinkButton() {
     if (userSearchText === '') return setAllPosts(false);
 
     try {
-      const apiResponse = await fetch('http://localhost:3000/api/get-posts', {
+      const apiResponse = await fetch('https://zouerami.dev/api/get-posts', {
         method: 'POST',
         body: JSON.stringify({ title: userSearchText }),
       });

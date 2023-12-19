@@ -7,7 +7,7 @@ import { JotaiProviders } from './jotaiProvider';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://zouerami.dev'),
 };
 
 export default function RootLayout({

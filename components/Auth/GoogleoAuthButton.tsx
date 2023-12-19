@@ -22,12 +22,12 @@ function GoogleoAuthButton({ googleoAuth, text }: GoogleoAuthButtonProps) {
     <Link
       href={
         googleoAuth?.authUrl +
-        encodeURIComponent('http://localhost:3000/oauth2-redirect')
+        encodeURIComponent('https://zouerami.dev/oauth2-redirect')
       }
       onClick={() => {
         localStorage.setItem('oAuth_provider', JSON.stringify(googleoAuth));
       }}
-      className="w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4 reactiveButton"
+      className="reactiveButton w-full rounded-xl bg-gradient-to-r from-[#6BAEEB] to-[#7B68EE] p-4"
     >
       <Image
         src={google}

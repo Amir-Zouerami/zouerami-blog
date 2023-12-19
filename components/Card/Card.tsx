@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import newsRedis from '@/public/news-redis.jpg';
-import newsPostgres from '@/public/news-postgres.jpg';
 import Link from 'next/link';
 import { BlogPostData } from '@/utility/types';
 import { createFileURL, truncateSentence } from '@/utility/utils';
@@ -30,7 +28,7 @@ function Card({ post }: { post: BlogPostData }) {
         <Link
           className="reactiveButton inline-block max-w-full rounded-md bg-[#1f2124] px-10 py-5
           font-bold text-white dark:bg-[#e25687]"
-          href={'http://localhost:3000/blog/' + post.slug}
+          href={'https://zouerami.dev/blog/' + post.slug}
         >
           مطالعه‌ی این مقاله
         </Link>

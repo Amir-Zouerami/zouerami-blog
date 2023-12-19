@@ -129,8 +129,8 @@ function SearchArticlesDropDown() {
                         post.skill_level === 'مبتدی'
                           ? 'text-green-500'
                           : post.skill_level === 'متوسط'
-                          ? 'text-yellow-500'
-                          : 'text-red-500'
+                            ? 'text-yellow-500'
+                            : 'text-red-500'
                       }
                     >
                       {post.skill_level}
@@ -147,7 +147,7 @@ function SearchArticlesDropDown() {
                 </div>
                 <Link
                   className="reactiveButton rounded-2xl bg-blue-400 px-3 py-2 text-center font-bold"
-                  href={`http://localhost:3000/blog/${post.slug}`}
+                  href={`https://zouerami.dev/blog/${post.slug}`}
                 >
                   مطالعه پست
                 </Link>

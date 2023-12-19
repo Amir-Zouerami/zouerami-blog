@@ -33,7 +33,7 @@ const nextConfig = {
           // },
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'http://localhost:3000 https://lh3.googleusercontent.com',
+            value: 'https://zouerami.dev https://lh3.googleusercontent.com',
           },
           {
             key: 'Access-Control-Allow-Methods',
