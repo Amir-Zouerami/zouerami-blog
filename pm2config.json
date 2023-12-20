@@ -1,0 +1,35 @@
+{
+    "apps": [
+        {
+            "name": "PB",
+            "script": "/home/zouerami/zoueramidev/zouerami-blog/pb/pocketbase",
+            "args": [
+                "serve"
+            ],
+            "instances": "1",
+            "watch": false,
+            "error_file": "/var/log/PB/error.log",
+            "out_file": "/var/log/PB/output.log",
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "max_memory_restart": "1G"
+        },
+        {
+            "name": "zouerami-blog",
+            "cw": "/home/zouerami/zoueramidev/zouerami-blog",
+            "script": "npm",
+            "args": [
+                "start"
+            ],
+            "instances": "1",
+            "autorestart": true,
+            "watch": false,
+            "error_file": "/var/log/BLOG/error.log",
+            "out_file": "/var/log/BLOG/output.log",
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "max_memory_restart": "1G",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
