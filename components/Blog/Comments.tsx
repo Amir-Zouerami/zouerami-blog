@@ -137,7 +137,7 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
               } else {
                 return (
                   <div className="my-20">
-                    <p className="text-lg">
+                    <p className="text-lg text-white">
                       برای این پست هیچ نظری ثبت نشده است ...
                     </p>
                   </div>
@@ -147,7 +147,7 @@ function Comments({ slug, postId }: { slug: string; postId: string }) {
 
             <div>
               {end ? (
-                <p className="py-5">نظر دیگری وجود ندارد.</p>
+                <p className="py-5 text-white">نظر دیگری وجود ندارد.</p>
               ) : (
                 <button
                   onClick={() => {
