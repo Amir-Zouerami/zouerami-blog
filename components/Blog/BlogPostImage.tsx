@@ -6,10 +6,10 @@ function BlogPostImage({ href, caption }: { href: string; caption: string }) {
       <Image
         src={href}
         alt={caption}
-        width={0}
-        height={0}
-        sizes="100%"
-        className="mx-auto w-auto rounded-xl max-md:w-full md:min-w-[600px]"
+        width={600}
+        height={600}
+        // sizes="auto"
+        className="mx-auto w-auto rounded-xl max-md:w-full"
       />
       <figcaption className="pt-3 text-sm text-slate-400 lg:text-base">
         {caption}
