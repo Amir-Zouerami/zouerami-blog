@@ -169,6 +169,8 @@ export const editProfileInfo = async (
       return { ok: false, level: 'AVATAR' };
 
     try {
+      // TODO: SMID OFF FOR NOW. @see https://github.com/lovell/sharp/issues/3893#issuecomment-1851490893
+      sharp.simd(false);
       const resizedAvatarBuffer = await sharp(await avatar.arrayBuffer())
         .resize({ width: 512, height: 512, fit: 'cover' })
         .toBuffer();
