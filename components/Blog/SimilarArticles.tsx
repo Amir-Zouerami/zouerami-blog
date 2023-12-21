@@ -33,6 +33,19 @@ async function SimilarArticles({
         }
       ),
     });
+
+    if (posts.totalItems === 0) {
+      try {
+        posts = await pb.collection('posts').getList<BlogPostData>(1, 2, {
+          filter: pb.filter('slug != {:slug} && published = true', {
+            category,
+            slug,
+          }),
+        });
+      } catch (error) {
+        () => {};
+      }
+    }
   } catch (error) {
     console.log(error);
     throw new Error('POSTS COULD NOT BE RETRIEVED');
