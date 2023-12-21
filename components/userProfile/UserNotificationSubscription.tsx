@@ -30,7 +30,7 @@ function UserNotificationSubscription() {
         }));
       })
       .catch(e => {
-        console.log('ERROR FETCHING NEWSLETTER');
+        console.log('NO NEWSLETTER FOUND');
       });
   }, []);
 
