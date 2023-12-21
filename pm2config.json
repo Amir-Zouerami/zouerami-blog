@@ -8,6 +8,7 @@
             ],
             "instances": "1",
             "watch": false,
+            "autorestart": true,
             "error_file": "/var/log/PB/error.log",
             "out_file": "/var/log/PB/output.log",
             "log_date_format": "YYYY-MM-DD HH:mm Z",
