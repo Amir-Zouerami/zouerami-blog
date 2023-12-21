@@ -15,7 +15,10 @@ const nextConfig = {
   // --------------------------------------
   reactStrictMode: false,
   images: {
-    remotePatterns: [{ protocol: 'http', hostname: '127.0.0.1', port: '8090' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'zouerami.dev' },
+      { protocol: 'http', hostname: '127.0.0.1', port: '8090' },
+    ],
   },
   async headers() {
     return [
