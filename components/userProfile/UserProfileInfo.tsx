@@ -173,7 +173,7 @@ function UserProfileInfo() {
             }}
             className={`${
               !userAvatar ? 'hidden' : ''
-            }absolute bottom-0 flex w-full items-center justify-center bg-black opacity-[.6] transition-all
+            } absolute bottom-0 flex w-full items-center justify-center bg-black opacity-[.6] transition-all
              lg:left-0 lg:h-full lg:w-auto lg:max-w-[60px] lg:-translate-x-8 lg:hover:translate-x-0`}
           >
             <Image
