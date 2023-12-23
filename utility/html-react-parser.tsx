@@ -161,9 +161,15 @@ export const parseOptions: HTMLReactParserOptions = {
     // ---------> SET STYLE FOR IMAGE <Figure> AND ITS CAPTION
     if (isImageFigure(node)) {
       const image = node.firstChild as Element;
-      const { src, alt } = image.attribs;
+      const { src, alt, 'data-tall': tall } = image.attribs;
 
-      return <BlogPostImage href={src} caption={alt} />;
+      return (
+        <BlogPostImage
+          tall={tall as 'true' | undefined}
+          href={src}
+          caption={alt}
+        />
+      );
     }
   },
 };
