@@ -25,7 +25,7 @@ async function Page() {
   const googleoAuth = oauthList.find(obj => obj.name === 'google');
   const githuboAuth = oauthList.find(obj => obj.name === 'github');
 
-  const response = cookies().get('pb_auth') ? (
+  const response = cookies().get('pb_auth') && !cookies().get('just_authed') ? (
     <AlreadyLoggedinDialogue />
   ) : (
     <div>

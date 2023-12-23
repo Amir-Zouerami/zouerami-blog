@@ -57,6 +57,11 @@ export const registerUser = async (formData: FormData) => {
       httpOnly: false,
     });
 
+    cookies().set('just_authed', 'true', {
+      sameSite: 'strict',
+      secure: true,
+      maxAge: 5,
+    });
     cookies().set('pb_auth', authCookie, { sameSite: 'strict', secure: true });
 
     if (pb.authStore.model) {
