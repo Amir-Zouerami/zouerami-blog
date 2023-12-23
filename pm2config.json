@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "PB",
-            "script": "/home/zouerami/zoueramidev/zouerami-blog/pb/pocketbase",
+            "script": "/home/zouerami/zouerami-blog/pb/pocketbase",
             "args": [
                 "serve"
             ],
@@ -16,7 +16,7 @@
         },
         {
             "name": "zouerami-blog",
-            "cw": "/home/zouerami/zoueramidev/zouerami-blog",
+            "cw": "/home/zouerami/zouerami-blog",
             "script": "npm",
             "args": [
                 "start"
