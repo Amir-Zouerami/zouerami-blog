@@ -26,7 +26,7 @@ async function page() {
     const pb = new Pocketbase(process.env.NEXT_PUBLIC_PB_DOMAIN);
     projects = await pb
       .collection('projects')
-      .getFullList<PROJECT>({ filter: 'featured = true' });
+      .getFullList<PROJECT>({ sort: "-created" });
   } catch (error) {}
 
   return (
