@@ -1,3 +1,6 @@
+# Note
+This repository is archived and had major problems (mostly shit code). I am currently working on v2.0!
+
 # What is this?
 This is my persoanl blog and my portfolio which is hosted at [zouerami.dev](https://zouerami.dev).
 
